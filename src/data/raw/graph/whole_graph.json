@@ -1,0 +1,825 @@
+[
+  {
+    "data": {
+      "id": "SHUW",
+      "label": "SHUW",
+      "features": {},
+      "type": "busbar"
+    },
+    "position": {
+      "x": 240.2927418920779,
+      "y": 419.8951182680647
+    }
+  },
+  {
+    "data": {
+      "id": "SHUW_E24",
+      "label": "SHUW_E24",
+      "features": {
+        "P_Datapoint_ID": "97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380",
+        "Q_Datapoint_ID": "c897b7a8-e06b-4493-bc8d-aa9e814c2afe",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "2ed62708-3221-400f-b30e-6bf21798b4c5",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.52185838583617,
+        "Longitude_deg": 9.436779961458,
+        "Strom_Limit_in_A": 2000,
+        "DAB_ID": " SHNG_E:DSO:SHN:ST:STUW47570:SA:110:SF:E24"
+      },
+      "type": "uw_field"
+    },
+    "position": {
+      "x": 322.09703796979795,
+      "y": 375.68420225659474
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_A5",
+      "label": "JUBO_A5",
+      "features": {},
+      "type": "junction"
+    },
+    "position": {
+      "x": 329.93571732448214,
+      "y": 199.86351238120625
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_E01",
+      "label": "JUBO_E01",
+      "features": {
+        "busbar_id": "JUBO_E03:-1, JUBO_E02:-1",
+        "derived": {
+          "method": "field_sum",
+          "feature_key": "P",
+          "terms": [
+            {
+              "node": "JUBO_E03",
+              "coeff": -1
+            },
+            {
+              "node": "JUBO_E02",
+              "coeff": -1
+            }
+          ]
+        }
+      },
+      "type": "uw_field"
+    },
+    "position": {
+      "x": 235.22467999652343,
+      "y": 200.89874292603747
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_E03",
+      "label": "JUBO_E03",
+      "features": {
+        "P_Datapoint_ID": "7b3fec1d-2c6f-4450-b41a-74d709e1c3b6",
+        "Q_Datapoint_ID": "7da9f1c7-dbca-4f3a-95a3-cef805959c66",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.54672622884843,
+        "Longitude_deg": 9.428364529498879,
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW47760:SA:110:SF:E03"
+      },
+      "type": "uw_field"
+    },
+    "position": {
+      "x": 55.76142429598839,
+      "y": 282.6321338877455
+    }
+  },
+  {
+    "data": {
+      "id": "BOLS_A5",
+      "label": "BOLS_A5",
+      "features": {},
+      "type": "junction"
+    },
+    "position": {
+      "x": 333.47114573999806,
+      "y": 117.30283887694252
+    }
+  },
+  {
+    "data": {
+      "id": "BOLS_E42",
+      "label": "BOLS_E42",
+      "features": {
+        "P_Datapoint_ID": "c076ad04-1a18-434d-8e86-34e081b0e4f6",
+        "Q_Datapoint_ID": "102fa684-58ca-451d-a0ae-6341accc6a36",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.576814051762824,
+        "Longitude_deg": 9.473113605947958,
+        "Strom_Limit_in_A": 1200,
+        "p_max_MW": 50,
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:1000364072:SA:110:SF:E42"
+      },
+      "type": "battery"
+    },
+    "position": {
+      "x": 443.8354331114607,
+      "y": 116.50358171347013
+    }
+  },
+  {
+    "data": {
+      "id": "Tarp",
+      "label": "Tarp",
+      "features": {},
+      "type": "busbar"
+    },
+    "position": {
+      "x": 142.8962505979329,
+      "y": -113.1450807040943
+    }
+  },
+  {
+    "data": {
+      "id": "Tarp_E01",
+      "label": "Tarp_E01",
+      "features": {
+        "P_Datapoint_ID": "03636523-35f2-428f-86e8-c260fafbe330",
+        "Windgeschw_Datapoint": "a699b709-7496-41c4-94b0-7441f3f71415",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.67059977898377,
+        "Longitude_deg": 9.409180033753046,
+        "Strom_Limit_in_A": 1100,
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW45121:SA:110:SF:E01"
+      },
+      "type": "uw_field"
+    },
+    "position": {
+      "x": 267.7161960303181,
+      "y": -66.10168951532263
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_E02",
+      "label": "JUBO_E02",
+      "features": {
+        "P_Datapoint_ID": "dd4d7a23-431a-49a8-923d-8baa3f00d85d",
+        "Q_Datapoint_ID": "17e9d281-890e-4e44-97d7-e1a1325d0dba",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.54672622884843,
+        "Longitude_deg": 9.428364529498879,
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW47760:SA:110:SF:E02"
+      },
+      "type": "uw_field"
+    },
+    "position": {
+      "x": 155.36223135978534,
+      "y": 278.9396471860536
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO",
+      "label": "JUBO",
+      "features": {},
+      "type": "busbar"
+    },
+    "position": {
+      "x": 109.0638911055932,
+      "y": 204.0060552374745
+    }
+  },
+  {
+    "data": {
+      "id": "BOLS_E41",
+      "label": "BOLS_E41",
+      "type": "battery",
+      "features": {
+        "P_Datapoint_ID": "d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9",
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:1000364072:SA:110:SF:E41",
+        "Strom_Limit_in_A": 1200,
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Longitude_deg": 9.473113605947958,
+        "p_max_MW": 50,
+        "Latitude_deg": 54.576814051762824
+      }
+    },
+    "position": {
+      "x": 525.2104052972543,
+      "y": 119.64773401760806
+    }
+  },
+  {
+    "data": {
+      "id": "Tarp_E03",
+      "label": "Tarp_E03",
+      "type": "uw_field",
+      "features": {
+        "Windgeschw_Datapoint": "a699b709-7496-41c4-94b0-7441f3f71415",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.67059977898377,
+        "Longitude_deg": 9.409180033753046,
+        "P_Datapoint_ID": " 7ac182fc-cbfd-46c4-85bb-2a546cb238e1",
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW45121:SA:110:SF:E03"
+      }
+    },
+    "position": {
+      "x": 268.41176772657445,
+      "y": -159.47790596662654
+    }
+  },
+  {
+    "data": {
+      "id": "Weding",
+      "label": "Weding",
+      "type": "busbar",
+      "features": {}
+    },
+    "position": {
+      "x": 438.0141138125696,
+      "y": -415.455292344175
+    }
+  },
+  {
+    "data": {
+      "id": "Weding_E14",
+      "label": "Weding_E14",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": "81517d2b-2fe1-4b64-b34a-2e03048cc900",
+        "Globale_Strahlung_Datapoint": "7fa01b80-bc47-4e6d-830e-60e138fc2605",
+        "Windgeschw_Datapoint": "a699b709-7496-41c4-94b0-7441f3f71415",
+        "Aussentemp_Datapoint": "44b2705b-0721-4784-a1c9-32081043ef9e",
+        "Latitude_deg": 54.751918297471036,
+        "Longitude_deg": 9.405945500640485
+      }
+    },
+    "position": {
+      "x": 375.5680822638676,
+      "y": -310.3488822450646
+    }
+  },
+  {
+    "data": {
+      "id": "Weding_E12",
+      "label": "Weding_E12",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": "1635dd30-e8d5-4333-bff9-3ab20a796059",
+        "Globale_Strahlung_Datapoint": "7fa01b80-bc47-4e6d-830e-60e138fc2605",
+        "Windgeschw_Datapoint": "a699b709-7496-41c4-94b0-7441f3f71415",
+        "Aussentemp_Datapoint": "44b2705b-0721-4784-a1c9-32081043ef9e",
+        "Latitude_deg": 54.751918297471036,
+        "Longitude_deg": 9.405945500640485
+      }
+    },
+    "position": {
+      "x": 474.1365635955605,
+      "y": -303.6687909281885
+    }
+  },
+  {
+    "data": {
+      "id": "SIEV_A3",
+      "label": "SIEV_A3",
+      "type": "junction",
+      "features": {}
+    },
+    "position": {
+      "x": 617.863369722052,
+      "y": -191.36996788642978
+    }
+  },
+  {
+    "data": {
+      "id": "SIES_A3",
+      "label": "SIES_A3",
+      "type": "junction",
+      "features": {}
+    },
+    "position": {
+      "x": 621.5824270753435,
+      "y": -101.52118107294338
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_A3",
+      "label": "BOLN_A3",
+      "type": "junction",
+      "features": {}
+    },
+    "position": {
+      "x": 619.655070687436,
+      "y": -1.1720152315022725
+    }
+  },
+  {
+    "data": {
+      "id": "BOLS_A3",
+      "label": "BOLS_A3",
+      "type": "junction",
+      "features": {}
+    },
+    "position": {
+      "x": 619.129071318977,
+      "y": 131.01501276885182
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN",
+      "label": "BOLN",
+      "type": "busbar",
+      "features": {}
+    },
+    "position": {
+      "x": 850.3871344750834,
+      "y": 0.010576875756150406
+    }
+  },
+  {
+    "data": {
+      "id": "SIEV",
+      "label": "SIEV",
+      "type": "busbar",
+      "features": {}
+    },
+    "position": {
+      "x": 846.5143898677289,
+      "y": -196.31386273826328
+    }
+  },
+  {
+    "data": {
+      "id": "SIES",
+      "label": "SIES",
+      "type": "busbar",
+      "features": {}
+    },
+    "position": {
+      "x": 847.8040617701698,
+      "y": -110.55835476336827
+    }
+  },
+  {
+    "data": {
+      "id": "SIEV_E01",
+      "label": "SIEV_E01",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": "563be369-1474-489b-b8ea-be4ed7e3ab5b",
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW48960:SA:110:SF:E01:",
+        "Windgeschw_Datapoint": "SHNG_E:ORT:Süderfahrenstedt:ST:1000361506:SA:20:MFD:NVP:N5:Klima:MW:Windgeschw.",
+        "Globale_Strahlung_Datapoint": "3400dc59-759c-4bd4-81a1-05dca71eed0c",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.65240174924401,
+        "Longitude_deg": 9.438555408777262
+      }
+    },
+    "position": {
+      "x": 718.0414543932291,
+      "y": -196.51002381368838
+    }
+  },
+  {
+    "data": {
+      "id": "SIES_E02",
+      "label": "SIES_E02",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": " 3ca16fd7-6946-4dbe-b733-397e8291ff82",
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW45200:SA:110:SF:E01",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "2ed62708-3221-400f-b30e-6bf21798b4c5",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.63716534587573,
+        "Longitude_deg": 9.443464609227874
+      }
+    },
+    "position": {
+      "x": 715.7483793288504,
+      "y": -112.26042508687527
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_E02",
+      "label": "BOLN_E02",
+      "type": "uw_field",
+      "features": {
+        "busbar_id": "BOLN_E03:-1, BOLN_E02:-1",
+        "derived": {
+          "method": "field_sum",
+          "feature_key": "P",
+          "terms": [
+            {
+              "node": "BOLN_E03",
+              "coeff": -1
+            },
+            {
+              "node": "BOLN_E02",
+              "coeff": -1
+            }
+          ]
+        },
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "2ed62708-3221-400f-b30e-6bf21798b4c5",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.61597644028319,
+        "Longitude_deg": 9.449163575287741
+      }
+    },
+    "position": {
+      "x": 714.2338664132511,
+      "y": -4.270225260953688
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_E01",
+      "label": "BOLN_E01",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": "34482f6c-cbbc-4f7f-99ae-db73a5885eb9",
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW45210:SA:110:SF:E01",
+        "Globale_Strahlung_Datapoint": "2ed62708-3221-400f-b30e-6bf21798b4c5",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Latitude_deg": 54.61597644028319,
+        "Longitude_deg": 9.449163575287741
+      }
+    },
+    "position": {
+      "x": 990.2843887854704,
+      "y": 40.97239963783909
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_E03",
+      "label": "BOLN_E03",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": " bf40c502-ea38-4eca-986a-11fa618c97f1",
+        "DAB_ID": "SHNG_E:DSO:SHN:ST:STUW45210:SA:110:SF:E03",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "2ed62708-3221-400f-b30e-6bf21798b4c5",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.61597644028319,
+        "Longitude_deg": 9.449163575287741
+      }
+    },
+    "position": {
+      "x": 984.1038147515086,
+      "y": -35.6892581841831
+    }
+  },
+  {
+    "data": {
+      "id": "SHUW_E23",
+      "label": "SHUW_E23",
+      "type": "uw_field",
+      "features": {
+        "P_Datapoint_ID": " bf20523d-4b54-44f3-800b-0a49cdc447aa",
+        "DAB_ID": " SHNG_E:DSO:SHN:ST:STUW47570:SA:110:SF:E23",
+        "Windgeschw_Datapoint": "360b2dc9-834a-42d6-8653-2630cbdcfb38",
+        "Globale_Strahlung_Datapoint": "2ed62708-3221-400f-b30e-6bf21798b4c5",
+        "Aussentemp_Datapoint": "6a4f03f6-17a7-40d1-96cb-483e4a7c2ad1",
+        "Latitude_deg": 54.52185838583617,
+        "Longitude_deg": 9.436779961458
+      }
+    },
+    "position": {
+      "x": 385.14509958425725,
+      "y": 430.71924237485155
+    }
+  },
+  {
+    "data": {
+      "id": "SHUW_SS_E24",
+      "source": "SHUW",
+      "target": "SHUW_E24",
+      "label": "SHUW_SS_E24",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "110_SHUW_TARP_GELB_JUBO_SHUW_JUBO_A5",
+      "source": "SHUW_E24",
+      "target": "JUBO_A5",
+      "label": "110_SHUW_TARP_GELB_JUBO_SHUW_JUBO_A5",
+      "features": {
+        "Strom_Limit_in_A": 1435,
+        "X_ohm_per_km": 0.6534,
+        "length_km": 2.49,
+        "X_total_ohm": 1.6269660000000001
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110_SHUW_TARP_GELB_JUBO_JUBO_A5_JUBO",
+      "source": "JUBO_A5",
+      "target": "JUBO_E01",
+      "label": "110_SHUW_TARP_GELB_JUBO_JUBO_A5_JUBO",
+      "features": {
+        "Strom_Limit_in_A": 632,
+        "X_ohm_per_km": 1.40225,
+        "length_km": 3.559,
+        "X_total_ohm": 4.990607750000001
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110_SHUW_TARP_GELB_JUBO_JUBO_A5_BOLS_A5",
+      "source": "BOLS_A5",
+      "target": "JUBO_A5",
+      "label": "110_SHUW_TARP_GELB_JUBO_JUBO_A5_BOLS_A5",
+      "features": {
+        "Strom_Limit_in_A": 555,
+        "X_ohm_per_km": 2.13305,
+        "length_km": 5.346,
+        "X_total_ohm": 11.4032853
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110_SHUW_TARP_GELB_JUBO_BOLS_A5_BOLS",
+      "source": "BOLS_A5",
+      "target": "BOLS_E42",
+      "label": "110_SHUW_TARP_GELB_JUBO_BOLS_A5_BOLS",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 0.00399,
+        "length_km": 0.01,
+        "X_total_ohm": 3.9899999999999994e-05
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "TARP_SS_TARP_E01",
+      "source": "Tarp",
+      "target": "Tarp_E01",
+      "label": "TARP_SS_TARP_E01",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "110_SHUW_TARP_GELB_JUBO_BOLS_A5_TARP",
+      "source": "Tarp_E01",
+      "target": "BOLS_A5",
+      "label": "110_SHUW_TARP_GELB_JUBO_BOLS_A5_TARP",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 5.25084,
+        "length_km": 13.16,
+        "X_total_ohm": 69.10105440000001
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_E03_JUBO",
+      "source": "JUBO",
+      "target": "JUBO_E03",
+      "label": "JUBO_E03_JUBO",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_E02_JUBO",
+      "source": "JUBO_E02",
+      "target": "JUBO",
+      "label": "JUBO_E02_JUBO",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "JUBO_E01_JUBO",
+      "source": "JUBO_E01",
+      "target": "JUBO",
+      "label": "JUBO_E01_JUBO",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "TARP_SS_TARP_E03",
+      "source": "Tarp",
+      "target": "Tarp_E03",
+      "label": "TARP_SS_TARP_E03",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "WEDING_SS_WEDING_E14",
+      "source": "Weding",
+      "target": "Weding_E14",
+      "label": "WEDING_SS_WEDING_E14",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "WEDING_SS_WEDING_E12",
+      "source": "Weding",
+      "target": "Weding_E12",
+      "label": "WEDING_SS_WEDING_E12",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "SHUW_SS_E23",
+      "source": "SHUW_E23",
+      "target": "SHUW",
+      "label": "SHUW_SS_E23",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 2.80787,
+        "length_km": 7.827,
+        "X_total_ohm": 21.97719849
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "SIEV_SS_E01",
+      "source": "SIEV",
+      "target": "SIEV_E01",
+      "label": "SIEV_SS_E01",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "SIES_SS_E02",
+      "source": "SIES_E02",
+      "target": "SIES",
+      "label": "SIES_SS_E02",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_SS_E02",
+      "source": "BOLN_E02",
+      "target": "BOLN",
+      "label": "BOLN_SS_E02",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_SS_E03",
+      "source": "BOLN",
+      "target": "BOLN_E03",
+      "label": "BOLN_SS_E03",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "BOLN_SS_E01",
+      "source": "BOLN",
+      "target": "BOLN_E01",
+      "label": "BOLN_SS_E01",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "110-TARP-WEDI-GRUEN TARP-WEDI",
+      "source": "Tarp_E03",
+      "target": "Weding_E14",
+      "label": "110-TARP-WEDI-GRUEN TARP-WEDI",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 4.11369
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV WEDI-SIEV A3",
+      "source": "Weding_E12",
+      "target": "SIEV_A3",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV WEDI-SIEV A3",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 5.21094
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SIEV A3-SIEV",
+      "source": "SIEV_A3",
+      "target": "SIEV_E01",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SIEV A3-SIEV",
+      "features": {}
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SIEV A3-SIES A3",
+      "source": "SIEV_A3",
+      "target": "SIES_A3",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SIEV A3-SIES A3",
+      "features": {
+        "Strom_Limit_in_A": 555,
+        "X_ohm_per_km": 0.52907
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SIES A3-SIES",
+      "source": "SIES_A3",
+      "target": "SIES_E02",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SIES A3-SIES",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 0.0411
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLN A3-SIES A3",
+      "source": "SIES_A3",
+      "target": "BOLN_A3",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLN A3-SIES A3",
+      "features": {
+        "Strom_Limit_in_A": 545,
+        "X_ohm_per_km": 0.40259
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLN A3-BOLN",
+      "source": "BOLN_A3",
+      "target": "BOLN_E02",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLN A3-BOLN",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 0.00399
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLS A3-BOLN A3",
+      "source": "BOLS_A3",
+      "target": "BOLN_A3",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLS A3-BOLN A3",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 1.86532
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLS A3-BOLS",
+      "source": "BOLS_E41",
+      "target": "BOLS_A3",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV BOLS A3-BOLS",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 0.00399
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SHUW-BOLN A3",
+      "source": "BOLS_A3",
+      "target": "SHUW_E23",
+      "label": "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV SHUW-BOLN A3",
+      "features": {
+        "Strom_Limit_in_A": 547,
+        "X_ohm_per_km": 2.80787
+      }
+    }
+  }
+]

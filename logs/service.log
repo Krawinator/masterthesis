@@ -1,0 +1,19 @@
+2025-12-03 18:35:30 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs\service.log
+2025-12-03 18:35:30 [INFO] data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670592, lon=9.409187, past=24h, forecast=24h)
+2025-12-03 18:35:32 [ERROR] data.weather_loader - Fehler beim Abruf der Wetterdaten: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059160675461&longitude=9.409187447739384&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&past_minutely_15=96&forecast_minutely_15=96&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-03 18:42:27 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs\service.log
+2025-12-03 18:42:27 [INFO] data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670592, lon=9.409187, past=24h, forecast=24h)
+2025-12-03 18:42:28 [ERROR] data.weather_loader - Fehler beim Abruf der Wetterdaten: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059160675461&longitude=9.409187447739384&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&past_minutely_15=96&forecast_minutely_15=96&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-03 18:46:31 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs\service.log
+2025-12-03 18:46:31 [INFO] data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.770592, lon=9.309187, past=24h, forecast=24h)
+2025-12-03 18:46:32 [ERROR] data.weather_loader - Fehler beim Abruf der Wetterdaten: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.77059160675461&longitude=9.309187447739385&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&past_minutely_15=96&forecast_minutely_15=96&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-03 18:51:17 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs\service.log
+2025-12-03 18:51:17 [INFO] data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.770592, lon=9.309187, past=24h, forecast=24h)
+2025-12-03 18:51:17 [ERROR] data.weather_loader - Fehler beim Abruf der Wetterdaten: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.77059160675461&longitude=9.309187447739385&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&past_minutely_15=96&forecast_minutely_15=96&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-03 19:12:14 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs\service.log
+2025-12-03 19:12:14 [INFO] data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.770592, lon=9.309187, past=24h, forecast=24h)
+2025-12-03 19:12:15 [INFO] data.weather_loader - 15-Minuten-Auflösung erkannt.
+2025-12-03 19:12:15 [INFO] data.weather_loader - Anzahl historischer Punkte: 97
+2025-12-03 19:12:15 [INFO] data.weather_loader - Anzahl Prognose-Punkte: 95
+2025-12-03 19:12:15 [INFO] data.weather_loader - Historische Wetterdaten gespeichert nach wetter_historisch_letzte24h_15min.csv (Zeilen: 97)
+2025-12-03 19:12:15 [INFO] data.weather_loader - Prognose-Wetterdaten gespeichert nach wetter_prognose_24h_15min.csv (Zeilen: 95)
