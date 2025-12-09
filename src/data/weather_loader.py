@@ -2,6 +2,7 @@
 
 import logging
 from typing import Tuple, Optional
+from datetime import datetime
 
 import pandas as pd
 import requests
@@ -50,28 +51,7 @@ def _fetch_minutely15(
     df["time"] = pd.to_datetime(df["time"])
     df = df.sort_values("time").reset_index(drop=True)
 
-    # Auflösung prüfen
-    if len(df) > 1:
-        step = df["time"].iloc[1] - df["time"].iloc[0]
-        if step == pd.Timedelta("15min"):
-            logger.info("[%s] 15-Minuten-Auflösung erkannt.", context)
-        else:
-            logger.warning(
-                "[%s] Unerwartete Zeitauflösung: %s (erwartet: 15min)",
-                context,
-                step,
-            )
-    else:
-        logger.warning(
-            "[%s] Weniger als 2 Zeitpunkte in Wetterdaten, Auflösung nicht prüfbar.",
-            context,
-        )
-
-    # Zeitspalte parsen
-    df["time"] = pd.to_datetime(df["time"])
-    df = df.sort_values("time").reset_index(drop=True)
-
-    # >>> NEU: Zeitstempel auf 15-Minuten-Raster runden
+    # Zeitstempel auf 15-Minuten-Raster runden
     df["time"] = df["time"].dt.round("15min")
 
     # Falls durch das Runden Duplikate entstehen: nach time aggregieren
@@ -97,13 +77,27 @@ def _fetch_minutely15(
     return df
 
 
+def _ensure_local_ts(t: datetime | str, timezone_str: str) -> pd.Timestamp:
+    """
+    Wandelt datetime oder ISO-String in einen pandas.Timestamp in der gewünschten
+    Zeitzone (timezone-aware) um.
+    """
+    ts = pd.to_datetime(t)
+    if ts.tzinfo is None:
+        ts = ts.tz_localize(timezone_str)
+    else:
+        ts = ts.tz_convert(timezone_str)
+    return ts
+
+
 def fetch_weather_open_meteo(
     latitude: float,
     longitude: float,
-    past_hours: int = 24,
-    forecast_hours: int = 24,
+    start_time: datetime | str,
+    end_time: datetime | str,
     timezone: str = "Europe/Berlin",
     model: str = "icon_seamless",
+    forecast_hours: int = 24,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Holt 15-minütige Wetterdaten von Open-Meteo (DWD / ICON-Seamless):
@@ -113,8 +107,18 @@ def fetch_weather_open_meteo(
     - Kurzwellige Strahlung (Globalstrahlung)
 
     Historische Daten werden aus dem Historical-Forecast-Katalog geladen
-    (historical-forecast-api.open-meteo.com), Prognosen weiterhin aus dem
-    normalen Forecast-Endpoint (api.open-meteo.com).
+    (historical-forecast-api.open-meteo.com) mit einem expliziten Zeitfenster,
+    analog zur EIOT-Logik (start_time / end_time).
+
+    Prognosen werden weiterhin aus dem normalen Forecast-Endpoint
+    (api.open-meteo.com) geholt.
+
+    Parameter:
+        latitude, longitude : Koordinaten
+        start_time, end_time: historisches Zeitfenster (datetime oder ISO-String)
+        timezone            : z.B. "Europe/Berlin"
+        model               : Open-Meteo-Modell, z.B. "icon_seamless"
+        forecast_hours      : Forecast-Länge in Stunden (relativ zu jetzt)
 
     Rückgabe:
         (df_hist, df_forecast)
@@ -125,44 +129,49 @@ def fetch_weather_open_meteo(
     """
 
     logger.info(
-        "Hole Wetterdaten von Open-Meteo (lat=%.6f, lon=%.6f, past=%dh, forecast=%dh)",
+        "Hole Wetterdaten von Open-Meteo (lat=%.6f, lon=%.6f, start=%s, end=%s, forecast_hours=%d)",
         latitude,
         longitude,
-        past_hours,
+        start_time,
+        end_time,
         forecast_hours,
     )
 
     # -------------------------------------------------------------------------
-    # 1) Historische Daten: Historical-Forecast-API, explizites Zeitfenster
+    # 1) Historische Daten: Historical-Forecast-API mit explizitem Zeitfenster
     # -------------------------------------------------------------------------
-    df_hist = pd.DataFrame()
-    if past_hours > 0:
-        now = pd.Timestamp.now(tz=timezone)
-        start_hist = now - pd.Timedelta(hours=past_hours)
+    # in lokale Zeitzone bringen
+    start_ts = _ensure_local_ts(start_time, timezone)
+    end_ts = _ensure_local_ts(end_time, timezone)
 
-        url_hist = "https://historical-forecast-api.open-meteo.com/v1/forecast"
-        params_hist = {
-            "latitude": latitude,
-            "longitude": longitude,
-            "minutely_15": "temperature_2m,wind_speed_10m,shortwave_radiation",
-            # explizites 15-minütiges Zeitfenster
-            "start_minutely_15": start_hist.strftime("%Y-%m-%dT%H:%M"),
-            "end_minutely_15": now.strftime("%Y-%m-%dT%H:%M"),
-            "timezone": timezone,
-            "models": model,
-        }
+    if start_ts >= end_ts:
+        raise ValueError("fetch_weather_open_meteo: start_time muss vor end_time liegen.")
 
-        logger.info(
-            "Historische Wetterdaten: %s bis %s (past_hours=%d)",
-            params_hist["start_minutely_15"],
-            params_hist["end_minutely_15"],
-            past_hours,
-        )
+    # auf 15-Minuten-Raster runden
+    start_ts = start_ts.floor("15min")
+    end_ts = end_ts.floor("15min")
 
-        df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+    url_hist = "https://historical-forecast-api.open-meteo.com/v1/forecast"
+    params_hist = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "minutely_15": "temperature_2m,wind_speed_10m,shortwave_radiation",
+        "start_minutely_15": start_ts.strftime("%Y-%m-%dT%H:%M"),
+        "end_minutely_15": end_ts.strftime("%Y-%m-%dT%H:%M"),
+        "timezone": timezone,
+        "models": model,
+    }
+
+    logger.info(
+        "Historische Wetterdaten: %s bis %s",
+        params_hist["start_minutely_15"],
+        params_hist["end_minutely_15"],
+    )
+
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
 
     # -------------------------------------------------------------------------
-    # 2) Forecast-Daten: normaler Forecast-Endpoint, relative Länge
+    # 2) Forecast-Daten: normaler Forecast-Endpoint, relative Länge (optional)
     # -------------------------------------------------------------------------
     df_forecast = pd.DataFrame()
     if forecast_hours > 0:

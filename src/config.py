@@ -19,3 +19,9 @@ AGGREGATION = "AVG"
 
 # Historischer Betrachtungsbeginn
 HIST_START = datetime(2024, 1, 1, 0, 0, tzinfo=timezone.utc)
+
+# ------------------------------------------------------
+# Slack-Knoten für DC-Lastfluss / PTDF
+#   SLACK_NODE_ID = "SHUW" oder "JUBO" etc.
+# ------------------------------------------------------
+SLACK_NODE_ID = "SHUW"  

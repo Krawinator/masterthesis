@@ -4,3 +4,13 @@
 /Data
 
 *.csv
+
+/Data_old
+
+/exploratory
+
+__pycache__/
+*.pyc
+*.pyo
+
+/src/__pycache__/
