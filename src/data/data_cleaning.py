@@ -5,14 +5,17 @@ from typing import Dict, Any
 
 import pandas as pd
 
-from src.config import FREQ, MAX_GAP_STEPS, WEATHER_COLS  
+from src.config import FREQ, MAX_GAP_STEPS, WEATHER_COLS
+ 
 
 logger = logging.getLogger(__name__)
 
 
 def _reindex_and_interp_series(s: pd.Series) -> pd.Series:
     s = s.sort_index()
+    # WICHTIG: FREQ verwenden, nicht BUCKET_FACTOR
     full_index = pd.date_range(s.index.min(), s.index.max(), freq=FREQ)
+    s = s.reindex(full_index)
     s = s.reindex(full_index)
     s = s.interpolate(method="time", limit=MAX_GAP_STEPS, limit_direction="both")
     return s

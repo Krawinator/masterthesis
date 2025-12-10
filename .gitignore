@@ -13,4 +13,4 @@ __pycache__/
 *.pyc
 *.pyo
 
-/src/__pycache__/
+src/__pycache__/
