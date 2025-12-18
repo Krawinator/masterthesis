@@ -6,7 +6,7 @@ from pathlib import Path
 def setup_logging(
     log_dir: str = "logs",
     log_file: str = "service.log",
-    level: int = logging.ERROR, # Change for different logging-style
+    level: int = logging.INFO, # Change for different logging-style
 ):
     Path(log_dir).mkdir(parents=True, exist_ok=True)
     log_path = Path(log_dir) / log_file

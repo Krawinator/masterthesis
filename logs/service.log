@@ -10699,3 +10699,1114 @@
 2025-12-09 16:14:46 [INFO] src.network.ptdf - PTDF vollst�ndig berechnet: 15 (Leitungen) x 28 (Nicht-Slack-Knoten).
 2025-12-09 16:14:46 [INFO] src.network.ptdf - Relevante Knoten (types=battery,uw_field) f�r PTDF: 16 gefunden.
 2025-12-09 16:14:46 [INFO] src.network.ptdf - PTDF f�r relevante Knoten berechnet: 15 (Leitungen) x 16 (relevante Knoten).
+2025-12-16 12:20:54 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SHUW_E24: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:21:38 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SHUW_E23: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:22:12 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node JUBO_E02: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:22:52 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node JUBO_E03: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:23:38 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node TARP_E03: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:24:10 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node TARP_E01: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:24:29 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node WEDING_E14: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:24:51 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node WEDING_E12: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-16 12:25:35 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SIEV_E01: cannot access local variable 'params_hist' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/weather_loader.py", line 153, in fetch_weather_open_meteo
+    print("params start:", params_hist["start_minutely_15"], "end:", params_hist["end_minutely_15"], "tz:", params_hist["timezone"])
+                           ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'params_hist' where it is not associated with a value
+2025-12-17 10:42:05 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 10:42:05 [INFO] __main__ - Starte Leistungsband-Service...
+2025-12-17 10:42:05 [INFO] src.data.data_loader - Starte Laden der historischen Wirkleistungs- und Wetterdaten (global_start_local=2024-01-01 01:00:00+01:00, end_local=2025-12-17 10:42:05.547531+01:00, global_start_utc=2024-01-01 00:00:00+00:00, end_time_utc=2025-12-17 09:42:05.547531+00:00) ...
+2025-12-17 10:42:05 [INFO] src.data.data_loader - Lade Knotendaten (inkl. P_Datapoint_ID, Lat/Lon, DerivedSpec) aus /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json ...
+2025-12-17 10:42:05 [INFO] src.data.data_loader - Knotendaten geladen: 16 Knoten.
+2025-12-17 10:42:05 [INFO] src.data.data_loader - Verarbeite Node SHUW_E24 (DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380) ...
+2025-12-17 10:42:05 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E24: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:05 [INFO] src.data.data_loader - Node SHUW_E24: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:05 [INFO] src.data.eiot_client - EIOT: Hole Access-Token via Azure AD (Client Credentials).
+2025-12-17 10:42:05 [INFO] src.data.eiot_client - EIOT: Access-Token erfolgreich erhalten.
+2025-12-17 10:42:05 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:06 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:06 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:06 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:06 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:09 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:09 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:09 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:09 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E24 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:09 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E24 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E24_hist.csv
+2025-12-17 10:42:09 [INFO] src.data.data_loader - Verarbeite Node SHUW_E23 (DP=bf20523d-4b54-44f3-800b-0a49cdc447aa) ...
+2025-12-17 10:42:10 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E23: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:10 [INFO] src.data.data_loader - Node SHUW_E23: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:10 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:10 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 3 Samples, processedSamples=45
+2025-12-17 10:42:10 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 3 Samples, processedSamples=45
+2025-12-17 10:42:10 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:10 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:11 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:11 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:11 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:11 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E23 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:11 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E23 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E23_hist.csv
+2025-12-17 10:42:11 [INFO] src.data.data_loader - Node JUBO_E01 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-17 10:42:11 [INFO] src.data.data_loader - Verarbeite Node JUBO_E02 (DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d) ...
+2025-12-17 10:42:11 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E02: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:11 [INFO] src.data.data_loader - Node JUBO_E02: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:11 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:12 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 3 Samples, processedSamples=45
+2025-12-17 10:42:12 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 3 Samples, processedSamples=45
+2025-12-17 10:42:12 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:12 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:13 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:13 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:14 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:14 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E02 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:14 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E02 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E02_hist.csv
+2025-12-17 10:42:14 [INFO] src.data.data_loader - Verarbeite Node JUBO_E03 (DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6) ...
+2025-12-17 10:42:14 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E03: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:14 [INFO] src.data.data_loader - Node JUBO_E03: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:14 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:14 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:14 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:14 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:14 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:16 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:16 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:16 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:16 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E03 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:16 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E03 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E03_hist.csv
+2025-12-17 10:42:16 [INFO] src.data.data_loader - Verarbeite Node TARP_E03 (DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1) ...
+2025-12-17 10:42:16 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E03: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:16 [INFO] src.data.data_loader - Node TARP_E03: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:16 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:16 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:16 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:16 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:16 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:18 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:18 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:19 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:19 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E03 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:19 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E03 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E03_hist.csv
+2025-12-17 10:42:19 [INFO] src.data.data_loader - Verarbeite Node TARP_E01 (DP=03636523-35f2-428f-86e8-c260fafbe330) ...
+2025-12-17 10:42:19 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E01: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:19 [INFO] src.data.data_loader - Node TARP_E01: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:19 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:19 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:19 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:19 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:19 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:20 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:20 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:21 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:21 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E01 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:21 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E01 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E01_hist.csv
+2025-12-17 10:42:21 [INFO] src.data.data_loader - Verarbeite Node WEDING_E14 (DP=81517d2b-2fe1-4b64-b34a-2e03048cc900) ...
+2025-12-17 10:42:21 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E14: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:21 [INFO] src.data.data_loader - Node WEDING_E14: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:21 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:21 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:21 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:21 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:21 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:23 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:23 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:23 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:23 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E14 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:23 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E14 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E14_hist.csv
+2025-12-17 10:42:23 [INFO] src.data.data_loader - Verarbeite Node WEDING_E12 (DP=1635dd30-e8d5-4333-bff9-3ab20a796059) ...
+2025-12-17 10:42:23 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E12: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:23 [INFO] src.data.data_loader - Node WEDING_E12: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:23 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:24 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:24 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:24 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:24 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:25 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:25 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:25 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:25 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E12 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:25 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E12 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E12_hist.csv
+2025-12-17 10:42:25 [INFO] src.data.data_loader - Verarbeite Node SIEV_E01 (DP=563be369-1474-489b-b8ea-be4ed7e3ab5b) ...
+2025-12-17 10:42:25 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIEV_E01: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:25 [INFO] src.data.data_loader - Node SIEV_E01: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:25 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:25 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 3 Samples, processedSamples=45
+2025-12-17 10:42:25 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 3 Samples, processedSamples=45
+2025-12-17 10:42:25 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.652402, lon=9.438555, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:25 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:27 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:27 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:27 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:27 [INFO] src.data.data_loader - Wetterdaten für Node SIEV_E01 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:27 [INFO] src.data.data_loader - Historische Zeitreihen für SIEV_E01 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIEV_E01_hist.csv
+2025-12-17 10:42:27 [INFO] src.data.data_loader - Verarbeite Node SIES_E02 (DP=3ca16fd7-6946-4dbe-b733-397e8291ff82) ...
+2025-12-17 10:42:27 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIES_E02: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:27 [INFO] src.data.data_loader - Node SIES_E02: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:27 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:27 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:27 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:27 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.637165, lon=9.443465, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:27 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:28 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:28 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:29 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:29 [INFO] src.data.data_loader - Wetterdaten für Node SIES_E02 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:29 [INFO] src.data.data_loader - Historische Zeitreihen für SIES_E02 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIES_E02_hist.csv
+2025-12-17 10:42:29 [INFO] src.data.data_loader - Node BOLN_E02 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-17 10:42:29 [INFO] src.data.data_loader - Verarbeite Node BOLN_E03 (DP=bf40c502-ea38-4eca-986a-11fa618c97f1) ...
+2025-12-17 10:42:29 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E03: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:29 [INFO] src.data.data_loader - Node BOLN_E03: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:29 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:29 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:29 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:29 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:29 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:30 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:30 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:30 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:30 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E03 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:31 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E03 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E03_hist.csv
+2025-12-17 10:42:31 [INFO] src.data.data_loader - Verarbeite Node BOLN_E01 (DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9) ...
+2025-12-17 10:42:31 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E01: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:31 [INFO] src.data.data_loader - Node BOLN_E01: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:31 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:31 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:31 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 4 Samples, processedSamples=55
+2025-12-17 10:42:31 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:31 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:32 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:32 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:32 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:32 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E01 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:32 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E01 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E01_hist.csv
+2025-12-17 10:42:32 [INFO] src.data.data_loader - Verarbeite Node BOLS_E42 (DP=c076ad04-1a18-434d-8e86-34e081b0e4f6) ...
+2025-12-17 10:42:33 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E42: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:33 [INFO] src.data.data_loader - Node BOLS_E42: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:33 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:33 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:33 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:33 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:33 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:34 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:34 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:34 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:34 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E42 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:34 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E42 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E42_hist.csv
+2025-12-17 10:42:34 [INFO] src.data.data_loader - Verarbeite Node BOLS_E41 (DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9) ...
+2025-12-17 10:42:34 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E41: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 10:42:34 [INFO] src.data.data_loader - Node BOLS_E41: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 10:42:34 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2025-12-17T08:45:00.000Z bis 2025-12-17T09:42:05.000Z
+2025-12-17 10:42:35 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:35 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 3 Samples, processedSamples=45
+2025-12-17 10:42:35 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-17 10:42:05.547531+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 10:42:35 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T09:30 (timezone=Europe/Berlin)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T09:45 bis 2025-12-18T09:45 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E41 geladen (hist=68775, forecast=96).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E41 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E41_hist.csv
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Berechne derived Node JUBO_E01 via field_sum.
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Node JUBO_E01: abgeleitete P_MW-Reihe erzeugt (68775 Zeitschritte).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Berechne derived Node BOLN_E02 via field_sum.
+2025-12-17 10:42:36 [WARNING] src.data.data_loader - Derived-Node BOLN_E02: Basis-Node BOLN_E02 hat keine Messreihe – überspringe diesen Term.
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Node BOLN_E02: abgeleitete P_MW-Reihe erzeugt (68775 Zeitschritte).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Historie von JUBO_E03 übernommen (68775 Zeilen).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Prognose von JUBO_E03 übernommen (96 Zeilen).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Historie von BOLN_E03 übernommen (68775 Zeilen).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Prognose von BOLN_E03 übernommen (96 Zeilen).
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Historie für JUBO_E01 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E01_hist.csv
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Derived-Historie für BOLN_E02 gespeichert (68775 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E02_hist.csv
+2025-12-17 10:42:36 [INFO] src.data.data_loader - Datenladen abgeschlossen.
+2025-12-17 10:42:36 [INFO] __main__ - ⏱️ Datenziehen (load_all_data) abgeschlossen in 31.28 s
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SHUW_E24_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SHUW_E23_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/TARP_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/TARP_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/WEDING_E14_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/WEDING_E12_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SIEV_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SIES_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLS_E42_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLS_E41_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 10:42:36 [INFO] __main__ - ⏱️ Forecast-CSV Schreiben abgeschlossen in 0.01 s
+2025-12-17 10:42:36 [INFO] __main__ - Daten geladen: 16 Nodes, 16 Messreihen, 16 Wetter-Hist, 16 Wetter-Forecast.
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E24 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E23 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E02 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E03 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E03 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E14 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E12 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIEV_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIES_E02 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E03 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E42 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E41 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E02 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E24 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E23 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E02 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E03 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E03 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E14 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E12 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIEV_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIES_E02 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E03 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E42 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E41 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E01 ...
+2025-12-17 10:42:36 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E02 ...
+2025-12-17 10:42:36 [INFO] __main__ - ⏱️ Datenbereinigung (clean_data) abgeschlossen in 0.10 s
+2025-12-17 10:42:36 [INFO] __main__ - Daten bereinigt.
+2025-12-17 10:42:36 [INFO] __main__ - ⏱️ Gesamtzeit bis Ende Schritt 2: 31.40 s
+2025-12-17 10:42:36 [INFO] __main__ - Stoppe nach Schritt 2 (Datenladen + Bereinigung, Testmodus).
+2025-12-17 12:00:17 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 12:00:17 [INFO] src.main - Starte Leistungsband-Service...
+2025-12-17 12:00:17 [INFO] src.data.data_loader - Starte Laden der historischen Wirkleistungs- und Wetterdaten (global_start_local=2024-01-01 01:00:00+01:00, end_local=2025-12-17 12:00:17.397424+01:00, global_start_utc=2024-01-01 00:00:00+00:00, end_time_utc=2025-12-17 11:00:17.397424+00:00) ...
+2025-12-17 12:00:17 [INFO] src.data.data_loader - Lade Knotendaten (inkl. P_Datapoint_ID, Lat/Lon, DerivedSpec) aus /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json ...
+2025-12-17 12:00:17 [INFO] src.data.data_loader - Knotendaten geladen: 16 Knoten.
+2025-12-17 12:00:17 [INFO] src.data.data_loader - Verarbeite Node SHUW_E24 (DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380) ...
+2025-12-17 12:00:17 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E24: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:17 [INFO] src.data.data_loader - Node SHUW_E24: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:17 [INFO] src.data.eiot_client - EIOT: Hole Access-Token via Azure AD (Client Credentials).
+2025-12-17 12:00:17 [INFO] src.data.eiot_client - EIOT: Access-Token erfolgreich erhalten.
+2025-12-17 12:00:17 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:17 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:17 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:18 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:18 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:23 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:23 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:23 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:23 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E24 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:23 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E24 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E24_hist.csv
+2025-12-17 12:00:23 [INFO] src.data.data_loader - Verarbeite Node SHUW_E23 (DP=bf20523d-4b54-44f3-800b-0a49cdc447aa) ...
+2025-12-17 12:00:23 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E23: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:23 [INFO] src.data.data_loader - Node SHUW_E23: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:23 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:23 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 9 Samples, processedSamples=125
+2025-12-17 12:00:23 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 9 Samples, processedSamples=125
+2025-12-17 12:00:23 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:23 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:24 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:24 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:25 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:25 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E23 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:25 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E23 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E23_hist.csv
+2025-12-17 12:00:25 [INFO] src.data.data_loader - Node JUBO_E01 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-17 12:00:25 [INFO] src.data.data_loader - Verarbeite Node JUBO_E02 (DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d) ...
+2025-12-17 12:00:25 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E02: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:25 [INFO] src.data.data_loader - Node JUBO_E02: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:25 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:25 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 9 Samples, processedSamples=125
+2025-12-17 12:00:25 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 9 Samples, processedSamples=125
+2025-12-17 12:00:25 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:25 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:28 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:28 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:28 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:28 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E02 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:28 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E02 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E02_hist.csv
+2025-12-17 12:00:28 [INFO] src.data.data_loader - Verarbeite Node JUBO_E03 (DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6) ...
+2025-12-17 12:00:29 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E03: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:29 [INFO] src.data.data_loader - Node JUBO_E03: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:29 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:29 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:29 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:29 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:29 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:30 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:30 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:30 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:30 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E03 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:30 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E03 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E03_hist.csv
+2025-12-17 12:00:30 [INFO] src.data.data_loader - Verarbeite Node TARP_E03 (DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1) ...
+2025-12-17 12:00:30 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E03: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:30 [INFO] src.data.data_loader - Node TARP_E03: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:30 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:30 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:30 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:30 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:30 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:34 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:34 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:34 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:34 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E03 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:34 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E03 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E03_hist.csv
+2025-12-17 12:00:34 [INFO] src.data.data_loader - Verarbeite Node TARP_E01 (DP=03636523-35f2-428f-86e8-c260fafbe330) ...
+2025-12-17 12:00:34 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E01: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:34 [INFO] src.data.data_loader - Node TARP_E01: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:34 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:34 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:34 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:34 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:34 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:36 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:36 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:36 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:36 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E01 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:36 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E01 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E01_hist.csv
+2025-12-17 12:00:36 [INFO] src.data.data_loader - Verarbeite Node WEDING_E14 (DP=81517d2b-2fe1-4b64-b34a-2e03048cc900) ...
+2025-12-17 12:00:36 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E14: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:36 [INFO] src.data.data_loader - Node WEDING_E14: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:36 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:36 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:36 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:36 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:36 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:41 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:41 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:41 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:41 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E14 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:41 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E14 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E14_hist.csv
+2025-12-17 12:00:41 [INFO] src.data.data_loader - Verarbeite Node WEDING_E12 (DP=1635dd30-e8d5-4333-bff9-3ab20a796059) ...
+2025-12-17 12:00:41 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E12: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:41 [INFO] src.data.data_loader - Node WEDING_E12: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:41 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:41 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:41 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:41 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:41 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:42 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:42 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:43 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:43 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E12 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:43 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E12 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E12_hist.csv
+2025-12-17 12:00:43 [INFO] src.data.data_loader - Verarbeite Node SIEV_E01 (DP=563be369-1474-489b-b8ea-be4ed7e3ab5b) ...
+2025-12-17 12:00:43 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIEV_E01: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:43 [INFO] src.data.data_loader - Node SIEV_E01: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:43 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:43 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 9 Samples, processedSamples=125
+2025-12-17 12:00:43 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 9 Samples, processedSamples=125
+2025-12-17 12:00:43 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.652402, lon=9.438555, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:43 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:45 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:45 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:45 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:45 [INFO] src.data.data_loader - Wetterdaten für Node SIEV_E01 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:46 [INFO] src.data.data_loader - Historische Zeitreihen für SIEV_E01 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIEV_E01_hist.csv
+2025-12-17 12:00:46 [INFO] src.data.data_loader - Verarbeite Node SIES_E02 (DP=3ca16fd7-6946-4dbe-b733-397e8291ff82) ...
+2025-12-17 12:00:46 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIES_E02: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:46 [INFO] src.data.data_loader - Node SIES_E02: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:46 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:46 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:46 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:46 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.637165, lon=9.443465, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:46 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:48 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:48 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:48 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:48 [INFO] src.data.data_loader - Wetterdaten für Node SIES_E02 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:48 [INFO] src.data.data_loader - Historische Zeitreihen für SIES_E02 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIES_E02_hist.csv
+2025-12-17 12:00:48 [INFO] src.data.data_loader - Node BOLN_E02 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-17 12:00:48 [INFO] src.data.data_loader - Verarbeite Node BOLN_E03 (DP=bf40c502-ea38-4eca-986a-11fa618c97f1) ...
+2025-12-17 12:00:48 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E03: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:48 [INFO] src.data.data_loader - Node BOLN_E03: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:48 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:48 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:48 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:48 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:48 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:50 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:50 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:50 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:50 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E03 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:50 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E03 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E03_hist.csv
+2025-12-17 12:00:50 [INFO] src.data.data_loader - Verarbeite Node BOLN_E01 (DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9) ...
+2025-12-17 12:00:50 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E01: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:50 [INFO] src.data.data_loader - Node BOLN_E01: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:50 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:50 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:50 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:50 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:50 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:52 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:52 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:52 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:52 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E01 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:52 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E01 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E01_hist.csv
+2025-12-17 12:00:52 [INFO] src.data.data_loader - Verarbeite Node BOLS_E42 (DP=c076ad04-1a18-434d-8e86-34e081b0e4f6) ...
+2025-12-17 12:00:52 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E42: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:52 [INFO] src.data.data_loader - Node BOLS_E42: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:52 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:52 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:52 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:52 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:52 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:54 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:54 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:55 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:55 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E42 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:55 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E42 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E42_hist.csv
+2025-12-17 12:00:55 [INFO] src.data.data_loader - Verarbeite Node BOLS_E41 (DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9) ...
+2025-12-17 12:00:55 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E41: von 2024-01-01 00:00:00 bis 2025-12-17 09:30:00 (Zeilen: 68775)
+2025-12-17 12:00:55 [INFO] src.data.data_loader - Node BOLS_E41: vorhandene Daten bis 2025-12-17 09:30:00 (local=2025-12-17 09:30:00+01:00), lade neu ab 2025-12-17 08:45:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 12:00:55 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2025-12-17T08:45:00.000Z bis 2025-12-17T11:00:17.000Z
+2025-12-17 12:00:55 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:55 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 9 Samples, processedSamples=125
+2025-12-17 12:00:55 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-17 12:00:17.397424+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 12:00:55 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T11:00 (timezone=Europe/Berlin)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T11:15 bis 2025-12-18T11:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E41 geladen (hist=68781, forecast=96).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E41 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E41_hist.csv
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Berechne derived Node JUBO_E01 via field_sum.
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Node JUBO_E01: abgeleitete P_MW-Reihe erzeugt (68780 Zeitschritte).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Berechne derived Node BOLN_E02 via field_sum.
+2025-12-17 12:00:57 [WARNING] src.data.data_loader - Derived-Node BOLN_E02: Basis-Node BOLN_E02 hat keine Messreihe – überspringe diesen Term.
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Node BOLN_E02: abgeleitete P_MW-Reihe erzeugt (68780 Zeitschritte).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Historie von JUBO_E03 übernommen (68781 Zeilen).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Prognose von JUBO_E03 übernommen (96 Zeilen).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Historie von BOLN_E03 übernommen (68781 Zeilen).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Prognose von BOLN_E03 übernommen (96 Zeilen).
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Historie für JUBO_E01 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E01_hist.csv
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Derived-Historie für BOLN_E02 gespeichert (68781 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E02_hist.csv
+2025-12-17 12:00:57 [INFO] src.data.data_loader - Datenladen abgeschlossen.
+2025-12-17 12:00:57 [INFO] src.main - Datenziehen (load_all_data) abgeschlossen in 40.24 s
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SHUW_E24_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SHUW_E23_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/TARP_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/TARP_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/WEDING_E14_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/WEDING_E12_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SIEV_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SIES_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLS_E42_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLS_E41_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 12:00:57 [INFO] src.main - Forecast-CSV Schreiben abgeschlossen in 0.01 s
+2025-12-17 12:00:57 [INFO] src.main - Daten geladen: 16 Nodes, 16 Messreihen, 16 Wetter-Hist, 16 Wetter-Forecast.
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E24 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E23 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E02 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E03 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E03 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E14 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E12 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIEV_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIES_E02 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E03 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E42 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E41 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E02 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E24 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E23 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E02 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E03 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E03 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E14 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E12 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIEV_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIES_E02 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E03 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E42 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E41 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E01 ...
+2025-12-17 12:00:57 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E02 ...
+2025-12-17 12:00:57 [INFO] src.main - Datenbereinigung (clean_data) abgeschlossen in 0.12 s
+2025-12-17 12:00:57 [INFO] src.main - Daten bereinigt.
+2025-12-17 12:00:57 [INFO] src.main - Gesamtzeit bis Ende Schritt 2: 40.37 s
+2025-12-17 12:00:57 [INFO] src.main - Stoppe nach Schritt 2 (Datenladen + Bereinigung, Testmodus).
+2025-12-17 13:10:43 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 13:10:44 [INFO] __main__ - Geladen: 16 P_MW Serien (aus CSV)
+2025-12-17 13:10:44 [INFO] __main__ - Cleaned (data_cleaning): 16 Serien, freq=15min
+2025-12-17 13:10:44 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 13:10:44 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68781, 2), ridge_alpha=1.000000
+2025-12-17 13:10:44 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16045 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 13:10:44 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16043 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 13:10:44 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16024 r2=0.000 corr(y,removed)=0.007 |beta|_sum=0.005
+2025-12-17 13:10:44 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16046 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16050 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.751
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=15999 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16049 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.677
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16000 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16039 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16010 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.036
+2025-12-17 13:10:45 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16057 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.038
+2025-12-17 13:10:46 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16027 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 13:10:46 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16057 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 13:10:46 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16028 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 13:10:46 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 13:10:46 [INFO] __main__ - BESS-clean fertig. Output in: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 14:06:47 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 14:06:48 [INFO] __main__ - Geladen: 16 P_MW Serien (aus CSV)
+2025-12-17 14:06:48 [INFO] __main__ - Cleaned (data_cleaning): 16 Serien, freq=15min
+2025-12-17 14:06:48 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 14:06:48 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68781, 2), ridge_alpha=1.000000
+2025-12-17 14:06:48 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16045 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 14:06:48 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16043 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 14:06:49 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16024 r2=0.000 corr(y,removed)=0.007 |beta|_sum=0.005
+2025-12-17 14:06:49 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16046 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 14:06:49 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16050 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.751
+2025-12-17 14:06:49 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=15999 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 14:06:49 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16049 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.677
+2025-12-17 14:06:49 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16000 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 14:06:50 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16039 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 14:06:50 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16010 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.036
+2025-12-17 14:06:50 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16057 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.038
+2025-12-17 14:06:50 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16027 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 14:06:51 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16057 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 14:06:51 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16028 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 14:06:51 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 14:06:51 [INFO] __main__ - BESS-clean fertig. Output in: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 14:59:12 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 14:59:13 [INFO] __main__ - Geladen: 16 P_MW Serien (aus CSV)
+2025-12-17 14:59:13 [INFO] __main__ - Cleaned (data_cleaning): 16 Serien, freq=15min
+2025-12-17 14:59:13 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 14:59:13 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68781, 2), ridge_alpha=1.000000
+2025-12-17 14:59:13 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16045 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 14:59:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16043 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 14:59:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16024 r2=0.000 corr(y,removed)=0.007 |beta|_sum=0.005
+2025-12-17 14:59:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16046 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 14:59:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16050 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.751
+2025-12-17 14:59:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=15999 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 14:59:15 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16049 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.677
+2025-12-17 14:59:15 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16000 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 14:59:15 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16039 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 14:59:15 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16010 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.036
+2025-12-17 14:59:15 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16057 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.038
+2025-12-17 14:59:16 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16027 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 14:59:16 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16057 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 14:59:16 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16028 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 14:59:16 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 14:59:16 [INFO] __main__ - BESS-clean fertig. Output in: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 15:35:56 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 15:35:56 [INFO] __main__ - Geladen: 16 P_MW Serien (aus CSV)
+2025-12-17 15:35:56 [INFO] __main__ - Cleaned (data_cleaning): 16 Serien, freq=15min
+2025-12-17 15:35:56 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 15:35:57 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68781, 2), ridge_alpha=1.000000
+2025-12-17 15:35:57 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16045 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 15:35:57 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16043 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 15:35:57 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16024 r2=0.000 corr(y,removed)=0.007 |beta|_sum=0.005
+2025-12-17 15:35:57 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16046 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 15:35:57 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16050 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.751
+2025-12-17 15:35:58 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=15999 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 15:35:58 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16049 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.677
+2025-12-17 15:35:58 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16000 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 15:35:58 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16039 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 15:35:58 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16010 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.036
+2025-12-17 15:35:59 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16057 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.038
+2025-12-17 15:35:59 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16027 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 15:35:59 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16057 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 15:35:59 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16028 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 15:35:59 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 15:35:59 [INFO] __main__ - BESS-clean fertig. Output in: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 15:36:20 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 15:36:21 [INFO] __main__ - Geladen: 16 P_MW Serien (aus CSV)
+2025-12-17 15:36:21 [INFO] __main__ - Cleaned (data_cleaning): 16 Serien, freq=15min
+2025-12-17 15:36:21 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 15:36:21 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68781, 2), ridge_alpha=1.000000
+2025-12-17 15:36:21 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16045 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 15:36:21 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16043 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 15:36:22 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16024 r2=0.000 corr(y,removed)=0.007 |beta|_sum=0.005
+2025-12-17 15:36:22 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16046 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 15:36:22 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16050 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.751
+2025-12-17 15:36:22 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=15999 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 15:36:22 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16049 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.677
+2025-12-17 15:36:22 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16000 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 15:36:23 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16039 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 15:36:23 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16010 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.036
+2025-12-17 15:36:23 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16057 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.038
+2025-12-17 15:36:23 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16027 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 15:36:23 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16057 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 15:36:24 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16028 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 15:36:24 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 15:36:24 [INFO] __main__ - BESS-clean fertig. Output in: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 15:42:00 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 15:42:01 [INFO] __main__ - Geladen: 16 Nodes (measurements)
+2025-12-17 15:42:01 [INFO] __main__ - Geladen: 16 Nodes (weather_hist)
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E02 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E03 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E41 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E42 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E02 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E03 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E23 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E24 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIES_E02 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIEV_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E03 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E12 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E14 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E02 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E03 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E41 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E42 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E02 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E03 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E23 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E24 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIES_E02 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIEV_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E01 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E03 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E12 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E14 ...
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Data-Coverage-Report geschrieben: logs/data_coverage_report.csv (rows=16)
+2025-12-17 15:42:01 [INFO] src.data.data_cleaning - Auffällige Nodes (Top 5):
+   node_id  coverage_pct         first_valid          last_valid  max_nan_block_steps
+WEDING_E12        23.402 2025-07-02 14:30:00 2025-12-17 11:00:00                52666
+WEDING_E14        23.402 2025-07-02 14:30:00 2025-12-17 11:00:00                52666
+  BOLS_E41        23.422 2025-07-02 14:30:00 2025-12-17 11:00:00                52666
+  BOLS_E42        23.422 2025-07-02 14:30:00 2025-12-17 11:00:00                52666
+  SIEV_E01        94.176 2024-01-01 00:00:00 2025-12-17 11:00:00                 1904
+2025-12-17 15:42:01 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 15:42:01 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68781, 2), ridge_alpha=1.000000
+2025-12-17 15:42:01 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16045 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 15:42:01 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16043 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 15:42:02 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16024 r2=0.000 corr(y,removed)=0.007 |beta|_sum=0.005
+2025-12-17 15:42:02 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16046 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 15:42:02 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16050 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.751
+2025-12-17 15:42:02 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=15999 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 15:42:02 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16049 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.677
+2025-12-17 15:42:03 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16000 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 15:42:03 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16039 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 15:42:03 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16010 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.036
+2025-12-17 15:42:03 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16057 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.038
+2025-12-17 15:42:03 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16027 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 15:42:04 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16057 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 15:42:04 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16028 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 15:42:04 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 15:42:04 [INFO] __main__ - BESS-clean fertig. Output in: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 16:03:52 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs/service.log
+2025-12-17 16:03:52 [INFO] __main__ - Starte Leistungsband-Service...
+2025-12-17 16:03:52 [INFO] src.data.data_loader - Starte Laden der historischen Wirkleistungs- und Wetterdaten (global_start_local=2024-01-01 01:00:00+01:00, end_local=2025-12-17 16:03:52.987784+01:00, global_start_utc=2024-01-01 00:00:00+00:00, end_time_utc=2025-12-17 15:03:52.987784+00:00) ...
+2025-12-17 16:03:52 [INFO] src.data.data_loader - Lade Knotendaten (inkl. P_Datapoint_ID, Lat/Lon, DerivedSpec) aus /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json ...
+2025-12-17 16:03:52 [INFO] src.data.data_loader - Knotendaten geladen: 16 Knoten.
+2025-12-17 16:03:52 [INFO] src.data.data_loader - Verarbeite Node SHUW_E24 (DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380) ...
+2025-12-17 16:03:53 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E24: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:03:53 [INFO] src.data.data_loader - Node SHUW_E24: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:03:53 [INFO] src.data.eiot_client - EIOT: Hole Access-Token via Azure AD (Client Credentials).
+2025-12-17 16:03:53 [INFO] src.data.eiot_client - EIOT: Access-Token erfolgreich erhalten.
+2025-12-17 16:03:53 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:03:53 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 19 Samples, processedSamples=275
+2025-12-17 16:03:53 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 19 Samples, processedSamples=275
+2025-12-17 16:03:53 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:03:53 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:03:58 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:03:58 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:03:58 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:03:58 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E24 geladen (hist=68797, forecast=96).
+2025-12-17 16:03:58 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E24 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E24_hist.csv
+2025-12-17 16:03:58 [INFO] src.data.data_loader - Verarbeite Node SHUW_E23 (DP=bf20523d-4b54-44f3-800b-0a49cdc447aa) ...
+2025-12-17 16:03:58 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E23: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:03:58 [INFO] src.data.data_loader - Node SHUW_E23: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:03:58 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:03:58 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 19 Samples, processedSamples=265
+2025-12-17 16:03:58 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 19 Samples, processedSamples=265
+2025-12-17 16:03:58 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:03:58 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:00 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:00 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:00 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:00 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E23 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:00 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E23 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E23_hist.csv
+2025-12-17 16:04:00 [INFO] src.data.data_loader - Node JUBO_E01 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-17 16:04:00 [INFO] src.data.data_loader - Verarbeite Node JUBO_E02 (DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d) ...
+2025-12-17 16:04:00 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E02: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:00 [INFO] src.data.data_loader - Node JUBO_E02: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:00 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:00 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 19 Samples, processedSamples=275
+2025-12-17 16:04:00 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 19 Samples, processedSamples=275
+2025-12-17 16:04:00 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:00 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:03 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:03 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:03 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:03 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E02 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:03 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E02 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E02_hist.csv
+2025-12-17 16:04:03 [INFO] src.data.data_loader - Verarbeite Node JUBO_E03 (DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6) ...
+2025-12-17 16:04:03 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E03: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:03 [INFO] src.data.data_loader - Node JUBO_E03: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:03 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:03 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:03 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:03 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:03 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:05 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:05 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:05 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:05 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E03 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:05 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E03 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E03_hist.csv
+2025-12-17 16:04:05 [INFO] src.data.data_loader - Verarbeite Node TARP_E03 (DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1) ...
+2025-12-17 16:04:05 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E03: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:05 [INFO] src.data.data_loader - Node TARP_E03: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:05 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:05 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:05 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:05 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:05 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:08 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:08 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:08 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:08 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E03 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:08 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E03 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E03_hist.csv
+2025-12-17 16:04:08 [INFO] src.data.data_loader - Verarbeite Node TARP_E01 (DP=03636523-35f2-428f-86e8-c260fafbe330) ...
+2025-12-17 16:04:08 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E01: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:08 [INFO] src.data.data_loader - Node TARP_E01: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:08 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:08 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:08 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:08 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:08 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:10 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:10 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:10 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:10 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E01 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:10 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E01 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E01_hist.csv
+2025-12-17 16:04:10 [INFO] src.data.data_loader - Verarbeite Node WEDING_E14 (DP=81517d2b-2fe1-4b64-b34a-2e03048cc900) ...
+2025-12-17 16:04:10 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E14: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:10 [INFO] src.data.data_loader - Node WEDING_E14: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:10 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:10 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:10 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:10 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:10 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:15 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:15 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:15 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:15 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E14 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:15 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E14 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E14_hist.csv
+2025-12-17 16:04:15 [INFO] src.data.data_loader - Verarbeite Node WEDING_E12 (DP=1635dd30-e8d5-4333-bff9-3ab20a796059) ...
+2025-12-17 16:04:16 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E12: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:16 [INFO] src.data.data_loader - Node WEDING_E12: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:16 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:16 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:16 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:16 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:16 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:17 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:17 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:17 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:17 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E12 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:17 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E12 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E12_hist.csv
+2025-12-17 16:04:17 [INFO] src.data.data_loader - Verarbeite Node SIEV_E01 (DP=563be369-1474-489b-b8ea-be4ed7e3ab5b) ...
+2025-12-17 16:04:17 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIEV_E01: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:17 [INFO] src.data.data_loader - Node SIEV_E01: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:17 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:17 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 19 Samples, processedSamples=275
+2025-12-17 16:04:17 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 19 Samples, processedSamples=275
+2025-12-17 16:04:17 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.652402, lon=9.438555, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:17 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:20 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:20 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:20 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:20 [INFO] src.data.data_loader - Wetterdaten für Node SIEV_E01 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:20 [INFO] src.data.data_loader - Historische Zeitreihen für SIEV_E01 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIEV_E01_hist.csv
+2025-12-17 16:04:20 [INFO] src.data.data_loader - Verarbeite Node SIES_E02 (DP=3ca16fd7-6946-4dbe-b733-397e8291ff82) ...
+2025-12-17 16:04:20 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIES_E02: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:20 [INFO] src.data.data_loader - Node SIES_E02: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:20 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:20 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:20 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:20 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.637165, lon=9.443465, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:20 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:22 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:22 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:22 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:22 [INFO] src.data.data_loader - Wetterdaten für Node SIES_E02 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:22 [INFO] src.data.data_loader - Historische Zeitreihen für SIES_E02 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIES_E02_hist.csv
+2025-12-17 16:04:22 [INFO] src.data.data_loader - Node BOLN_E02 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-17 16:04:22 [INFO] src.data.data_loader - Verarbeite Node BOLN_E03 (DP=bf40c502-ea38-4eca-986a-11fa618c97f1) ...
+2025-12-17 16:04:22 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E03: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:22 [INFO] src.data.data_loader - Node BOLN_E03: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:22 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:22 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:22 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:22 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:22 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:24 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:24 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:24 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:24 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E03 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:24 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E03 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E03_hist.csv
+2025-12-17 16:04:24 [INFO] src.data.data_loader - Verarbeite Node BOLN_E01 (DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9) ...
+2025-12-17 16:04:24 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E01: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:24 [INFO] src.data.data_loader - Node BOLN_E01: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:24 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:24 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:24 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 19 Samples, processedSamples=275
+2025-12-17 16:04:24 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:24 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:26 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:26 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:26 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:26 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E01 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:27 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E01 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E01_hist.csv
+2025-12-17 16:04:27 [INFO] src.data.data_loader - Verarbeite Node BOLS_E42 (DP=c076ad04-1a18-434d-8e86-34e081b0e4f6) ...
+2025-12-17 16:04:27 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E42: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:27 [INFO] src.data.data_loader - Node BOLS_E42: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:27 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:27 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 19 Samples, processedSamples=265
+2025-12-17 16:04:27 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 19 Samples, processedSamples=265
+2025-12-17 16:04:27 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:27 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:29 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:29 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:29 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:29 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E42 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:29 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E42 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E42_hist.csv
+2025-12-17 16:04:29 [INFO] src.data.data_loader - Verarbeite Node BOLS_E41 (DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9) ...
+2025-12-17 16:04:29 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E41: von 2024-01-01 00:00:00 bis 2025-12-17 11:00:00 (Zeilen: 68781)
+2025-12-17 16:04:29 [INFO] src.data.data_loader - Node BOLS_E41: vorhandene Daten bis 2025-12-17 11:00:00 (local=2025-12-17 11:00:00+01:00), lade neu ab 2025-12-17 10:15:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-17 16:04:29 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2025-12-17T10:15:00.000Z bis 2025-12-17T15:03:52.000Z
+2025-12-17 16:04:29 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 19 Samples, processedSamples=265
+2025-12-17 16:04:29 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 19 Samples, processedSamples=265
+2025-12-17 16:04:29 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-17 16:03:52.987784+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-17 16:04:29 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-17T15:00 (timezone=Europe/Berlin)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2025-12-17T15:15 bis 2025-12-18T15:15 (expected_steps=96, timezone=Europe/Berlin)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E41 geladen (hist=68797, forecast=96).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E41 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E41_hist.csv
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Berechne derived Node JUBO_E01 via field_sum.
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Node JUBO_E01: abgeleitete P_MW-Reihe erzeugt (68796 Zeitschritte).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Berechne derived Node BOLN_E02 via field_sum.
+2025-12-17 16:04:31 [WARNING] src.data.data_loader - Derived-Node BOLN_E02: Basis-Node BOLN_E02 hat keine Messreihe – überspringe diesen Term.
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Node BOLN_E02: abgeleitete P_MW-Reihe erzeugt (68796 Zeitschritte).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Historie von JUBO_E03 übernommen (68797 Zeilen).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Prognose von JUBO_E03 übernommen (96 Zeilen).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Historie von BOLN_E03 übernommen (68797 Zeilen).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Prognose von BOLN_E03 übernommen (96 Zeilen).
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Historie für JUBO_E01 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E01_hist.csv
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Derived-Historie für BOLN_E02 gespeichert (68797 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E02_hist.csv
+2025-12-17 16:04:31 [INFO] src.data.data_loader - Datenladen abgeschlossen.
+2025-12-17 16:04:31 [INFO] __main__ - Datenziehen (load_all_data) abgeschlossen in 38.78 s
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SHUW_E24_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SHUW_E23_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/TARP_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/TARP_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/WEDING_E14_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/WEDING_E12_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SIEV_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/SIES_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E03_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLS_E42_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLS_E41_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/JUBO_E01_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] src.data.weather_loader - Wetter-Forecast gespeichert: src/data/raw/weather_forecast/BOLN_E02_weather_forecast.csv (Zeilen: 96)
+2025-12-17 16:04:31 [INFO] __main__ - Forecast-CSV Schreiben abgeschlossen in 0.01 s
+2025-12-17 16:04:31 [INFO] __main__ - Daten geladen: 16 Nodes, 16 Messreihen, 16 Wetter-Hist, 16 Wetter-Forecast.
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E24 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E23 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E02 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E03 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E03 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E14 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E12 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIEV_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIES_E02 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E03 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E42 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E41 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E02 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E24 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SHUW_E23 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E02 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E03 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E03 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node TARP_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E14 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node WEDING_E12 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIEV_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node SIES_E02 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E03 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E42 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLS_E41 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node JUBO_E01 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Bereinige Wetter-Historie für Node BOLN_E02 ...
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Data-Coverage-Report geschrieben: logs/data_coverage_report.csv (rows=16)
+2025-12-17 16:04:31 [INFO] src.data.data_cleaning - Auffällige Nodes (Top 5):
+   node_id  coverage_pct         first_valid          last_valid  max_nan_block_steps
+WEDING_E14        23.419 2025-07-02 14:30:00 2025-12-17 14:45:00                52666
+WEDING_E12        23.419 2025-07-02 14:30:00 2025-12-17 14:45:00                52666
+  BOLS_E42        23.439 2025-07-02 14:30:00 2025-12-17 14:45:00                52666
+  BOLS_E41        23.439 2025-07-02 14:30:00 2025-12-17 14:45:00                52666
+  SIEV_E01        94.177 2024-01-01 00:00:00 2025-12-17 14:45:00                 1904
+2025-12-17 16:04:31 [INFO] __main__ - Datenbereinigung (clean_data) abgeschlossen in 0.14 s
+2025-12-17 16:04:31 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 16:04:31 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(68797, 2), ridge_alpha=1.000000
+2025-12-17 16:04:32 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=16061 r2=0.052 corr(y,removed)=0.103 |beta|_sum=0.079
+2025-12-17 16:04:32 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=16059 r2=0.005 corr(y,removed)=0.030 |beta|_sum=0.048
+2025-12-17 16:04:32 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=16040 r2=0.000 corr(y,removed)=0.006 |beta|_sum=0.004
+2025-12-17 16:04:32 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E01: n_fit=16062 r2=0.197 corr(y,removed)=0.228 |beta|_sum=0.371
+2025-12-17 16:04:32 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=16066 r2=0.226 corr(y,removed)=0.264 |beta|_sum=0.752
+2025-12-17 16:04:32 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E14: n_fit=16015 r2=0.103 corr(y,removed)=0.320 |beta|_sum=0.228
+2025-12-17 16:04:33 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=16065 r2=0.102 corr(y,removed)=0.155 |beta|_sum=0.674
+2025-12-17 16:04:33 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) WEDING_E12: n_fit=16016 r2=0.203 corr(y,removed)=0.450 |beta|_sum=0.291
+2025-12-17 16:04:33 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) TARP_E03: n_fit=16055 r2=0.101 corr(y,removed)=0.129 |beta|_sum=0.221
+2025-12-17 16:04:33 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=16026 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.034
+2025-12-17 16:04:33 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=16073 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.036
+2025-12-17 16:04:34 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=16043 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-17 16:04:34 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=16073 r2=0.020 corr(y,removed)=0.063 |beta|_sum=0.126
+2025-12-17 16:04:34 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=16044 r2=0.064 corr(y,removed)=0.128 |beta|_sum=0.177
+2025-12-17 16:04:34 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-17 16:04:34 [INFO] __main__ - BESS-Bereinigung (Ridge) abgeschlossen in 2.71 s
+2025-12-17 16:04:34 [INFO] __main__ - BESS-Report gespeichert: logs/bess_cleaning_report.csv
+2025-12-17 16:04:34 [INFO] __main__ - CLEAN_TS_DIR enthält 14 '*_hist_clean.csv' Dateien: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2025-12-17 16:04:34 [INFO] __main__ - Gesamtzeit bis Ende BESS-Cleaning: 41.64 s
+2025-12-17 16:04:34 [INFO] __main__ - Stoppe nach BESS-Cleaning (Testmodus).

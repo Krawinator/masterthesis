@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 GRAPH_PATH = BASE_DIR / "data" / "raw" / "graph" / "whole_graph.json"
 RAW_TS_DIR = BASE_DIR / "data" / "raw" / "timeseries"
-
+CLEAN_TS_DIR = BASE_DIR / "data" / "clean" / "timeseries_no_bess"
 RELEVANT_NODE_TYPES = {"uw_field", "battery"}
 
 BUCKET_FACTOR = 15
