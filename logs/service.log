@@ -11810,3 +11810,1671 @@ WEDING_E12        23.419 2025-07-02 14:30:00 2025-12-17 14:45:00                
 2025-12-17 16:04:34 [INFO] __main__ - CLEAN_TS_DIR enthÃ¤lt 14 '*_hist_clean.csv' Dateien: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
 2025-12-17 16:04:34 [INFO] __main__ - Gesamtzeit bis Ende BESS-Cleaning: 41.64 s
 2025-12-17 16:04:34 [INFO] __main__ - Stoppe nach BESS-Cleaning (Testmodus).
+2025-12-18 13:52:23 [INFO] src.utils.logging_config - Logging initialisiert. Logfile: logs\service.log
+2025-12-18 13:52:23 [INFO] __main__ - Starte Leistungsband-Service...
+2025-12-18 13:52:28 [INFO] src.data.data_loader - Starte Laden der historischen Wirkleistungs- und Wetterdaten (global_start_local=2024-01-01 01:00:00+01:00, end_local=2025-12-18 13:52:28.733491+01:00, global_start_utc=2024-01-01 00:00:00+00:00, end_time_utc=2025-12-18 12:52:28.733491+00:00) ...
+2025-12-18 13:52:28 [INFO] src.data.data_loader - Lade Knotendaten (inkl. P_Datapoint_ID, Lat/Lon, DerivedSpec) aus C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\raw\graph\whole_graph.json ...
+2025-12-18 13:52:28 [INFO] src.data.data_loader - Knotendaten geladen: 16 Knoten.
+2025-12-18 13:52:28 [INFO] src.data.data_loader - Verarbeite Node SHUW_E24 (DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380) ...
+2025-12-18 13:52:28 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E24: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:28 [INFO] src.data.data_loader - Node SHUW_E24: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:28 [INFO] src.data.eiot_client - EIOT: Hole Access-Token via Azure AD (Client Credentials).
+2025-12-18 13:52:29 [INFO] src.data.eiot_client - EIOT: Access-Token erfolgreich erhalten.
+2025-12-18 13:52:29 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:30 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 672 Samples, processedSamples=10020
+2025-12-18 13:52:30 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:31 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 284 Samples, processedSamples=4210
+2025-12-18 13:52:31 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 956 Samples, processedSamples=14230
+2025-12-18 13:52:31 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:31 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:32 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:32 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SHUW_E24: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:32 [INFO] src.data.data_loader - Verarbeite Node SHUW_E23 (DP=bf20523d-4b54-44f3-800b-0a49cdc447aa) ...
+2025-12-18 13:52:32 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E23: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:32 [INFO] src.data.data_loader - Node SHUW_E23: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:32 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:33 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 672 Samples, processedSamples=9990
+2025-12-18 13:52:33 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:34 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 283 Samples, processedSamples=4190
+2025-12-18 13:52:34 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 955 Samples, processedSamples=14180
+2025-12-18 13:52:34 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:34 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:34 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:34 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SHUW_E23: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.52185838583617&longitude=9.436779961458&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:34 [INFO] src.data.data_loader - Node JUBO_E01 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-18 13:52:34 [INFO] src.data.data_loader - Verarbeite Node JUBO_E02 (DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d) ...
+2025-12-18 13:52:34 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E02: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:34 [INFO] src.data.data_loader - Node JUBO_E02: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:34 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:35 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 672 Samples, processedSamples=10020
+2025-12-18 13:52:35 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:36 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 283 Samples, processedSamples=4210
+2025-12-18 13:52:36 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 955 Samples, processedSamples=14230
+2025-12-18 13:52:36 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:36 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:36 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:36 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node JUBO_E02: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:36 [INFO] src.data.data_loader - Verarbeite Node JUBO_E03 (DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6) ...
+2025-12-18 13:52:37 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E03: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:37 [INFO] src.data.data_loader - Node JUBO_E03: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:37 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:37 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 672 Samples, processedSamples=10020
+2025-12-18 13:52:37 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:38 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 283 Samples, processedSamples=4210
+2025-12-18 13:52:38 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 955 Samples, processedSamples=14230
+2025-12-18 13:52:38 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:38 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:39 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:39 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node JUBO_E03: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.54672622884843&longitude=9.428364529498879&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:39 [INFO] src.data.data_loader - Verarbeite Node TARP_E03 (DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1) ...
+2025-12-18 13:52:39 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E03: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:39 [INFO] src.data.data_loader - Node TARP_E03: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:39 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:40 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 672 Samples, processedSamples=10020
+2025-12-18 13:52:40 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:40 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 283 Samples, processedSamples=4220
+2025-12-18 13:52:40 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 955 Samples, processedSamples=14240
+2025-12-18 13:52:40 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:40 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:41 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:41 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node TARP_E03: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:41 [INFO] src.data.data_loader - Verarbeite Node TARP_E01 (DP=03636523-35f2-428f-86e8-c260fafbe330) ...
+2025-12-18 13:52:41 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E01: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:41 [INFO] src.data.data_loader - Node TARP_E01: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:41 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:42 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 672 Samples, processedSamples=10010
+2025-12-18 13:52:42 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:43 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 283 Samples, processedSamples=4210
+2025-12-18 13:52:43 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 955 Samples, processedSamples=14220
+2025-12-18 13:52:43 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:43 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:44 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:44 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node TARP_E01: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.67059977898377&longitude=9.409180033753046&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:44 [INFO] src.data.data_loader - Verarbeite Node WEDING_E14 (DP=81517d2b-2fe1-4b64-b34a-2e03048cc900) ...
+2025-12-18 13:52:44 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E14: von 2024-01-01 01:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67928)
+2025-12-18 13:52:44 [INFO] src.data.data_loader - Node WEDING_E14: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:44 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:45 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 672 Samples, processedSamples=9990
+2025-12-18 13:52:45 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:46 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 284 Samples, processedSamples=4210
+2025-12-18 13:52:46 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 956 Samples, processedSamples=14200
+2025-12-18 13:52:46 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:46 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:46 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:46 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node WEDING_E14: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:46 [INFO] src.data.data_loader - Verarbeite Node WEDING_E12 (DP=1635dd30-e8d5-4333-bff9-3ab20a796059) ...
+2025-12-18 13:52:46 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E12: von 2024-01-01 01:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67928)
+2025-12-18 13:52:46 [INFO] src.data.data_loader - Node WEDING_E12: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:46 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:47 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 672 Samples, processedSamples=9990
+2025-12-18 13:52:47 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:48 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 284 Samples, processedSamples=4210
+2025-12-18 13:52:48 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 956 Samples, processedSamples=14200
+2025-12-18 13:52:48 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:48 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:49 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:49 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node WEDING_E12: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.751918297471036&longitude=9.405945500640485&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:49 [INFO] src.data.data_loader - Verarbeite Node SIEV_E01 (DP=563be369-1474-489b-b8ea-be4ed7e3ab5b) ...
+2025-12-18 13:52:49 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIEV_E01: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:49 [INFO] src.data.data_loader - Node SIEV_E01: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:49 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:50 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 672 Samples, processedSamples=10020
+2025-12-18 13:52:50 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:51 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 283 Samples, processedSamples=4210
+2025-12-18 13:52:51 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 955 Samples, processedSamples=14230
+2025-12-18 13:52:51 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.652402, lon=9.438555, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:51 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:52 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.65240174924401&longitude=9.438555408777262&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:52 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SIEV_E01: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.65240174924401&longitude=9.438555408777262&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.65240174924401&longitude=9.438555408777262&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.65240174924401&longitude=9.438555408777262&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:52 [INFO] src.data.data_loader - Verarbeite Node SIES_E02 (DP=3ca16fd7-6946-4dbe-b733-397e8291ff82) ...
+2025-12-18 13:52:52 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIES_E02: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:52 [INFO] src.data.data_loader - Node SIES_E02: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:52 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:53 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 672 Samples, processedSamples=9990
+2025-12-18 13:52:53 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:53 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 284 Samples, processedSamples=4200
+2025-12-18 13:52:53 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 956 Samples, processedSamples=14190
+2025-12-18 13:52:53 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.637165, lon=9.443465, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:53 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:54 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.63716534587573&longitude=9.443464609227874&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:54 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node SIES_E02: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.63716534587573&longitude=9.443464609227874&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.63716534587573&longitude=9.443464609227874&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.63716534587573&longitude=9.443464609227874&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:54 [INFO] src.data.data_loader - Node BOLN_E02 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2025-12-18 13:52:54 [INFO] src.data.data_loader - Verarbeite Node BOLN_E03 (DP=bf40c502-ea38-4eca-986a-11fa618c97f1) ...
+2025-12-18 13:52:54 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E03: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:54 [INFO] src.data.data_loader - Node BOLN_E03: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:54 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:55 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 672 Samples, processedSamples=9940
+2025-12-18 13:52:55 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:56 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 284 Samples, processedSamples=4180
+2025-12-18 13:52:56 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 956 Samples, processedSamples=14120
+2025-12-18 13:52:56 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:56 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:57 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:57 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node BOLN_E03: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:57 [INFO] src.data.data_loader - Verarbeite Node BOLN_E01 (DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9) ...
+2025-12-18 13:52:57 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E01: von 2024-01-01 00:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67932)
+2025-12-18 13:52:57 [INFO] src.data.data_loader - Node BOLN_E01: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:52:57 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:52:58 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 672 Samples, processedSamples=9940
+2025-12-18 13:52:58 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:52:59 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 284 Samples, processedSamples=4180
+2025-12-18 13:52:59 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 956 Samples, processedSamples=14120
+2025-12-18 13:52:59 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:52:59 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:52:59 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:59 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node BOLN_E01: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.61597644028319&longitude=9.449163575287741&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:52:59 [INFO] src.data.data_loader - Verarbeite Node BOLS_E42 (DP=c076ad04-1a18-434d-8e86-34e081b0e4f6) ...
+2025-12-18 13:53:00 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E42: von 2024-01-01 01:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67928)
+2025-12-18 13:53:00 [INFO] src.data.data_loader - Node BOLS_E42: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:53:00 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:53:01 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 672 Samples, processedSamples=9960
+2025-12-18 13:53:01 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:53:02 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 283 Samples, processedSamples=4210
+2025-12-18 13:53:02 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 955 Samples, processedSamples=14170
+2025-12-18 13:53:02 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:53:02 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:53:02 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:53:02 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node BOLS_E42: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:53:02 [INFO] src.data.data_loader - Verarbeite Node BOLS_E41 (DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9) ...
+2025-12-18 13:53:02 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E41: von 2024-01-01 01:00:00 bis 2025-12-08 14:45:00 (Zeilen: 67928)
+2025-12-18 13:53:02 [INFO] src.data.data_loader - Node BOLS_E41: vorhandene Daten bis 2025-12-08 14:45:00 (local=2025-12-08 14:45:00+01:00), lade neu ab 2025-12-08 14:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2025-12-18 13:53:02 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2025-12-08T14:00:00.000Z bis 2025-12-15T14:00:00.000Z
+2025-12-18 13:53:03 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 672 Samples, processedSamples=9960
+2025-12-18 13:53:03 [INFO] src.data.eiot_client - EIOT: Hole Chunk 2 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2025-12-15T14:00:00.000Z bis 2025-12-18T12:52:28.000Z
+2025-12-18 13:53:04 [INFO] src.data.eiot_client - EIOT: Chunk 2 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 283 Samples, processedSamples=4210
+2025-12-18 13:53:04 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 955 Samples, processedSamples=14170
+2025-12-18 13:53:04 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2025-12-18 13:52:28.733491+01:00, forecast_hours=24, tz=Europe/Berlin)
+2025-12-18 13:53:04 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2025-12-18T12:45 (timezone=Europe/Berlin)
+2025-12-18 13:53:05 [ERROR] src.data.weather_loader - Fehler beim Abruf der historisch-Wetterdaten: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:53:05 [ERROR] src.data.data_loader - Fehler beim Wetterabruf für Node BOLS_E41: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\data_loader.py", line 496, in load_all_data
+    df_hist, df_fc = fetch_weather_open_meteo(
+                     ~~~~~~~~~~~~~~~~~~~~~~~~^
+        latitude=float(lat),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        forecast_hours=weather_forecast_hours,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 170, in fetch_weather_open_meteo
+    df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\weather_loader.py", line 25, in _fetch_minutely15
+    resp = requests.get(url, params=params, timeout=30, verify=True)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\.venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='historical-forecast-api.open-meteo.com', port=443): Max retries exceeded with url: /v1/forecast?latitude=54.576814051762824&longitude=9.473113605947958&minutely_15=temperature_2m%2Cwind_speed_10m%2Cshortwave_radiation&start_minutely_15=2024-01-01T00%3A00&end_minutely_15=2025-12-18T12%3A45&timezone=Europe%2FBerlin&models=icon_seamless (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1020)')))
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Berechne derived Node JUBO_E01 via field_sum.
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Derived-Node JUBO_E01: abgeleitete P_MW-Reihe erzeugt (68883 Zeitschritte).
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Berechne derived Node BOLN_E02 via field_sum.
+2025-12-18 13:53:05 [WARNING] src.data.data_loader - Derived-Node BOLN_E02: Basis-Node BOLN_E02 hat keine Messreihe – überspringe diesen Term.
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Derived-Node BOLN_E02: abgeleitete P_MW-Reihe erzeugt (68884 Zeitschritte).
+2025-12-18 13:53:05 [WARNING] src.data.data_loader - Derived-Node JUBO_E01: Referenz-Node JUBO_E03 hat keine Wetter-Historie.
+2025-12-18 13:53:05 [WARNING] src.data.data_loader - Derived-Node JUBO_E01: Referenz-Node JUBO_E03 hat keine Wetter-Prognose.
+2025-12-18 13:53:05 [WARNING] src.data.data_loader - Derived-Node BOLN_E02: Referenz-Node BOLN_E03 hat keine Wetter-Historie.
+2025-12-18 13:53:05 [WARNING] src.data.data_loader - Derived-Node BOLN_E02: Referenz-Node BOLN_E03 hat keine Wetter-Prognose.
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Derived-Historie für JUBO_E01 gespeichert (68883 Zeilen, 1 Spalten) nach C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\raw\timeseries\JUBO_E01_hist.csv
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Derived-Historie für BOLN_E02 gespeichert (68884 Zeilen, 1 Spalten) nach C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\raw\timeseries\BOLN_E02_hist.csv
+2025-12-18 13:53:05 [INFO] src.data.data_loader - Datenladen abgeschlossen.
+2025-12-18 13:53:05 [INFO] __main__ - Datenziehen (load_all_data) abgeschlossen in 42.17 s
+2025-12-18 13:53:05 [WARNING] src.data.weather_loader - save_weather_forecast_dict_to_csv: weather_forecast ist leer.
+2025-12-18 13:53:05 [INFO] __main__ - Forecast-CSV Schreiben abgeschlossen in 0.00 s
+2025-12-18 13:53:05 [INFO] __main__ - Daten geladen: 16 Nodes, 16 Messreihen, 0 Wetter-Hist, 0 Wetter-Forecast.
+2025-12-18 13:53:05 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E24 ...
+2025-12-18 13:53:05 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SHUW_E23 ...
+2025-12-18 13:53:05 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E02 ...
+2025-12-18 13:53:05 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E03 ...
+2025-12-18 13:53:05 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E03 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node TARP_E01 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E14 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node WEDING_E12 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIEV_E01 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node SIES_E02 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E03 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E01 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E42 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLS_E41 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node JUBO_E01 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Bereinige P_MW für Node BOLN_E02 ...
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Data-Coverage-Report geschrieben: logs\data_coverage_report.csv (rows=16)
+2025-12-18 13:53:06 [INFO] src.data.data_cleaning - Auffällige Nodes (Top 5):
+   node_id  coverage_pct         first_valid          last_valid  max_nan_block_steps
+WEDING_E14        23.518 2025-07-02 14:30:00 2025-12-18 12:45:00                52662
+WEDING_E12        23.518 2025-07-02 14:30:00 2025-12-18 12:45:00                52662
+  BOLS_E42        23.537 2025-07-02 14:30:00 2025-12-18 12:30:00                52662
+  BOLS_E41        23.537 2025-07-02 14:30:00 2025-12-18 12:30:00                52662
+  SIEV_E01        94.184 2024-01-01 00:00:00 2025-12-18 12:30:00                 1904
+2025-12-18 13:53:06 [INFO] __main__ - Datenbereinigung (clean_data) abgeschlossen in 0.58 s
+2025-12-18 13:53:06 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\clean\timeseries_no_bess
+2025-12-18 13:53:06 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: 2 Serien, shape=(67928, 2), ridge_alpha=1.000000
+2025-12-18 13:53:06 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E01: n_fit=15166 r2=0.000 corr(y,removed)=0.009 |beta|_sum=0.005
+2025-12-18 13:53:07 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E02: n_fit=15199 r2=0.002 corr(y,removed)=0.021 |beta|_sum=0.036
+2025-12-18 13:53:07 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) BOLN_E03: n_fit=15152 r2=0.002 corr(y,removed)=0.022 |beta|_sum=0.033
+2025-12-18 13:53:08 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E01: n_fit=15199 r2=0.022 corr(y,removed)=0.063 |beta|_sum=0.129
+2025-12-18 13:53:09 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E02: n_fit=15185 r2=0.005 corr(y,removed)=0.029 |beta|_sum=0.047
+2025-12-18 13:53:09 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) JUBO_E03: n_fit=15187 r2=0.055 corr(y,removed)=0.106 |beta|_sum=0.082
+2025-12-18 13:53:10 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E23: n_fit=15192 r2=0.230 corr(y,removed)=0.261 |beta|_sum=0.749
+2025-12-18 13:53:11 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SHUW_E24: n_fit=15191 r2=0.101 corr(y,removed)=0.151 |beta|_sum=0.652
+2025-12-18 13:53:11 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIES_E02: n_fit=15169 r2=0.003 corr(y,removed)=0.023 |beta|_sum=0.010
+2025-12-18 13:53:12 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) SIEV_E01: n_fit=15170 r2=0.067 corr(y,removed)=0.131 |beta|_sum=0.184
+2025-12-18 13:53:13 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) Tarp_E01: n_fit=15188 r2=0.200 corr(y,removed)=0.225 |beta|_sum=0.371
+2025-12-18 13:53:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) Tarp_E03: n_fit=15181 r2=0.100 corr(y,removed)=0.126 |beta|_sum=0.218
+2025-12-18 13:53:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) Weding_E12: n_fit=15142 r2=0.204 corr(y,removed)=0.451 |beta|_sum=0.288
+2025-12-18 13:53:14 [INFO] src.network.bess_cleaning - BESS-clean(Ridge) Weding_E14: n_fit=15141 r2=0.102 corr(y,removed)=0.319 |beta|_sum=0.226
+2025-12-18 13:53:15 [INFO] src.network.bess_cleaning - BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: 14 | Report-Zeilen: 14
+2025-12-18 13:53:15 [INFO] __main__ - BESS-Bereinigung (Ridge) abgeschlossen in 8.62 s
+2025-12-18 13:53:15 [INFO] __main__ - BESS-Report gespeichert: logs\bess_cleaning_report.csv
+2025-12-18 13:53:15 [INFO] __main__ - CLEAN_TS_DIR enthält 14 '*_hist_clean.csv' Dateien: C:\Users\M97947\OneDrive - E.ON\Dokumente\Thesis\Code_Github\masterthesis\src\data\clean\timeseries_no_bess
+2025-12-18 13:53:15 [INFO] __main__ - Gesamtzeit bis Ende BESS-Cleaning: 51.39 s
+2025-12-18 13:53:15 [INFO] __main__ - Stoppe nach BESS-Cleaning (Testmodus).
