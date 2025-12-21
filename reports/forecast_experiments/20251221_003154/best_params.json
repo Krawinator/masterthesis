@@ -1,0 +1,22 @@
+{
+  "recursive_Ridge": {
+    "model__alpha": 26.366508987303554
+  },
+  "recursive_RF": {
+    "n_estimators": 200,
+    "min_samples_leaf": 5,
+    "max_features": 0.5,
+    "max_depth": 12
+  },
+  "recursive_HGB": {
+    "min_samples_leaf": 20,
+    "max_leaf_nodes": 31,
+    "max_depth": 10,
+    "learning_rate": 0.05,
+    "l2_regularization": 0.0
+  },
+  "direct_best_model": "Ridge",
+  "direct_Ridge": {
+    "model__alpha": 1000.0
+  }
+}
