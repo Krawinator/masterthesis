@@ -1,0 +1,87 @@
+{
+  "winner_approach": "DirectStacked",
+  "winner_model_name": "Ridge",
+  "H": 100,
+  "timestamp_col": "timestamp",
+  "target_col": "P_MW",
+  "raw_features": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C"
+  ],
+  "target_lags": [
+    1,
+    4,
+    8,
+    12,
+    24,
+    96
+  ],
+  "fourier_k": 3,
+  "period_steps": 96,
+  "exog_cols": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "day_sin1",
+    "day_sin2",
+    "day_sin3",
+    "day_cos1",
+    "day_cos2",
+    "day_cos3"
+  ],
+  "lag_cols": [
+    "P_MW_lag1",
+    "P_MW_lag4",
+    "P_MW_lag8",
+    "P_MW_lag12",
+    "P_MW_lag24",
+    "P_MW_lag96"
+  ],
+  "feature_cols_one_step": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "day_sin1",
+    "day_sin2",
+    "day_sin3",
+    "day_cos1",
+    "day_cos2",
+    "day_cos3",
+    "P_MW_lag1",
+    "P_MW_lag4",
+    "P_MW_lag8",
+    "P_MW_lag12",
+    "P_MW_lag24",
+    "P_MW_lag96"
+  ],
+  "direct_h_features": [
+    "h",
+    "h_over_H"
+  ],
+  "baseline_holdout": {
+    "MAE": 21.712660610835073,
+    "RMSE": 29.705853940519415,
+    "R2": -0.1412471336639849
+  },
+  "winner_holdout": {
+    "MAE": 12.219887027508324,
+    "RMSE": 16.72330377942596,
+    "R2": 0.6383072740569502,
+    "Skill_vs_Persistence": 0.43719992466467494
+  },
+  "node_used_for_selection": "SHUW_E24",
+  "note": "Auto-saved by notebook. Overwritten each run."
+}
