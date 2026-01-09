@@ -329,7 +329,7 @@ def _apply_derived_weather(
 def load_all_data(
     start_time: datetime = HIST_START,
     end_time: datetime | None = None,
-    weather_forecast_hours: int = 24,
+    weather_forecast_hours: int = 30,
 ) -> Dict[str, Any]:
     """
     Zieht historische Wirkleistungs-Zeitreihen (P_MW) und Wetterdaten
