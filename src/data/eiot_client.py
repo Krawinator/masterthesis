@@ -141,7 +141,7 @@ def fetch_datapoint_raw(
     chunk_days: int = 90,
 ) -> Dict[str, Any]:
     """
-    Holt aggregierte Samples von EIOT, bei Bedarf in Zeit-Chunks.
+    Holt aggregierte Samples von EIOT.
 
     Input:
         datapoint_id:  EIOT-Datapoint-ID
