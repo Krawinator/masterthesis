@@ -1,17 +1,23 @@
 # src/network/bess_cleaning.py
 
+from __future__ import annotations
+
+import json
 import logging
 from pathlib import Path
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional, List, Any
 
 import numpy as np
 import pandas as pd
 
-from src.config import RAW_TS_DIR, CLEAN_TS_DIR
+from src.config import RAW_TS_DIR, CLEAN_TS_DIR, GRAPH_PATH
 
 logger = logging.getLogger(__name__)
 
 
+# ---------------------------------------------------------------------
+# Core math
+# ---------------------------------------------------------------------
 def fit_multi_ridge_regression(
     X: pd.DataFrame,
     y: pd.Series,
@@ -23,8 +29,8 @@ def fit_multi_ridge_regression(
     Minimiert:
       ||y - (alpha + X beta)||^2 + ridge_alpha * ||beta||^2
 
-    WICHTIG:
-      - Intercept (alpha) wird NICHT regularisiert.
+    Hinweise:
+      - Intercept (alpha) wird nicht regularisiert.
       - beta wird regularisiert (L2).
 
     Returns:
@@ -37,7 +43,7 @@ def fit_multi_ridge_regression(
         raise ValueError("ridge_alpha muss >= 0 sein.")
 
     df = pd.concat([X, y.rename("y")], axis=1, join="inner").dropna()
-    n_fit = len(df)
+    n_fit = int(len(df))
     if n_fit == 0:
         return 0.0, pd.Series(0.0, index=X.columns, dtype=float), np.nan, 0
 
@@ -51,7 +57,7 @@ def fit_multi_ridge_regression(
     # Regularisierung: Intercept nicht bestrafen
     reg = np.eye(p, dtype=float)
     reg[0, 0] = 0.0
-    reg *= ridge_alpha
+    reg *= float(ridge_alpha)
 
     coef = np.linalg.solve(A.T @ A + reg, A.T @ yv)
 
@@ -66,6 +72,56 @@ def fit_multi_ridge_regression(
     return alpha, beta, r2, n_fit
 
 
+# ---------------------------------------------------------------------
+# IO helpers
+# ---------------------------------------------------------------------
+def _load_battery_node_ids_from_graph(graph_path: Path) -> List[str]:
+    """
+    Liest whole_graph.json (Cytoscape-Style) und gibt node_ids zurück, deren type == "battery" ist.
+    """
+    if not graph_path.exists():
+        raise FileNotFoundError(f"GRAPH_PATH nicht gefunden: {graph_path.resolve()}")
+
+    data = json.loads(graph_path.read_text(encoding="utf-8"))
+    battery_ids: List[str] = []
+
+    for it in data:
+        d = it.get("data", {})
+        # edges haben source/target -> skip
+        if "source" in d and "target" in d:
+            continue
+        nid = d.get("id")
+        ntype = (d.get("type") or "").strip()
+        if nid and ntype == "battery":
+            battery_ids.append(str(nid))
+
+    battery_ids = sorted(set(battery_ids))
+    return battery_ids
+
+
+def _battery_hist_filenames(raw_dir: Path, battery_node_ids: List[str]) -> List[str]:
+    """
+    Mappt battery node_ids -> <node_id>_hist.csv und filtert auf existierende Dateien.
+    """
+    files = []
+    missing = []
+    for nid in battery_node_ids:
+        name = f"{nid}_hist.csv"
+        p = raw_dir / name
+        if p.exists():
+            files.append(name)
+        else:
+            missing.append(name)
+
+    if missing:
+        logger.warning("BESS-Dateien fehlen in meas_dir (werden ignoriert): %s", ", ".join(missing))
+
+    return files
+
+
+# ---------------------------------------------------------------------
+# Public API
+# ---------------------------------------------------------------------
 def remove_bess_effects_from_csv(
     bess_file: str,
     ts_col: str = "timestamp",
@@ -75,8 +131,7 @@ def remove_bess_effects_from_csv(
     ridge_alpha: float = 1.0,
 ) -> Dict[str, pd.Series]:
     """
-    Backwards-compatible Wrapper für genau 1 BESS-Datei.
-    Nutzt Ridge (nicht OLS).
+    Wrapper für genau 1 BESS-Datei (Backwards compatibility).
     """
     clean, _report = remove_bess_effects_from_csv_multi(
         bess_files=[bess_file],
@@ -91,6 +146,7 @@ def remove_bess_effects_from_csv(
 
 def remove_bess_effects_from_csv_multi(
     bess_files: List[str],
+    meas_dir: Optional[Path] = None,
     ts_col: str = "timestamp",
     val_col: str = "P_MW",
     min_overlap_points: int = 200,
@@ -99,16 +155,14 @@ def remove_bess_effects_from_csv_multi(
     ridge_alpha: float = 1.0,
 ) -> Tuple[Dict[str, pd.Series], pd.DataFrame]:
     """
-    Entfernt den BESS-Einfluss aus allen *_hist.csv Zeitreihen in RAW_TS_DIR
+    Entfernt den BESS-Einfluss aus allen *_hist.csv Zeitreihen in meas_dir
     mit multivariater Ridge Regression über mehrere BESS-Serien gleichzeitig.
 
-    NEU (dein Wunsch):
-      - Beim Schreiben werden NICHT nur timestamp + P_MW gespeichert,
-        sondern die gesamte ursprüngliche CSV (inkl. Wetterspalten).
-      - Es wird lediglich die Spalte `val_col` (P_MW) durch die bereinigte Version ersetzt.
+    Beim Schreiben wird die komplette ursprüngliche CSV (inkl. Wetterspalten) übernommen.
+    Es wird nur val_col (P_MW) ersetzt.
 
     SPEICHERN:
-      - Wenn out_dir=None -> speichert IMMER nach CLEAN_TS_DIR (config).
+      - Wenn out_dir=None -> speichert nach CLEAN_TS_DIR (config).
       - Wenn out_dir gesetzt -> speichert dorthin.
 
     Returns:
@@ -117,52 +171,56 @@ def remove_bess_effects_from_csv_multi(
     if ridge_alpha < 0:
         raise ValueError("ridge_alpha muss >= 0 sein.")
 
-    meas_dir = Path(RAW_TS_DIR)
+    meas_dir = Path(RAW_TS_DIR) if meas_dir is None else Path(meas_dir)
     if not meas_dir.exists():
-        raise FileNotFoundError(f"RAW_TS_DIR existiert nicht: {meas_dir}")
+        raise FileNotFoundError(f"meas_dir existiert nicht: {meas_dir.resolve()}")
+    logger.info("BESS-clean Input-Verzeichnis (meas_dir): %s", meas_dir.resolve())
+
+
 
     if not bess_files:
         raise ValueError("bess_files ist leer. Bitte Liste mit BESS *_hist.csv Dateinamen übergeben.")
 
     out_path = Path(CLEAN_TS_DIR) if out_dir is None else Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
-    logger.info("BESS-clean Output-Verzeichnis: %s", out_path)
+    logger.info("BESS-clean Output-Verzeichnis: %s", out_path.resolve())
 
-    # --- BESS Matrix X laden (nur die val_col Spalte nutzen, Wetterspalten ignorieren)
+    # --- BESS Matrix X laden (nur val_col)
     bess_series: Dict[str, pd.Series] = {}
     for bf in bess_files:
         p = meas_dir / bf
         if not p.exists():
-            raise FileNotFoundError(f"BESS-Datei nicht gefunden: {p}")
+            raise FileNotFoundError(f"BESS-Datei nicht gefunden: {p.resolve()}")
 
         dfb = pd.read_csv(p, parse_dates=[ts_col]).sort_values(ts_col).set_index(ts_col)
 
         if val_col not in dfb.columns:
-            raise ValueError(f"{p} enthält keine Spalte {val_col!r}. Vorhanden: {list(dfb.columns)}")
+            raise ValueError(f"{p.name} enthält keine Spalte {val_col!r}. Vorhanden: {list(dfb.columns)}")
 
-        # Spaltenname der BESS-Serie = Dateiname (eindeutig)
         bess_series[bf] = dfb[val_col].astype(float).rename(bf)
 
     X_all = pd.concat(bess_series.values(), axis=1).sort_index()
     logger.info(
-        "BESS-Matrix geladen: %d Serien, shape=%s, ridge_alpha=%.6f",
+        "BESS-Matrix geladen: n=%d, shape=%s, ridge_alpha=%.6f",
         len(bess_series),
-        X_all.shape,
-        ridge_alpha,
+        tuple(X_all.shape),
+        float(ridge_alpha),
     )
 
     clean_series: Dict[str, pd.Series] = {}
-    report_rows = []
+    report_rows: List[Dict[str, Any]] = []
     bess_file_set = set(bess_files)
 
-    for csv_path in meas_dir.glob("*_hist.csv"):
+    written = 0
+    skipped_no_fit = 0
+
+    for csv_path in sorted(meas_dir.glob("*_hist.csv")):
         # BESS-Dateien selbst überspringen
         if csv_path.name in bess_file_set:
             continue
 
         node_id = csv_path.stem.replace("_hist", "")
 
-        # WICHTIG: komplette CSV laden (inkl. Wetterspalten)
         df_full = pd.read_csv(csv_path, parse_dates=[ts_col]).sort_values(ts_col).set_index(ts_col)
 
         if val_col not in df_full.columns:
@@ -171,27 +229,27 @@ def remove_bess_effects_from_csv_multi(
 
         y = df_full[val_col].astype(float)
 
-        # --- Fit nur im Overlap (alle BESS + y)
+        # Fit im Overlap
         alpha, beta_vec, r2, n_fit = fit_multi_ridge_regression(
             X=X_all,
             y=y,
             ridge_alpha=ridge_alpha,
         )
-        if n_fit < min_overlap_points:
+        if n_fit < int(min_overlap_points):
+            skipped_no_fit += 1
             continue
 
-        # --- Removal auf kompletter Node-Achse
-        X_on_idx_raw = X_all.reindex(y.index)
-        X_on_idx = X_on_idx_raw.fillna(0.0)
+        # Removal auf kompletter Node-Achse
+        X_on_idx = X_all.reindex(y.index).fillna(0.0)
 
         removed = X_on_idx @ beta_vec
         if include_intercept_in_removal:
-            removed = removed + alpha
+            removed = removed + float(alpha)
 
         y_clean = y - removed
         clean_series[node_id] = y_clean
 
-        # --- Diagnose
+        # Diagnose
         df_diag = pd.concat([y.rename("y"), removed.rename("removed")], axis=1, join="inner").dropna()
         corr_y_removed = df_diag["y"].corr(df_diag["removed"]) if len(df_diag) >= 10 else np.nan
 
@@ -208,31 +266,99 @@ def remove_bess_effects_from_csv_multi(
         )
 
         logger.info(
-            "BESS-clean(Ridge) %s: n_fit=%d r2=%.3f corr(y,removed)=%.3f |beta|_sum=%.3f",
+            "BESS-clean %s: n_fit=%d r2=%.3f corr(y,removed)=%.3f |beta|_sum=%.3f",
             node_id,
-            n_fit,
-            r2 if pd.notna(r2) else -1.0,
-            corr_y_removed if pd.notna(corr_y_removed) else 0.0,
+            int(n_fit),
+            float(r2) if pd.notna(r2) else -1.0,
+            float(corr_y_removed) if pd.notna(corr_y_removed) else 0.0,
             float(beta_vec.abs().sum()),
         )
 
-        # --- GANZ WICHTIG: komplette DF speichern, nur P_MW ersetzen
+        # komplette DF speichern, nur P_MW ersetzen
         df_out = df_full.copy()
         df_out[val_col] = y_clean
 
         out_file = out_path / f"{node_id}_hist_clean.csv"
         df_out.to_csv(out_file, index_label=ts_col)
+        written += 1
 
-    report_df = pd.DataFrame(report_rows).sort_values(
-        "corr_y_removed",
-        key=lambda c: c.abs(),
-        ascending=False,
-    )
+    report_df = pd.DataFrame(report_rows)
+    if not report_df.empty and "corr_y_removed" in report_df.columns:
+        report_df = report_df.sort_values(
+            "corr_y_removed",
+            key=lambda c: c.abs(),
+            ascending=False,
+        ).reset_index(drop=True)
 
     logger.info(
-        "BESS-Bereinigung (Ridge) fertig. Bereinigte Nodes: %d | Report-Zeilen: %d",
-        len(clean_series),
-        len(report_df),
+        "BESS-Bereinigung fertig. written=%d skipped_low_overlap=%d report_rows=%d",
+        written,
+        skipped_no_fit,
+        int(len(report_df)),
     )
 
     return clean_series, report_df
+
+
+def clean_all_nodes_remove_bess_from_graph(
+    *,
+    graph_path: Optional[Path] = None,
+    raw_ts_dir: Optional[Path] = None,
+    ts_col: str = "timestamp",
+    val_col: str = "P_MW",
+    min_overlap_points: int = 200,
+    out_dir: Optional[str] = None,
+    include_intercept_in_removal: bool = False,
+    ridge_alpha: float = 1.0,
+    write_report_csv: bool = True,
+) -> Tuple[Dict[str, pd.Series], pd.DataFrame]:
+    """
+    Convenience-Wrapper für die Pipeline:
+    - Liest battery nodes aus whole_graph.json
+    - nimmt deren *_hist.csv als Regressoren (BESS-Signale)
+    - entfernt den Einfluss aus allen anderen *_hist.csv in meas_dir
+    - schreibt die bereinigten CSVs nach CLEAN_TS_DIR (oder out_dir)
+
+    Returns:
+      (clean_series_dict, report_df)
+    """
+    gpath = Path(GRAPH_PATH) if graph_path is None else Path(graph_path)
+    meas_dir = Path(RAW_TS_DIR) if raw_ts_dir is None else Path(raw_ts_dir)
+
+    if not meas_dir.exists():
+        raise FileNotFoundError(f"meas_dir existiert nicht: {meas_dir.resolve()}")
+
+    battery_ids = _load_battery_node_ids_from_graph(gpath)
+    if not battery_ids:
+        raise RuntimeError(f"Keine battery nodes im Graph gefunden: {gpath.resolve()}")
+
+    bess_files = _battery_hist_filenames(meas_dir, battery_ids)
+    if not bess_files:
+        raise RuntimeError(
+            "Keine BESS *_hist.csv Dateien gefunden. Erwartet in meas_dir: "
+            + ", ".join([f"{nid}_hist.csv" for nid in battery_ids])
+        )
+
+    logger.info("BESS nodes aus Graph: %d (files=%d)", len(battery_ids), len(bess_files))
+
+    clean, report = remove_bess_effects_from_csv_multi(
+        bess_files=bess_files,
+        meas_dir=meas_dir,  
+        ts_col=ts_col,
+        val_col=val_col,
+        min_overlap_points=min_overlap_points,
+        out_dir=out_dir,
+        include_intercept_in_removal=include_intercept_in_removal,
+        ridge_alpha=ridge_alpha,
+    )
+
+    if write_report_csv:
+        try:
+            out_path = Path(CLEAN_TS_DIR) if out_dir is None else Path(out_dir)
+            rep_path = out_path / "bess_clean_report.csv"
+            report.to_csv(rep_path, index=False)
+            logger.info("BESS-clean Report geschrieben: %s", rep_path.resolve())
+        except Exception:
+            logger.exception("Konnte BESS-clean Report nicht schreiben.")
+
+    return clean, report

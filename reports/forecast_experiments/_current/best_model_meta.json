@@ -72,15 +72,15 @@
     "h_over_H"
   ],
   "baseline_holdout": {
-    "MAE": 21.712660610835073,
-    "RMSE": 29.705853940519415,
-    "R2": -0.1412471336639849
+    "MAE": 21.237164721298736,
+    "RMSE": 28.998158055593237,
+    "R2": -0.03752217787749723
   },
   "winner_holdout": {
-    "MAE": 12.219887027508324,
-    "RMSE": 16.72330377942596,
-    "R2": 0.6383072740569502,
-    "Skill_vs_Persistence": 0.43719992466467494
+    "MAE": 12.577996929675292,
+    "RMSE": 16.850050998601603,
+    "R2": 0.6496847828180219,
+    "Skill_vs_Persistence": 0.4077365272276281
   },
   "node_used_for_selection": "SHUW_E24",
   "note": "Auto-saved by notebook. Overwritten each run."

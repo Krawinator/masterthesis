@@ -1,0 +1,88 @@
+{
+  "high_node": "SHUW_E24",
+  "n_df_model": 67406,
+  "n_train": 53924,
+  "n_holdout": 13482,
+  "H": 100,
+  "FINAL_HOLDOUT_FRAC": 0.2,
+  "OUTER_SPLITS": 3,
+  "INNER_SPLITS": 3,
+  "N_ITER": 10,
+  "ORIGIN_STRIDE": 8,
+  "MAX_TEST_ORIGINS_PER_FOLD": 400,
+  "feature_cols": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "day_sin1",
+    "day_sin2",
+    "day_sin3",
+    "day_cos1",
+    "day_cos2",
+    "day_cos3",
+    "P_MW_lag1",
+    "P_MW_lag4",
+    "P_MW_lag8",
+    "P_MW_lag12",
+    "P_MW_lag24",
+    "P_MW_lag96"
+  ],
+  "exog_cols": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "day_sin1",
+    "day_sin2",
+    "day_sin3",
+    "day_cos1",
+    "day_cos2",
+    "day_cos3"
+  ],
+  "lag_cols": [
+    "P_MW_lag1",
+    "P_MW_lag4",
+    "P_MW_lag8",
+    "P_MW_lag12",
+    "P_MW_lag24",
+    "P_MW_lag96"
+  ],
+  "present_exog": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C"
+  ],
+  "h_buckets": [
+    [
+      1,
+      4
+    ],
+    [
+      5,
+      12
+    ],
+    [
+      13,
+      24
+    ],
+    [
+      25,
+      48
+    ],
+    [
+      49,
+      100
+    ]
+  ]
+}

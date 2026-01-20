@@ -1,122 +1,251 @@
-"""
-Main entry point für den Leistungsband-Service.
-Führt die komplette Pipeline aus:
-1. Daten laden
-2. Bereinigung (Data Cleaning)
-3. BESS-Bereinigung (Ridge)
-4. Netzmodell laden
-5. PTDF-Berechnung
-6. Prognose
-7. DC-Lastfluss
-8. Leistungsband-Bestimmung
+# src/main.py
 """
 
-from src.utils.logging_config import setup_logging
+
+End-to-end Pipeline (A -> Z):
+1) load_all_data()            -> raw measurements + weather (hist + forecast) + writes raw CSVs
+2) clean_data(bundle)         -> in-memory cleaning + coverage report
+3) BESS cleaning (ridge)      -> timeseries_no_bess CSVs
+4) forecast_all_nodes()       -> preds + pred_normalized (forecast.py)
+5) battery_bands.run()        -> powerband CSVs je battery node
+
+Run from repo root:
+    python -m src.main
+
+Optionally skip steps:
+    python -m src.main --skip-load
+    python -m src.main --skip-forecast --skip-powerband
+"""
+
+from __future__ import annotations
+
+import argparse
 import logging
-import time
 from pathlib import Path
+from typing import Any, Dict, Optional
 
-from src.data.data_loader import load_all_data
-from src.data.data_cleaning import clean_data
-from src.data.weather_loader import save_weather_forecast_dict_to_csv
+from src import config as cfg
+from src.utils.logging_config import setup_logging
+from src.network.bess_cleaning import clean_all_nodes_remove_bess_from_graph
 
-from src.network.bess_cleaning import remove_bess_effects_from_csv_multi
-
-try:
-    # empfohlen: zentral in config pflegen
-    from src.config import BESS_FILES
-except Exception:
-    BESS_FILES = ["BOLS_E41_hist.csv", "BOLS_E42_hist.csv"]  # Fallback
+logger = logging.getLogger(__name__)
 
 
-def main(run_full_pipeline: bool = False):
-    setup_logging()
-    logger = logging.getLogger(__name__)
-    logger.info("Starte Leistungsband-Service...")
+def _ensure_dirs() -> None:
+    """Ensure directories used by the pipeline exist."""
+    required = []
 
-    t_total0 = time.perf_counter()
+    if hasattr(cfg, "REQUIRED_DIRS"):
+        required.extend(list(cfg.REQUIRED_DIRS))
 
-    # 1 — Daten laden (inkl. EIOT + Wetter)
-    t0 = time.perf_counter()
-    data = load_all_data()
-    t_load = time.perf_counter() - t0
-    logger.info("Datenziehen (load_all_data) abgeschlossen in %.2f s", t_load)
+    for name in [
+        "RAW_TS_DIR",
+        "CLEAN_TS_DIR",
+        "WEATHER_FORECAST_DIR",
+        "PRED_TS_DIR",
+        "PRED_NORMALIZED_DIR",
+        "POWERBAND_DIR",
+        "LOG_DIR",
+    ]:
+        p = getattr(cfg, name, None)
+        if p is not None:
+            required.append(p)
 
-    # Forecast-CSVs pro node_id wegschreiben
-    t1 = time.perf_counter()
-    save_weather_forecast_dict_to_csv(
-        data.get("weather_forecast", {}),
-        out_dir="src/data/raw/weather_forecast",
-    )
-    t_save = time.perf_counter() - t1
-    logger.info("Forecast-CSV Schreiben abgeschlossen in %.2f s", t_save)
+    # de-dup while keeping order
+    seen = set()
+    uniq = []
+    for p in required:
+        pp = str(p)
+        if pp in seen:
+            continue
+        seen.add(pp)
+        uniq.append(p)
+
+    for p in uniq:
+        try:
+            Path(p).mkdir(parents=True, exist_ok=True)
+        except Exception:
+            logger.exception("Could not create required dir: %s", p)
+            raise
+
+
+def _validate_config() -> None:
+    """Basic sanity checks to fail early with clear messages."""
+    graph_path = Path(getattr(cfg, "GRAPH_PATH"))
+    if not graph_path.exists():
+        raise FileNotFoundError(f"GRAPH_PATH not found: {graph_path.resolve()}")
+
+    util = float(getattr(cfg, "UTIL_TARGET_PCT", 100.0))
+    if not (0.0 < util <= 100.0):
+        raise ValueError(f"UTIL_TARGET_PCT must be in (0, 100], got {util}")
+
+    slack = str(getattr(cfg, "SLACK_NODE_ID", "")).strip()
+    if not slack:
+        raise ValueError("SLACK_NODE_ID is empty in config.")
+
+
+def _run_load_data(
+    start_time=None,
+    end_time=None,
+    weather_forecast_hours: int = 30,
+) -> Dict[str, Any]:
+    """Pull / update raw measurements & weather; returns the in-memory bundle."""
+    from src.data.data_loader import load_all_data
 
     logger.info(
-        "Daten geladen: %d Nodes, %d Messreihen, %d Wetter-Hist, %d Wetter-Forecast.",
-        len(data.get("nodes", [])),
-        len(data.get("measurements", {})),
-        len(data.get("weather_hist", {})),
-        len(data.get("weather_forecast", {})),
+        "STEP load_all_data(start=%s end=%s forecast_hours=%s)",
+        start_time,
+        end_time,
+        weather_forecast_hours,
     )
 
-    # 2 — Data Cleaning
-    t2 = time.perf_counter()
-    data_clean = clean_data(data)  # schreibt logs/data_coverage_report.csv (wenn du die Version drin hast)
-    t_clean = time.perf_counter() - t2
-    logger.info("Datenbereinigung (clean_data) abgeschlossen in %.2f s", t_clean)
+    bundle = load_all_data(
+        start_time=start_time if start_time is not None else cfg.HIST_START,
+        end_time=end_time,
+        weather_forecast_hours=int(weather_forecast_hours),
+    )
 
-    # 3 — BESS-Bereinigung (Ridge) + CSVs schreiben (CLEAN_TS_DIR)
-    t3 = time.perf_counter()
-    clean_bess_dict, bess_report = remove_bess_effects_from_csv_multi(
-        bess_files=BESS_FILES,
+    measurements = bundle.get("measurements", {}) or {}
+    weather_hist = bundle.get("weather_hist", {}) or {}
+    weather_forecast = bundle.get("weather_forecast", {}) or {}
+
+    logger.info("Loaded measurements nodes=%d", len(measurements))
+    logger.info("Loaded weather_hist nodes=%d", len(weather_hist))
+    logger.info("Loaded weather_forecast nodes=%d", len(weather_forecast))
+
+    return bundle
+
+
+def _run_clean_data(bundle: Dict[str, Any]) -> Dict[str, Any]:
+    """Clean the in-memory bundle and write the coverage report."""
+    from src.data.data_cleaning import clean_data
+
+    logger.info("STEP clean_data(bundle)")
+    cleaned = clean_data(bundle)
+    logger.info("clean_data done (coverage report in logs/)")
+    return cleaned
+
+
+def _run_bess_cleaning() -> None:
+    """
+    Remove BESS influence using multivariate Ridge regression.
+    """
+    
+
+    logger.info("STEP bess_cleaning (Ridge)")
+
+    clean_all_nodes_remove_bess_from_graph(
+        graph_path=Path(cfg.GRAPH_PATH),
+        raw_ts_dir=Path(cfg.PREP_TS_DIR),
         ts_col="timestamp",
         val_col="P_MW",
         min_overlap_points=200,
-        out_dir=None,     # => CLEAN_TS_DIR aus config
+        out_dir=None,  
+        include_intercept_in_removal=False,
         ridge_alpha=1.0,
+        write_report_csv=True,
     )
-    t_bess = time.perf_counter() - t3
-    logger.info("BESS-Bereinigung (Ridge) abgeschlossen in %.2f s", t_bess)
 
-    # Optional: BESS-Report als CSV (sehr praktisch zum Debuggen)
-    try:
-        out_rep = Path("logs") / "bess_cleaning_report.csv"
-        out_rep.parent.mkdir(parents=True, exist_ok=True)
-        bess_report.to_csv(out_rep, index=False)
-        logger.info("BESS-Report gespeichert: %s", out_rep)
-    except Exception as e:
-        logger.warning("Konnte BESS-Report nicht speichern: %s", e)
+    logger.info("bess_cleaning done -> %s", Path(cfg.CLEAN_TS_DIR).resolve())
 
-    # Optional: Kurzcheck, ob wirklich Dateien geschrieben wurden
+
+
+
+def _run_forecast(overwrite: bool = True, max_hours_cap: Optional[float] = None) -> None:
+    """Forecast all nodes using winner model; writes pred + pred_normalized."""
+    from src.forecast import forecast_all_nodes
+
+    logger.info("STEP forecast_all_nodes(overwrite=%s max_hours_cap=%s)", overwrite, max_hours_cap)
+    df = forecast_all_nodes(overwrite=overwrite, max_hours_cap=max_hours_cap)
+
+    ok_n = int((df["ok"] == True).sum()) if "ok" in df.columns else None  
+    fail_n = int((df["ok"] == False).sum()) if "ok" in df.columns else None
+    logger.info("forecast_all_nodes done (ok=%s fail=%s)", ok_n, fail_n)
+
+
+def _run_powerbands() -> None:
+    """Compute battery bands and write one CSV per BESS."""
+    import src.battery_bands as bb
+
+    logger.info("STEP battery_bands.run() -> out=%s", Path(cfg.POWERBAND_DIR).resolve())
+    bb.run()
+    logger.info("battery_bands done -> %s", Path(cfg.POWERBAND_DIR).resolve())
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Masterthesis service pipeline (A->Z).")
+
+    # Step toggles
+    parser.add_argument("--skip-load", action="store_true", help="Skip load_all_data() (API pull).")
+    parser.add_argument("--skip-clean", action="store_true", help="Skip clean_data(bundle).")
+    parser.add_argument("--skip-bess-clean", action="store_true", help="Skip BESS influence removal.")
+    parser.add_argument("--skip-forecast", action="store_true", help="Skip forecasting step.")
+    parser.add_argument("--skip-powerband", action="store_true", help="Skip powerband calculation.")
+
+    # Forecast options
+    parser.add_argument("--no-overwrite", action="store_true", help="Do not overwrite prediction CSVs.")
+    parser.add_argument("--max-hours-cap", type=float, default=None, help="Cap forecast horizon in hours (optional).")
+
+    # Load-data options
+    parser.add_argument("--weather-forecast-hours", type=int, default=30, help="Weather forecast horizon (hours).")
+
+    args = parser.parse_args()
+
+    setup_logging(
+        log_dir=str(getattr(cfg, "LOG_DIR", "logs")),
+        log_file="service.log",
+        level=getattr(cfg, "LOG_LEVEL", logging.WARNING),
+    )
+
     try:
-        from src.config import CLEAN_TS_DIR
-        out_dir = Path(CLEAN_TS_DIR)
-        n_files = len(list(out_dir.glob("*_hist_clean.csv")))
-        logger.info("CLEAN_TS_DIR enthält %d '*_hist_clean.csv' Dateien: %s", n_files, out_dir)
+        _ensure_dirs()
+        _validate_config()
+
+        logger.info("=== PIPELINE START ===")
+        logger.info("GRAPH_PATH=%s", Path(cfg.GRAPH_PATH).resolve())
+        logger.info("RAW_TS_DIR=%s", Path(cfg.RAW_TS_DIR).resolve())
+        logger.info("CLEAN_TS_DIR=%s", Path(cfg.CLEAN_TS_DIR).resolve())
+        logger.info("PRED_TS_DIR=%s", Path(cfg.PRED_TS_DIR).resolve())
+        logger.info("PRED_NORMALIZED_DIR=%s", Path(cfg.PRED_NORMALIZED_DIR).resolve())
+        logger.info("POWERBAND_DIR=%s", Path(cfg.POWERBAND_DIR).resolve())
+        logger.info("UTIL_TARGET_PCT=%.2f", float(cfg.UTIL_TARGET_PCT))
+
+        bundle: Optional[Dict[str, Any]] = None
+
+        if not args.skip_load:
+            bundle = _run_load_data(weather_forecast_hours=args.weather_forecast_hours)
+        else:
+            logger.warning("SKIP load_all_data()")
+
+        if not args.skip_clean:
+            if bundle is None:
+                raise RuntimeError("clean_data(bundle) requires load_all_data() output. Run without --skip-load.")
+            bundle = _run_clean_data(bundle)
+        else:
+            logger.warning("SKIP clean_data(bundle)")
+
+        if not args.skip_bess_clean:
+            _run_bess_cleaning()
+        else:
+            logger.warning("SKIP bess_cleaning()")
+
+        if not args.skip_forecast:
+            _run_forecast(overwrite=(not args.no_overwrite), max_hours_cap=args.max_hours_cap)
+        else:
+            logger.warning("SKIP forecast_all_nodes()")
+
+        if not args.skip_powerband:
+            _run_powerbands()
+        else:
+            logger.warning("SKIP battery_bands.run()")
+
+        logger.info("=== PIPELINE DONE ===")
+        return 0
+
     except Exception:
-        pass
-
-    # Optional: Gesamtzeit bis hierhin
-    t_total = time.perf_counter() - t_total0
-    logger.info("Gesamtzeit bis Ende BESS-Cleaning: %.2f s", t_total)
-
-    if not run_full_pipeline:
-        logger.info("Stoppe nach BESS-Cleaning (Testmodus).")
-        # beide Varianten zurückgeben (für Notebook/Debug)
-        return {
-            "raw": data,
-            "clean": data_clean,
-            "bess_clean_series": clean_bess_dict,
-            "bess_report": bess_report,
-        }
-
-    # Rest der Pipeline später
-    return {
-        "clean": data_clean,
-        "bess_clean_series": clean_bess_dict,
-        "bess_report": bess_report,
-    }
+        logger.exception("PIPELINE FAILED")
+        return 1
 
 
 if __name__ == "__main__":
-    main(run_full_pipeline=False)
+    raise SystemExit(main())

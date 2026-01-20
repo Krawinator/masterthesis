@@ -7,7 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 import requests
-
+import src.config as cfg
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +50,7 @@ def _fetch_minutely15(
         raise ValueError(f"Ungültige Open-Meteo-Antwort ({context}): 'time' fehlt.")
 
     # Zeitspalte parsen
-    df["time"] = pd.to_datetime(df["time"])
+    df["time"] = pd.to_datetime(df["time"], utc = True)
     df = df.sort_values("time").reset_index(drop=True)
 
     # Auf 15-Minuten-Raster ziehen (floor ist stabiler als round am Rand)
@@ -182,7 +183,7 @@ def fetch_weather_open_meteo(
         if not df_hist.empty:
             hist_last = pd.to_datetime(df_hist["time"].max())
         else:
-            hist_last = end_ts.tz_localize(None)
+            hist_last = end_ts
 
         # Forecast soll beim nächsten 15-Minuten Slot starten
         forecast_start = (hist_last + pd.Timedelta(minutes=15)).floor("15min")
@@ -267,11 +268,13 @@ def fetch_weather_open_meteo(
     if output_timezone:
         for df in (df_hist, df_forecast):
             if len(df.index) > 0:
-                df.index = (
-                    df.index.tz_localize(timezone)  # z.B. UTC
-                    .tz_convert(output_timezone)    # z.B. Europe/Berlin
-                    .tz_localize(None)              # zurück zu naive timestamps
-                )
+                idx = df.index
+                if idx.tz is None:
+                    idx = idx.tz_localize(timezone)
+                else:
+                    idx = idx.tz_convert(timezone)
+                df.index = idx.tz_convert(output_timezone).tz_localize(None)
+
 
     return df_hist, df_forecast
 
@@ -298,13 +301,13 @@ def save_weather_to_csv(
 
 def save_weather_forecast_dict_to_csv(
     weather_forecast: Dict[str, pd.DataFrame],
-    out_dir: str = "src/data/raw/weather_forecast",
+    out_dir: Optional[Path | str] = None,
 ) -> None:
     """
-    Speichert Forecast-Wetterdaten pro node_id als CSV:
-      <out_dir>/<node_id>_weather_forecast.csv
+    Speichert pro node_id eine CSV: <node_id>_weather_forecast.csv
+    Default-Ziel: cfg.WEATHER_FORECAST_DIR
     """
-    out_path = Path(out_dir)
+    out_path = cfg.WEATHER_FORECAST_DIR if out_dir is None else Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
     if not weather_forecast:
@@ -317,5 +320,10 @@ def save_weather_forecast_dict_to_csv(
             continue
 
         file_path = out_path / f"{node_id}_weather_forecast.csv"
-        df.to_csv(file_path, index_label="timestamp")
-        logger.info("Wetter-Forecast gespeichert: %s (Zeilen: %d)", str(file_path), len(df))
+        tmp_path = file_path.with_suffix(file_path.suffix + ".tmp")
+
+        df.to_csv(tmp_path, index_label="timestamp")
+        os.replace(tmp_path, file_path)
+
+        logger.info("Wetter-Forecast geschrieben (replace): %s (Zeilen: %d)", str(file_path), len(df))
+

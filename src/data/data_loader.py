@@ -11,6 +11,7 @@ from datetime import datetime, timezone, timedelta
 from src.config import (
     GRAPH_PATH,
     RAW_TS_DIR,
+    WEATHER_FORECAST_DIR,
     RELEVANT_NODE_TYPES,
     HIST_START,
     BUCKET_FACTOR,
@@ -18,10 +19,52 @@ from src.config import (
     TIMEZONE,
     AGGREGATION,
 )
+
 from src.data.eiot_client import fetch_datapoint_raw, datapoint_json_to_series
 from src.data.weather_loader import fetch_weather_open_meteo
 
 logger = logging.getLogger(__name__)
+
+
+# -----------------------------------------------------------------------------
+# TZ hygiene
+# -----------------------------------------------------------------------------
+def _ensure_utc_index(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Macht den Index konsistent: tz-aware UTC, duplikatfrei, sortierbar.
+    """
+    if df is None or df.empty:
+        return df
+
+    out = df.copy()
+    out.index = pd.to_datetime(out.index, utc=True, errors="coerce")
+    out = out[~out.index.isna()]
+    out = out[~out.index.duplicated(keep="last")]
+    return out
+
+
+def _ensure_utc_series(s: pd.Series) -> pd.Series:
+    """
+    Macht den Index konsistent: tz-aware UTC, duplikatfrei, sortierbar.
+    """
+    if s is None or s.empty:
+        return s
+
+    out = s.copy()
+    out.index = pd.to_datetime(out.index, utc=True, errors="coerce")
+    out = out[~out.index.isna()]
+    out = out[~out.index.duplicated(keep="last")]
+    return out
+
+
+def _to_utc_timestamp(ts) -> pd.Timestamp:
+    """
+    Robust: tz-naive als lokale TIMEZONE interpretieren, tz-aware nach UTC konvertieren.
+    """
+    t = pd.Timestamp(ts)
+    if t.tzinfo is None:
+        return t.tz_localize(TIMEZONE).tz_convert("UTC")
+    return t.tz_convert("UTC")
 
 
 def _load_existing_hist(node_id: str) -> pd.DataFrame:
@@ -30,6 +73,9 @@ def _load_existing_hist(node_id: str) -> pd.DataFrame:
     aus RAW_TS_DIR/<node_id>_hist.csv.
 
     Gibt einen DataFrame mit DatetimeIndex zurück oder einen leeren DataFrame.
+
+    Wichtig: Index wird hier direkt auf tz-aware UTC normalisiert, damit später
+    union/sort keine tz-Mischung erzeugt.
     """
     hist_path = RAW_TS_DIR / f"{node_id}_hist.csv"
     if not hist_path.exists():
@@ -49,8 +95,7 @@ def _load_existing_hist(node_id: str) -> pd.DataFrame:
     if df.empty:
         return df
 
-    # Sicherstellen, dass Index sortiert ist
-    df = df.sort_index()
+    df = _ensure_utc_index(df).sort_index()
     logger.info(
         "Gefundene bestehende Hist-Daten für %s: von %s bis %s (Zeilen: %d)",
         node_id,
@@ -80,40 +125,6 @@ def _bucket_timedelta() -> timedelta:
         BUCKET_UNIT,
     )
     return timedelta(0)
-
-
-def _load_nodes_with_p_datapoint(graph_path: Path) -> Dict[str, str]:
-    """
-    Alte Helper-Funktion (nur Mapping Node -> P_Datapoint_ID).
-    Kann später entfernt werden, falls nicht mehr genutzt.
-    """
-    logger.info(f"Lade Graph aus {graph_path} ...")
-
-    with graph_path.open("r", encoding="utf-8") as f:
-        graph = json.load(f)
-
-    node_to_p = {}
-
-    for item in graph:
-        data = item.get("data", {})
-        # Kanten überspringen
-        if "source" in data and "target" in data:
-            continue
-
-        node_id = data.get("id")
-        node_type = (data.get("type") or "").strip()
-
-        if node_type not in RELEVANT_NODE_TYPES:
-            continue
-
-        p_id = data.get("features", {}).get("P_Datapoint_ID")
-
-        if node_id and isinstance(p_id, str) and p_id:
-            node_to_p[node_id] = p_id
-            logger.debug(f"Gefunden: Node {node_id} → Datapoint {p_id}")
-
-    logger.info(f"{len(node_to_p)} relevante Knoten mit P_Datapoint_ID gefunden.")
-    return node_to_p
 
 
 def _load_node_metadata(graph_path: Path) -> pd.DataFrame:
@@ -154,12 +165,6 @@ def _load_node_metadata(graph_path: Path) -> pd.DataFrame:
         lat = features.get("Latitude_deg")
         lon = features.get("Longitude_deg")
 
-        # Derived-Spezifikation z.B.:
-        # {
-        #   "method": "field_sum",
-        #   "feature_key": "P",
-        #   "terms": [{"node": "JUBO_E03", "coeff": -1}, ...]
-        # }
         derived_spec = features.get("derived")
 
         if not node_id:
@@ -194,26 +199,13 @@ def _apply_derived_measurements(
     """
     Ergänzt das measurements-Dict um abgeleitete Knoten basierend auf der
     'DerivedSpec'-Spalte im nodes_df.
-
-    Erwartet DerivedSpec-Format wie z.B.:
-
-        {
-          "method": "field_sum",
-          "feature_key": "P",
-          "terms": [
-            {"node": "JUBO_E03", "coeff": -1},
-            {"node": "JUBO_E02", "coeff": -1}
-          ]
-        }
     """
-
     for node_id, row in nodes_df.iterrows():
         spec = row.get("DerivedSpec")
         if not isinstance(spec, dict):
             continue  # kein derived node
 
         method = spec.get("method")
-        feature_key = spec.get("feature_key")
         terms = spec.get("terms", [])
 
         if method != "field_sum":
@@ -224,11 +216,9 @@ def _apply_derived_measurements(
             )
             continue
 
-        # Aktuell: feature_key "P" → P_MW-Reihe
         logger.info("Berechne derived Node %s via field_sum.", node_id)
 
         series_list = []
-
         for term in terms:
             src_node = term.get("node")
             coeff = term.get("coeff", 1.0)
@@ -241,7 +231,7 @@ def _apply_derived_measurements(
                 )
                 continue
 
-            s_src = measurements[src_node].astype("float64")
+            s_src = _ensure_utc_series(measurements[src_node].astype("float64"))
             series_list.append(coeff * s_src)
 
         if not series_list:
@@ -251,15 +241,13 @@ def _apply_derived_measurements(
             )
             continue
 
-        # Alle Zeitreihen auf gemeinsamen Index bringen und summieren
         df = pd.concat(series_list, axis=1)
         s_derived = df.sum(axis=1)
         s_derived.name = "P_MW"
 
-        # sortierter Index, Duplikate entfernen (falls nötig)
-        s_derived = s_derived[~s_derived.index.duplicated(keep="last")].sort_index()
-
+        s_derived = _ensure_utc_series(s_derived).sort_index()
         measurements[node_id] = s_derived
+
         logger.info(
             "Derived-Node %s: abgeleitete P_MW-Reihe erzeugt (%d Zeitschritte).",
             node_id,
@@ -277,8 +265,6 @@ def _apply_derived_weather(
     """
     Übernimmt Wetterdaten für derived nodes von einem Basis-Node.
     Standard: vom ersten Term in spec["terms"].
-
-    Modifiziert die Dicts in-place und gibt sie zur Lesbarkeit zurück.
     """
     for node_id, row in nodes_df.iterrows():
         spec = row.get("DerivedSpec")
@@ -294,7 +280,7 @@ def _apply_derived_weather(
             continue
 
         if ref_node in weather_hist:
-            weather_hist[node_id] = weather_hist[ref_node].copy()
+            weather_hist[node_id] = _ensure_utc_index(weather_hist[ref_node].copy())
             logger.info(
                 "Derived-Node %s: Wetter-Historie von %s übernommen (%d Zeilen).",
                 node_id,
@@ -309,7 +295,7 @@ def _apply_derived_weather(
             )
 
         if ref_node in weather_forecast:
-            weather_forecast[node_id] = weather_forecast[ref_node].copy()
+            weather_forecast[node_id] = _ensure_utc_index(weather_forecast[ref_node].copy())
             logger.info(
                 "Derived-Node %s: Wetter-Prognose von %s übernommen (%d Zeilen).",
                 node_id,
@@ -326,6 +312,7 @@ def _apply_derived_weather(
     return weather_hist, weather_forecast
 
 
+
 def load_all_data(
     start_time: datetime = HIST_START,
     end_time: datetime | None = None,
@@ -335,19 +322,10 @@ def load_all_data(
     Zieht historische Wirkleistungs-Zeitreihen (P_MW) und Wetterdaten
     für alle relevanten Knoten.
 
-    Nutzt ggf. bereits vorhandene CSVs in RAW_TS_DIR/<node_id>_hist.csv und
-    lädt für die Wirkleistung (EIOT) nur fehlende Intervalle nach.
-
-    Wetterdaten werden für jeden Lauf von start_time bis end_time aus der
-    Open-Meteo-Historical-API gezogen (bzw. soweit Daten verfügbar sind).
-
-    Zusätzlich werden abgeleitete Knoten (DerivedSpec) aus den Basis-Knoten
-    berechnet und mit Wetterdaten versehen. Für alle derived nodes werden
-    ebenfalls *_hist.csv-Dateien erzeugt.
+    Intern halten wir alle Indizes tz-aware in UTC, damit join/union/sort stabil bleibt.
     """
     # --- 0) Start-/Endzeit sauber als lokale Zeit und UTC ableiten ---
 
-    # end_time: default jetzt in lokalem TIMEZONE, dann UTC
     if end_time is None:
         end_local = pd.Timestamp.now(tz=TIMEZONE)
     else:
@@ -359,7 +337,6 @@ def load_all_data(
 
     end_time_utc = end_local.tz_convert(timezone.utc).to_pydatetime()
 
-    # start_time: als lokale Zeit interpretieren (TIMEZONE), dann UTC
     start_local = pd.Timestamp(start_time)
     if start_local.tzinfo is None:
         start_local = start_local.tz_localize(TIMEZONE)
@@ -388,14 +365,12 @@ def load_all_data(
 
     # -------------------------------------------------------------------------
     # 1) Pro physikalischem Node: EIOT + Wetter laden und Hist-CSV schreiben
-    #    (derived nodes werden hier übersprungen)
     # -------------------------------------------------------------------------
     for row in nodes_df.itertuples():
         node_id = row.Index
         dp_id = row.P_Datapoint_ID
         derived_spec = getattr(row, "DerivedSpec", None)
 
-        # Derived nodes werden in dieser Schleife NICHT per EIOT/Wetter geladen
         if isinstance(derived_spec, dict):
             logger.info(
                 "Node %s ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.",
@@ -405,35 +380,26 @@ def load_all_data(
 
         logger.info("Verarbeite Node %s (DP=%s) ...", node_id, dp_id)
 
-        # --- Bereits vorhandene Hist-Daten laden (P_MW + Wetter) ---
         existing_hist_df = _load_existing_hist(node_id)
         existing_hist_end = existing_hist_df.index.max() if not existing_hist_df.empty else None
 
-        # --- EIOT: Wirkleistungs-Zeitreihe holen (mit Chunking im Client) ---
         s = pd.Series(dtype="float64", name="P_MW")
-
-        # effektive Startzeit abhängig von schon vorhandenen Daten (in UTC)
         effective_start_utc = global_start_utc
 
         if existing_hist_end is not None:
-            # vorhandener Index ist naiv -> als lokale Zeit (TIMEZONE) interpretieren
-            existing_end_local = pd.Timestamp(existing_hist_end).tz_localize(TIMEZONE)
-            existing_end_utc = existing_end_local.tz_convert(timezone.utc).to_pydatetime()
-
+            # existing_hist_end ist nach _load_existing_hist() UTC-aware
+            existing_end_utc = _to_utc_timestamp(existing_hist_end).to_pydatetime()
             next_needed_utc = existing_end_utc + bucket_delta
-            # Wir wollen nichts vor global_start_utc und nichts doppelt
             effective_start_utc = max(global_start_utc, next_needed_utc)
 
             logger.info(
-                "Node %s: vorhandene Daten bis %s (local=%s), lade neu ab %s (globaler Start UTC=%s).",
+                "Node %s: vorhandene Daten bis %s (UTC), lade neu ab %s (globaler Start UTC=%s).",
                 node_id,
-                existing_hist_end,
-                existing_end_local,
+                existing_end_utc,
                 effective_start_utc,
                 global_start_utc,
             )
 
-        # Nur offene Intervalle laden (EIOT)
         if isinstance(dp_id, str) and dp_id:
             if effective_start_utc < end_time_utc:
                 try:
@@ -445,33 +411,31 @@ def load_all_data(
                         bucket_factor=BUCKET_FACTOR,
                         bucket_unit=BUCKET_UNIT,
                         timezone_str=TIMEZONE,
-                        chunk_days=7,  # z.B. 7 Tage pro Request
+                        chunk_days=7,
                     )
+
                     s_new = datapoint_json_to_series(resp, col_name="P_MW")
-                    # bestehende + neue P_MW-Daten zusammenführen
+                    s_new = _ensure_utc_series(s_new)
+
                     if not existing_hist_df.empty and "P_MW" in existing_hist_df.columns:
-                        s_old = existing_hist_df["P_MW"]
-                        s = pd.concat([s_old, s_new])
-                        s = s[~s.index.duplicated(keep="last")].sort_index()
+                        s_old = _ensure_utc_series(existing_hist_df["P_MW"])
+                        s = pd.concat([x for x in [s_old, s_new] if x is not None and not x.empty])
+                        s = _ensure_utc_series(s).sort_index()
                     else:
-                        s = s_new
+                        s = s_new.sort_index()
+
                 except Exception as e:
-                    logger.error(
-                        "Fehler beim Abruf für Node %s: %s", node_id, e, exc_info=True
-                    )
+                    logger.error("Fehler beim Abruf für Node %s: %s", node_id, e, exc_info=True)
+
             else:
                 logger.info(
-                    "Node %s: vorhandene Daten reichen bereits bis >= end_time, "
-                    "kein EIOT-Abruf nötig.",
+                    "Node %s: vorhandene Daten reichen bereits bis >= end_time, kein EIOT-Abruf nötig.",
                     node_id,
                 )
                 if not existing_hist_df.empty and "P_MW" in existing_hist_df.columns:
-                    s = existing_hist_df["P_MW"]
+                    s = _ensure_utc_series(existing_hist_df["P_MW"])
         else:
-            logger.warning(
-                "Kein gültiger P_Datapoint_ID für Node %s – überspringe EIOT-Abruf.",
-                node_id,
-            )
+            logger.warning("Kein gültiger P_Datapoint_ID für Node %s – überspringe EIOT-Abruf.", node_id)
 
         if s.empty:
             logger.warning("Keine Wirkleistungswerte für %s erhalten — übersprungen.", node_id)
@@ -492,7 +456,6 @@ def load_all_data(
             continue
 
         try:
-            # Wetter-Zeitraum: identisch zum globalen Zeitraum in lokaler Zeit
             df_hist, df_fc = fetch_weather_open_meteo(
                 latitude=float(lat),
                 longitude=float(lon),
@@ -505,8 +468,12 @@ def load_all_data(
             logger.error("Fehler beim Wetterabruf für Node %s: %s", node_id, e, exc_info=True)
             continue
 
+        df_hist = _ensure_utc_index(df_hist)
+        df_fc = _ensure_utc_index(df_fc)
+
         weather_hist[node_id] = df_hist
         weather_forecast[node_id] = df_fc
+
         logger.info(
             "Wetterdaten für Node %s geladen (hist=%d, forecast=%d).",
             node_id,
@@ -514,34 +481,37 @@ def load_all_data(
             len(df_fc),
         )
 
+        # Forecast separat speichern (so wie forecast.py es erwartet)
+        if df_fc is not None and not df_fc.empty:
+            WEATHER_FORECAST_DIR.mkdir(parents=True, exist_ok=True)
+            fc_path = WEATHER_FORECAST_DIR / f"{node_id}_weather_forecast.csv"
+            df_fc.to_csv(fc_path, index_label="timestamp")
+            logger.info("Wetter-Forecast gespeichert: %s (Zeilen: %d)", fc_path, len(df_fc))
+        else:
+            logger.warning("Wetter-Forecast leer für node_id=%s -> keine CSV geschrieben", node_id)
+
         # --- Kombinierte Zeitreihen speichern (P_MW + Wetter) ---
+        hist_df = _ensure_utc_index(existing_hist_df.copy())
 
-        # Basis: bestehende Hist-Daten, falls vorhanden
-        hist_df = existing_hist_df.copy()
-
-        # P_MW aus measurements (bereits alt+neu zusammengeführt)
         if node_id in measurements:
-            p_series = measurements[node_id].rename("P_MW")
-            # Index vereinigen und P_MW setzen (neue Werte überschreiben alte)
+            p_series = _ensure_utc_series(measurements[node_id]).rename("P_MW")
             if hist_df.empty:
                 hist_df = p_series.to_frame()
             else:
                 hist_df = hist_df.reindex(hist_df.index.union(p_series.index))
                 hist_df["P_MW"] = p_series
 
-        # aktuelle Wetter-Historie dazu
         if node_id in weather_hist:
-            w_hist = weather_hist[node_id]
+            w_hist = _ensure_utc_index(weather_hist[node_id])
             if hist_df.empty:
                 hist_df = w_hist.copy()
             else:
-                # Index vereinigen, Spalten der Wetterdaten setzen/überschreiben
                 hist_df = hist_df.reindex(hist_df.index.union(w_hist.index))
                 for col in w_hist.columns:
                     hist_df[col] = w_hist[col]
 
         if not hist_df.empty:
-            hist_df = hist_df.sort_index()
+            hist_df = _ensure_utc_index(hist_df).sort_index()
             hist_path = RAW_TS_DIR / f"{node_id}_hist.csv"
             hist_df.to_csv(hist_path, index_label="timestamp")
             logger.info(
@@ -556,9 +526,22 @@ def load_all_data(
     # 2) Derived-Nodes: P_MW ableiten und Wetter übernehmen
     # -------------------------------------------------------------------------
     measurements = _apply_derived_measurements(nodes_df, measurements)
-    weather_hist, weather_forecast = _apply_derived_weather(
-        nodes_df, weather_hist, weather_forecast
-    )
+    weather_hist, weather_forecast = _apply_derived_weather(nodes_df, weather_hist, weather_forecast)
+    # Derived forecast CSVs schreiben 
+    for node_id, row in nodes_df.iterrows():
+        spec = row.get("DerivedSpec")
+        if not isinstance(spec, dict):
+            continue
+
+        df_fc = weather_forecast.get(node_id)
+        if df_fc is None or df_fc.empty:
+            logger.warning("Derived-Node %s: Wetter-Forecast leer -> keine CSV", node_id)
+            continue
+
+        WEATHER_FORECAST_DIR.mkdir(parents=True, exist_ok=True)
+        fc_path = WEATHER_FORECAST_DIR / f"{node_id}_weather_forecast.csv"
+        _ensure_utc_index(df_fc).to_csv(fc_path, index_label="timestamp")
+        logger.info("Derived-Node %s: Wetter-Forecast gespeichert: %s (Zeilen: %d)", node_id, fc_path, len(df_fc))
 
     # -------------------------------------------------------------------------
     # 3) CSVs für derived nodes schreiben
@@ -566,7 +549,7 @@ def load_all_data(
     for node_id, row in nodes_df.iterrows():
         spec = row.get("DerivedSpec")
         if not isinstance(spec, dict):
-            continue  # nur derived nodes
+            continue
 
         if node_id not in measurements:
             logger.warning(
@@ -575,12 +558,10 @@ def load_all_data(
             )
             continue
 
-        # Ausgangspunkt: nur die abgeleitete P_MW-Reihe
-        hist_df = measurements[node_id].rename("P_MW").to_frame()
+        hist_df = _ensure_utc_series(measurements[node_id]).rename("P_MW").to_frame()
 
-        # Wetter-Historie dazu (übernommen von Referenznode)
         if node_id in weather_hist:
-            w_hist = weather_hist[node_id]
+            w_hist = _ensure_utc_index(weather_hist[node_id])
             hist_df = hist_df.reindex(hist_df.index.union(w_hist.index))
             for col in w_hist.columns:
                 hist_df[col] = w_hist[col]
@@ -592,7 +573,7 @@ def load_all_data(
             )
             continue
 
-        hist_df = hist_df.sort_index()
+        hist_df = _ensure_utc_index(hist_df).sort_index()
         hist_path = RAW_TS_DIR / f"{node_id}_hist.csv"
         hist_df.to_csv(hist_path, index_label="timestamp")
         logger.info(
