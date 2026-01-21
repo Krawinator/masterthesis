@@ -382,6 +382,12 @@ def load_all_data(
 
         existing_hist_df = _load_existing_hist(node_id)
         existing_hist_end = existing_hist_df.index.max() if not existing_hist_df.empty else None
+        # --- sanitize existing hist: remove weather-only tail (P_MW NaNs) ---
+        if (not existing_hist_df.empty) and ("P_MW" in existing_hist_df.columns):
+            existing_hist_df["P_MW"] = pd.to_numeric(existing_hist_df["P_MW"], errors="coerce")
+            existing_hist_df = existing_hist_df.dropna(subset=["P_MW"]).sort_index()
+            existing_hist_end = existing_hist_df.index.max() if not existing_hist_df.empty else None
+
 
         s = pd.Series(dtype="float64", name="P_MW")
         effective_start_utc = global_start_utc
@@ -493,34 +499,72 @@ def load_all_data(
         # --- Kombinierte Zeitreihen speichern (P_MW + Wetter) ---
         hist_df = _ensure_utc_index(existing_hist_df.copy())
 
+        # 1) P_MW ist die führende Zeitachse (nur Messzeitpunkte!)
+        p_series = pd.Series(dtype="float64", name="P_MW")
         if node_id in measurements:
             p_series = _ensure_utc_series(measurements[node_id]).rename("P_MW")
-            if hist_df.empty:
-                hist_df = p_series.to_frame()
-            else:
-                hist_df = hist_df.reindex(hist_df.index.union(p_series.index))
-                hist_df["P_MW"] = p_series
 
-        if node_id in weather_hist:
+        # wenn es weder bestehende P_MW noch neue P_MW gibt -> nicht speichern
+        if (hist_df.empty or "P_MW" not in hist_df.columns) and p_series.empty:
+            logger.warning("Node %s: keine P_MW (alt+neu leer) -> keine RAW hist CSV geschrieben.", node_id)
+            continue
+
+        # 2) hist_df so bauen, dass Index == P_MW-Zeitpunkte
+        if hist_df.empty or "P_MW" not in hist_df.columns:
+            # keine brauchbare bestehende CSV -> starte rein mit P_MW
+            hist_df = p_series.to_frame()
+        else:
+            # bestehende CSV ist Basis (aber bereits vorher sanitized, d.h. keine P_MW-NaNs mehr)
+            if not p_series.empty:
+                hist_df["P_MW"] = pd.to_numeric(hist_df["P_MW"], errors="coerce")
+
+                idx_common = p_series.index.intersection(hist_df.index)
+                p_common = pd.to_numeric(p_series.loc[idx_common], errors="coerce")
+
+                mask = p_common.notna()
+                hist_df.loc[idx_common[mask], "P_MW"] = p_common.loc[mask].astype(float)
+
+
+                # falls EIOT neue Zeitpunkte liefert, die in hist_df noch nicht existieren:
+                new_idx = p_series.index.difference(hist_df.index)
+                if len(new_idx) > 0:
+                    p_new = pd.to_numeric(p_series.loc[new_idx], errors="coerce").dropna()
+                    if not p_new.empty:
+                        hist_df = pd.concat([hist_df, p_new.to_frame("P_MW")], axis=0).sort_index()
+
+
+
+
+        # 3) Wetter HIST nur an P_MW-Index dazujoinen
+        if node_id in weather_hist and not hist_df.empty:
             w_hist = _ensure_utc_index(weather_hist[node_id])
-            if hist_df.empty:
-                hist_df = w_hist.copy()
-            else:
-                hist_df = hist_df.reindex(hist_df.index.union(w_hist.index))
-                for col in w_hist.columns:
-                    hist_df[col] = w_hist[col]
 
-        if not hist_df.empty:
-            hist_df = _ensure_utc_index(hist_df).sort_index()
-            hist_path = RAW_TS_DIR / f"{node_id}_hist.csv"
-            hist_df.to_csv(hist_path, index_label="timestamp")
-            logger.info(
-                "Historische Zeitreihen für %s gespeichert (%d Zeilen, %d Spalten) nach %s",
-                node_id,
-                len(hist_df),
-                hist_df.shape[1],
-                hist_path,
-            )
+            # --- FIX: vorhandene Wetterspalten entfernen, bevor wir neu joinen ---
+            overlap = hist_df.columns.intersection(w_hist.columns)
+            if len(overlap) > 0:
+                hist_df = hist_df.drop(columns=overlap)
+
+            hist_df = hist_df.join(w_hist, how="left")
+
+
+        # 4) finale Hygiene: erzwinge, dass jede gespeicherte Zeile P_MW hat
+        hist_df["P_MW"] = pd.to_numeric(hist_df["P_MW"], errors="coerce")
+        hist_df = hist_df.dropna(subset=["P_MW"]).sort_index()
+
+        if hist_df.empty:
+            logger.warning("Node %s: hist_df leer nach dropna(P_MW) -> keine RAW hist CSV geschrieben.", node_id)
+            continue
+
+        hist_path = RAW_TS_DIR / f"{node_id}_hist.csv"
+        hist_df.to_csv(hist_path, index_label="timestamp")
+        logger.info(
+            "Historische Zeitreihen für %s gespeichert (%d Zeilen, %d Spalten) nach %s",
+            node_id,
+            len(hist_df),
+            hist_df.shape[1],
+            hist_path,
+        )
+
 
     # -------------------------------------------------------------------------
     # 2) Derived-Nodes: P_MW ableiten und Wetter übernehmen
@@ -562,9 +606,12 @@ def load_all_data(
 
         if node_id in weather_hist:
             w_hist = _ensure_utc_index(weather_hist[node_id])
-            hist_df = hist_df.reindex(hist_df.index.union(w_hist.index))
-            for col in w_hist.columns:
-                hist_df[col] = w_hist[col]
+            hist_df = hist_df.join(w_hist, how="left")
+
+        # erzwingen, dass keine Wetter-only Zeilen drin sind
+        hist_df["P_MW"] = pd.to_numeric(hist_df["P_MW"], errors="coerce")
+        hist_df = hist_df.dropna(subset=["P_MW"]).sort_index()
+
 
         if hist_df.empty:
             logger.warning(
