@@ -36,3 +36,637 @@ Traceback (most recent call last):
 ValueError: columns overlap but no suffix specified: Index(['temperature_C', 'wind_speed_mps', 'solar_radiation_Wm2'], dtype='object')
 2026-01-21 12:33:45 [WARNING] powerband - Config: UTIL_TARGET_PCT=60.0% (scale=0.600)
 2026-01-21 22:20:33 [WARNING] powerband - Config: UTIL_TARGET_PCT=60.0% (scale=0.600)
+2026-01-22 15:23:41 [WARNING] powerband - Config: UTIL_TARGET_PCT=40.0% (scale=0.400)
+2026-01-22 15:25:06 [WARNING] powerband - Config: UTIL_TARGET_PCT=50.0% (scale=0.500)
+2026-01-22 15:52:17 [WARNING] powerband - Config: UTIL_TARGET_PCT=50.0% (scale=0.500)
+2026-01-22 15:53:10 [INFO] __main__ - === PIPELINE START ===
+2026-01-22 15:53:10 [INFO] __main__ - GRAPH_PATH=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json
+2026-01-22 15:53:10 [INFO] __main__ - RAW_TS_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries
+2026-01-22 15:53:10 [INFO] __main__ - CLEAN_TS_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2026-01-22 15:53:10 [INFO] __main__ - PRED_TS_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred
+2026-01-22 15:53:10 [INFO] __main__ - PRED_NORMALIZED_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized
+2026-01-22 15:53:10 [INFO] __main__ - POWERBAND_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:53:10 [INFO] __main__ - UTIL_TARGET_PCT=50.00
+2026-01-22 15:53:10 [INFO] __main__ - STEP load_all_data(start=None end=None forecast_hours=30)
+2026-01-22 15:53:10 [INFO] src.data.data_loader - Starte Laden der historischen Wirkleistungs- und Wetterdaten (global_start_local=2024-01-01 01:00:00+01:00, end_local=2026-01-22 15:53:10.556879+01:00, global_start_utc=2024-01-01 00:00:00+00:00, end_time_utc=2026-01-22 14:53:10.556879+00:00) ...
+2026-01-22 15:53:10 [INFO] src.data.data_loader - Lade Knotendaten (inkl. P_Datapoint_ID, Lat/Lon, DerivedSpec) aus /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json ...
+2026-01-22 15:53:10 [INFO] src.data.data_loader - Knotendaten geladen: 16 Knoten.
+2026-01-22 15:53:10 [INFO] src.data.data_loader - Verarbeite Node SHUW_E24 (DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380) ...
+2026-01-22 15:53:10 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E24: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69420)
+2026-01-22 15:53:10 [INFO] src.data.data_loader - Node SHUW_E24: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:10 [INFO] src.data.eiot_client - EIOT: Hole Access-Token via Azure AD (Client Credentials).
+2026-01-22 15:53:11 [INFO] src.data.eiot_client - EIOT: Access-Token erfolgreich erhalten.
+2026-01-22 15:53:11 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:11 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:11 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:11 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:11 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:11 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:12 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:12 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:12 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:12 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E24 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:12 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SHUW_E24_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:12 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E24 gespeichert (69420 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E24_hist.csv
+2026-01-22 15:53:12 [INFO] src.data.data_loader - Verarbeite Node SHUW_E23 (DP=bf20523d-4b54-44f3-800b-0a49cdc447aa) ...
+2026-01-22 15:53:12 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E23: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 67605)
+2026-01-22 15:53:12 [INFO] src.data.data_loader - Node SHUW_E23: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:12 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:12 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 0 Samples, processedSamples=0
+2026-01-22 15:53:12 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 0 Samples, processedSamples=0
+2026-01-22 15:53:12 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:12 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:12 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:14 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:14 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:14 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:14 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E23 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:14 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SHUW_E23_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:15 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E23 gespeichert (67605 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E23_hist.csv
+2026-01-22 15:53:15 [INFO] src.data.data_loader - Node JUBO_E01 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2026-01-22 15:53:15 [INFO] src.data.data_loader - Verarbeite Node JUBO_E02 (DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d) ...
+2026-01-22 15:53:15 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E02: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69636)
+2026-01-22 15:53:15 [INFO] src.data.data_loader - Node JUBO_E02: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:15 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:15 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 0 Samples, processedSamples=0
+2026-01-22 15:53:15 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 0 Samples, processedSamples=0
+2026-01-22 15:53:15 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:15 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:15 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:16 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:16 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:16 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:16 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E02 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:16 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/JUBO_E02_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:17 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E02 gespeichert (69636 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E02_hist.csv
+2026-01-22 15:53:17 [INFO] src.data.data_loader - Verarbeite Node JUBO_E03 (DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6) ...
+2026-01-22 15:53:17 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E03: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 71286)
+2026-01-22 15:53:17 [INFO] src.data.data_loader - Node JUBO_E03: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:17 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:17 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:17 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:17 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:17 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:17 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:18 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:18 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:18 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:18 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E03 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:18 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/JUBO_E03_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:19 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E03 gespeichert (71286 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E03_hist.csv
+2026-01-22 15:53:19 [INFO] src.data.data_loader - Verarbeite Node TARP_E03 (DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1) ...
+2026-01-22 15:53:19 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E03: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 71177)
+2026-01-22 15:53:19 [INFO] src.data.data_loader - Node TARP_E03: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:19 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:19 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:19 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:19 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:19 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:19 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:20 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:20 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:20 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:20 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E03 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:20 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/TARP_E03_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:21 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E03 gespeichert (71177 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E03_hist.csv
+2026-01-22 15:53:21 [INFO] src.data.data_loader - Verarbeite Node TARP_E01 (DP=03636523-35f2-428f-86e8-c260fafbe330) ...
+2026-01-22 15:53:21 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E01: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 71214)
+2026-01-22 15:53:21 [INFO] src.data.data_loader - Node TARP_E01: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:21 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:21 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:21 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:21 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:21 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:21 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:22 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:22 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:22 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:22 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E01 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:22 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/TARP_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:23 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E01 gespeichert (71214 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E01_hist.csv
+2026-01-22 15:53:23 [INFO] src.data.data_loader - Verarbeite Node WEDING_E14 (DP=81517d2b-2fe1-4b64-b34a-2e03048cc900) ...
+2026-01-22 15:53:23 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E14: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19031)
+2026-01-22 15:53:23 [INFO] src.data.data_loader - Node WEDING_E14: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:23 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:23 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:23 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:23 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:23 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:23 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:25 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:25 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:25 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:25 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E14 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:25 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/WEDING_E14_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:25 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E14 gespeichert (19031 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E14_hist.csv
+2026-01-22 15:53:25 [INFO] src.data.data_loader - Verarbeite Node WEDING_E12 (DP=1635dd30-e8d5-4333-bff9-3ab20a796059) ...
+2026-01-22 15:53:25 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E12: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19032)
+2026-01-22 15:53:25 [INFO] src.data.data_loader - Node WEDING_E12: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:25 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:25 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:25 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:25 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:25 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:25 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:27 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:27 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:27 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:27 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E12 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:27 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/WEDING_E12_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:27 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E12 gespeichert (19032 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E12_hist.csv
+2026-01-22 15:53:27 [INFO] src.data.data_loader - Verarbeite Node SIEV_E01 (DP=563be369-1474-489b-b8ea-be4ed7e3ab5b) ...
+2026-01-22 15:53:27 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIEV_E01: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 67397)
+2026-01-22 15:53:27 [INFO] src.data.data_loader - Node SIEV_E01: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:27 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:27 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 0 Samples, processedSamples=0
+2026-01-22 15:53:27 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 0 Samples, processedSamples=0
+2026-01-22 15:53:27 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:27 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.652402, lon=9.438555, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:27 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:29 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:29 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:29 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:29 [INFO] src.data.data_loader - Wetterdaten für Node SIEV_E01 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:29 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SIEV_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:29 [INFO] src.data.data_loader - Historische Zeitreihen für SIEV_E01 gespeichert (67397 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIEV_E01_hist.csv
+2026-01-22 15:53:29 [INFO] src.data.data_loader - Verarbeite Node SIES_E02 (DP=3ca16fd7-6946-4dbe-b733-397e8291ff82) ...
+2026-01-22 15:53:29 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIES_E02: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69322)
+2026-01-22 15:53:29 [INFO] src.data.data_loader - Node SIES_E02: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:29 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:30 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:30 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:30 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:30 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.637165, lon=9.443465, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:30 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:31 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:31 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:31 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:31 [INFO] src.data.data_loader - Wetterdaten für Node SIES_E02 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:31 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SIES_E02_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:32 [INFO] src.data.data_loader - Historische Zeitreihen für SIES_E02 gespeichert (69322 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIES_E02_hist.csv
+2026-01-22 15:53:32 [INFO] src.data.data_loader - Node BOLN_E02 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2026-01-22 15:53:32 [INFO] src.data.data_loader - Verarbeite Node BOLN_E03 (DP=bf40c502-ea38-4eca-986a-11fa618c97f1) ...
+2026-01-22 15:53:32 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E03: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69418)
+2026-01-22 15:53:32 [INFO] src.data.data_loader - Node BOLN_E03: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:32 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:32 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:32 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:32 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:32 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:32 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:38 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:38 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:38 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:38 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E03 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:38 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLN_E03_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:39 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E03 gespeichert (69418 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E03_hist.csv
+2026-01-22 15:53:39 [INFO] src.data.data_loader - Verarbeite Node BOLN_E01 (DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9) ...
+2026-01-22 15:53:39 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E01: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69432)
+2026-01-22 15:53:39 [INFO] src.data.data_loader - Node BOLN_E01: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:39 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:39 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:39 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:39 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:39 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:39 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:40 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:40 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:41 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:41 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E01 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:41 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLN_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:41 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E01 gespeichert (69432 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E01_hist.csv
+2026-01-22 15:53:41 [INFO] src.data.data_loader - Verarbeite Node BOLS_E42 (DP=c076ad04-1a18-434d-8e86-34e081b0e4f6) ...
+2026-01-22 15:53:41 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E42: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19055)
+2026-01-22 15:53:41 [INFO] src.data.data_loader - Node BOLS_E42: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:41 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:41 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:41 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:41 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:41 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:41 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:42 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:42 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:42 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:42 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E42 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:42 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLS_E42_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:42 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E42 gespeichert (19055 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E42_hist.csv
+2026-01-22 15:53:42 [INFO] src.data.data_loader - Verarbeite Node BOLS_E41 (DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9) ...
+2026-01-22 15:53:42 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E41: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19053)
+2026-01-22 15:53:42 [INFO] src.data.data_loader - Node BOLS_E41: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:53:42 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:53:10.000Z
+2026-01-22 15:53:42 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:42 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 0 Samples, processedSamples=0
+2026-01-22 15:53:42 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:53:42 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:53:10.556879+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:53:42 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:53:43 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:43 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:53:43 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E41 geladen (hist=72252, forecast=120).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLS_E41_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E41 gespeichert (19053 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E41_hist.csv
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Berechne derived Node JUBO_E01 via field_sum.
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node JUBO_E01: abgeleitete P_MW-Reihe erzeugt (71316 Zeitschritte).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Berechne derived Node BOLN_E02 via field_sum.
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node BOLN_E02: abgeleitete P_MW-Reihe erzeugt (69433 Zeitschritte).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Historie von JUBO_E03 übernommen (72252 Zeilen).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Prognose von JUBO_E03 übernommen (120 Zeilen).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Historie von BOLN_E03 übernommen (72252 Zeilen).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Prognose von BOLN_E03 übernommen (120 Zeilen).
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/JUBO_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLN_E02_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Historie für JUBO_E01 gespeichert (71316 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E01_hist.csv
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Derived-Historie für BOLN_E02 gespeichert (69433 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E02_hist.csv
+2026-01-22 15:53:44 [INFO] src.data.data_loader - Datenladen abgeschlossen.
+2026-01-22 15:53:44 [INFO] __main__ - Loaded measurements nodes=16
+2026-01-22 15:53:44 [INFO] __main__ - Loaded weather_hist nodes=16
+2026-01-22 15:53:44 [INFO] __main__ - Loaded weather_forecast nodes=16
+2026-01-22 15:53:44 [INFO] __main__ - STEP clean_data(bundle)
+2026-01-22 15:53:44 [INFO] src.data.data_cleaning - Data-Coverage-Report geschrieben: logs/data_coverage_report.csv (rows=16)
+2026-01-22 15:53:47 [INFO] src.data.data_cleaning - Prepared CSVs geschrieben nach: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_prepared
+2026-01-22 15:53:47 [INFO] __main__ - clean_data done (coverage report in logs/)
+2026-01-22 15:53:47 [INFO] __main__ - STEP bess_cleaning (Ridge)
+2026-01-22 15:53:47 [INFO] src.network.bess_cleaning - BESS nodes aus Graph: 2 (files=2)
+2026-01-22 15:53:47 [INFO] src.network.bess_cleaning - BESS-clean Input-Verzeichnis (meas_dir): /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_prepared
+2026-01-22 15:53:47 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2026-01-22 15:53:47 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: n=2, shape=(19110, 2), ridge_alpha=1.000000
+2026-01-22 15:53:48 [INFO] src.network.bess_cleaning - BESS-clean BOLN_E01: n_fit=19098 r2=0.000 corr(y,removed)=0.003 |beta|_sum=0.007
+2026-01-22 15:53:48 [INFO] src.network.bess_cleaning - BESS-clean BOLN_E02: n_fit=19098 r2=0.001 corr(y,removed)=0.014 |beta|_sum=0.024
+2026-01-22 15:53:48 [INFO] src.network.bess_cleaning - BESS-clean BOLN_E03: n_fit=19091 r2=0.001 corr(y,removed)=0.019 |beta|_sum=0.021
+2026-01-22 15:53:49 [INFO] src.network.bess_cleaning - BESS-clean JUBO_E01: n_fit=19105 r2=0.016 corr(y,removed)=0.061 |beta|_sum=0.116
+2026-01-22 15:53:49 [INFO] src.network.bess_cleaning - BESS-clean JUBO_E02: n_fit=19105 r2=0.004 corr(y,removed)=0.031 |beta|_sum=0.047
+2026-01-22 15:53:49 [INFO] src.network.bess_cleaning - BESS-clean JUBO_E03: n_fit=19105 r2=0.043 corr(y,removed)=0.096 |beta|_sum=0.069
+2026-01-22 15:53:50 [INFO] src.network.bess_cleaning - BESS-clean SHUW_E23: n_fit=19105 r2=0.228 corr(y,removed)=0.281 |beta|_sum=0.764
+2026-01-22 15:53:50 [INFO] src.network.bess_cleaning - BESS-clean SHUW_E24: n_fit=19105 r2=0.104 corr(y,removed)=0.169 |beta|_sum=0.691
+2026-01-22 15:53:51 [INFO] src.network.bess_cleaning - BESS-clean SIES_E02: n_fit=19098 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.009
+2026-01-22 15:53:51 [INFO] src.network.bess_cleaning - BESS-clean SIEV_E01: n_fit=19099 r2=0.056 corr(y,removed)=0.121 |beta|_sum=0.159
+2026-01-22 15:53:51 [INFO] src.network.bess_cleaning - BESS-clean TARP_E01: n_fit=19105 r2=0.181 corr(y,removed)=0.234 |beta|_sum=0.363
+2026-01-22 15:53:52 [INFO] src.network.bess_cleaning - BESS-clean TARP_E03: n_fit=19105 r2=0.096 corr(y,removed)=0.137 |beta|_sum=0.221
+2026-01-22 15:53:52 [INFO] src.network.bess_cleaning - BESS-clean WEDING_E12: n_fit=19091 r2=0.198 corr(y,removed)=0.445 |beta|_sum=0.291
+2026-01-22 15:53:52 [INFO] src.network.bess_cleaning - BESS-clean WEDING_E14: n_fit=19091 r2=0.097 corr(y,removed)=0.311 |beta|_sum=0.228
+2026-01-22 15:53:52 [INFO] src.network.bess_cleaning - BESS-Bereinigung fertig. written=14 skipped_low_overlap=0 report_rows=14
+2026-01-22 15:53:52 [INFO] src.network.bess_cleaning - BESS-clean Report geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess/bess_clean_report.csv
+2026-01-22 15:53:52 [INFO] __main__ - bess_cleaning done -> /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2026-01-22 15:53:52 [INFO] __main__ - STEP forecast_all_nodes(overwrite=True max_hours_cap=None)
+2026-01-22 15:53:53 [INFO] src.forecast - Loaded winner model: approach=DirectStacked, model=Ridge, H=100
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast batch start: nodes=14, overwrite=True, max_hours_cap=None, clean_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess, weather_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast, out_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred, out_norm_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for BOLN_E01 | flip=False shift=52.994 | raw=[-91.928..-54.179] norm=[-19.707..-1.185] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/BOLN_E01_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for BOLN_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/BOLN_E01_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for BOLN_E02 | flip=True shift=-43.112 | raw=[-90.744..-52.995] norm=[9.883..47.632] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/BOLN_E02_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for BOLN_E02 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/BOLN_E02_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for BOLN_E03 | flip=False shift=47.697 | raw=[-92.402..-54.653] norm=[-39.784..-6.956] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/BOLN_E03_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for BOLN_E03 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/BOLN_E03_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for JUBO_E01 | flip=True shift=-28.803 | raw=[-84.139..-45.745] norm=[16.941..55.336] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/JUBO_E01_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for JUBO_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/JUBO_E01_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for JUBO_E02 | flip=False shift=35.883 | raw=[-87.032..-48.637] norm=[-51.149..-12.754] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/JUBO_E02_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for JUBO_E02 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/JUBO_E02_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for JUBO_E03 | flip=False shift=43.943 | raw=[-86.268..-47.874] norm=[-28.445..-3.931] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/JUBO_E03_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for JUBO_E03 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/JUBO_E03_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for SHUW_E23 | flip=False shift=-3.130 | raw=[-82.092..-45.959] norm=[-75.482..-49.089] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SHUW_E23_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for SHUW_E23 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SHUW_E23_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for SHUW_E24 | flip=False shift=-5.958 | raw=[-82.160..-46.027] norm=[-88.118..-51.986] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SHUW_E24_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for SHUW_E24 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SHUW_E24_pred.csv (n=100)
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast+Norm OK for SIES_E02 | flip=False shift=52.521 | raw=[-94.447..-54.510] norm=[-12.237..-1.989] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SIES_E02_pred.csv
+2026-01-22 15:53:53 [INFO] src.forecast - Forecast OK for SIES_E02 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SIES_E02_pred.csv (n=100)
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast+Norm OK for SIEV_E01 | flip=False shift=55.589 | raw=[-93.374..-55.567] norm=[-37.785..0.022] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SIEV_E01_pred.csv
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast OK for SIEV_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SIEV_E01_pred.csv (n=100)
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast+Norm OK for TARP_E01 | flip=True shift=-12.358 | raw=[-86.846..-53.282] norm=[40.924..64.237] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/TARP_E01_pred.csv
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast OK for TARP_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/TARP_E01_pred.csv (n=100)
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast+Norm OK for TARP_E03 | flip=False shift=46.333 | raw=[-93.304..-59.740] norm=[-22.338..-13.407] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/TARP_E03_pred.csv
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast OK for TARP_E03 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/TARP_E03_pred.csv (n=100)
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast+Norm OK for WEDING_E12 | flip=True shift=-22.410 | raw=[-78.429..-49.949] norm=[27.539..28.752] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/WEDING_E12_pred.csv
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast OK for WEDING_E12 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/WEDING_E12_pred.csv (n=100)
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast+Norm OK for WEDING_E14 | flip=True shift=-38.154 | raw=[-79.834..-51.354] norm=[13.199..21.010] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/WEDING_E14_pred.csv
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast OK for WEDING_E14 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/WEDING_E14_pred.csv (n=100)
+2026-01-22 15:53:54 [INFO] src.forecast - Forecast batch done: ok=14, fail=0
+2026-01-22 15:53:54 [INFO] __main__ - forecast_all_nodes done (ok=14 fail=0)
+2026-01-22 15:53:54 [INFO] __main__ - STEP battery_bands.run() -> out=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:53:54 [INFO] powerband - Start powerband run
+2026-01-22 15:53:54 [WARNING] powerband - Config: UTIL_TARGET_PCT=50.0% (scale=0.500)
+2026-01-22 15:53:54 [INFO] powerband - Paths: graph=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json pred=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized out=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:53:54 [INFO] powerband - Graph: nodes=29 edges=29
+2026-01-22 15:53:54 [INFO] powerband - Node-Type Counts: {'uw_field': 14, 'busbar': 7, 'junction': 6, 'battery': 2}
+2026-01-22 15:53:54 [INFO] powerband - Kontraktion: contracted=18 kept=11
+2026-01-22 15:53:54 [INFO] powerband - Supernetz: super_nodes=11 super_edges=11
+2026-01-22 15:53:54 [INFO] powerband - Forecast ok: 14/14 (missing=0)
+2026-01-22 15:53:54 [INFO] powerband - Timestamps: 100 (2026-01-22 15:00:00+00:00 .. 2026-01-23 15:45:00+00:00)
+2026-01-22 15:53:54 [INFO] powerband - Powerband CSV geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband/BOLS_E41_powerband.csv (rows=100)
+2026-01-22 15:53:54 [INFO] powerband - Powerband CSV geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband/BOLS_E42_powerband.csv (rows=100)
+2026-01-22 15:53:54 [INFO] __main__ - battery_bands done -> /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:53:54 [INFO] __main__ - === PIPELINE DONE ===
+2026-01-22 15:56:00 [INFO] __main__ - === PIPELINE START ===
+2026-01-22 15:56:00 [INFO] __main__ - GRAPH_PATH=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json
+2026-01-22 15:56:00 [INFO] __main__ - RAW_TS_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries
+2026-01-22 15:56:00 [INFO] __main__ - CLEAN_TS_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2026-01-22 15:56:00 [INFO] __main__ - PRED_TS_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred
+2026-01-22 15:56:00 [INFO] __main__ - PRED_NORMALIZED_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized
+2026-01-22 15:56:00 [INFO] __main__ - POWERBAND_DIR=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:56:00 [INFO] __main__ - UTIL_TARGET_PCT=50.00
+2026-01-22 15:56:00 [INFO] __main__ - STEP load_all_data(start=None end=None forecast_hours=30)
+2026-01-22 15:56:00 [INFO] src.data.data_loader - Starte Laden der historischen Wirkleistungs- und Wetterdaten (global_start_local=2024-01-01 01:00:00+01:00, end_local=2026-01-22 15:56:00.778031+01:00, global_start_utc=2024-01-01 00:00:00+00:00, end_time_utc=2026-01-22 14:56:00.778031+00:00) ...
+2026-01-22 15:56:00 [INFO] src.data.data_loader - Lade Knotendaten (inkl. P_Datapoint_ID, Lat/Lon, DerivedSpec) aus /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json ...
+2026-01-22 15:56:00 [INFO] src.data.data_loader - Knotendaten geladen: 16 Knoten.
+2026-01-22 15:56:00 [INFO] src.data.data_loader - Verarbeite Node SHUW_E24 (DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380) ...
+2026-01-22 15:56:00 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E24: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69420)
+2026-01-22 15:56:00 [INFO] src.data.data_loader - Node SHUW_E24: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:00 [INFO] src.data.eiot_client - EIOT: Hole Access-Token via Azure AD (Client Credentials).
+2026-01-22 15:56:01 [INFO] src.data.eiot_client - EIOT: Access-Token erfolgreich erhalten.
+2026-01-22 15:56:01 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:01 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:01 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=97f72ae3-8fe4-4ef6-a3f6-5f58b2ec2380 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:01 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:01 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:01 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:02 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:02 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:02 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:02 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E24 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:02 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SHUW_E24_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:02 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E24 gespeichert (69420 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E24_hist.csv
+2026-01-22 15:56:02 [INFO] src.data.data_loader - Verarbeite Node SHUW_E23 (DP=bf20523d-4b54-44f3-800b-0a49cdc447aa) ...
+2026-01-22 15:56:03 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SHUW_E23: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 67605)
+2026-01-22 15:56:03 [INFO] src.data.data_loader - Node SHUW_E23: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:03 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:03 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 0 Samples, processedSamples=0
+2026-01-22 15:56:03 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf20523d-4b54-44f3-800b-0a49cdc447aa -> 0 Samples, processedSamples=0
+2026-01-22 15:56:03 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:03 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.521858, lon=9.436780, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:03 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:04 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:04 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:04 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Wetterdaten für Node SHUW_E23 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SHUW_E23_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Historische Zeitreihen für SHUW_E23 gespeichert (67605 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SHUW_E23_hist.csv
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Node JUBO_E01 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Verarbeite Node JUBO_E02 (DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d) ...
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E02: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69636)
+2026-01-22 15:56:04 [INFO] src.data.data_loader - Node JUBO_E02: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:04 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:05 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 0 Samples, processedSamples=0
+2026-01-22 15:56:05 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=dd4d7a23-431a-49a8-923d-8baa3f00d85d -> 0 Samples, processedSamples=0
+2026-01-22 15:56:05 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:05 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:05 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:06 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:06 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:06 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:06 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E02 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:06 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/JUBO_E02_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:06 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E02 gespeichert (69636 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E02_hist.csv
+2026-01-22 15:56:06 [INFO] src.data.data_loader - Verarbeite Node JUBO_E03 (DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6) ...
+2026-01-22 15:56:07 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für JUBO_E03: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 71286)
+2026-01-22 15:56:07 [INFO] src.data.data_loader - Node JUBO_E03: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:07 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:07 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:07 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7b3fec1d-2c6f-4450-b41a-74d709e1c3b6 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:07 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:07 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.546726, lon=9.428365, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:07 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:08 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:08 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:08 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:08 [INFO] src.data.data_loader - Wetterdaten für Node JUBO_E03 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:08 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/JUBO_E03_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:09 [INFO] src.data.data_loader - Historische Zeitreihen für JUBO_E03 gespeichert (71286 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E03_hist.csv
+2026-01-22 15:56:09 [INFO] src.data.data_loader - Verarbeite Node TARP_E03 (DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1) ...
+2026-01-22 15:56:09 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E03: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 71177)
+2026-01-22 15:56:09 [INFO] src.data.data_loader - Node TARP_E03: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:09 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:09 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:09 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=7ac182fc-cbfd-46c4-85bb-2a546cb238e1 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:09 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:09 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:09 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:11 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:11 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:11 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:11 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E03 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:11 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/TARP_E03_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:11 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E03 gespeichert (71177 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E03_hist.csv
+2026-01-22 15:56:11 [INFO] src.data.data_loader - Verarbeite Node TARP_E01 (DP=03636523-35f2-428f-86e8-c260fafbe330) ...
+2026-01-22 15:56:11 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für TARP_E01: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 71214)
+2026-01-22 15:56:11 [INFO] src.data.data_loader - Node TARP_E01: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:11 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:12 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:12 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=03636523-35f2-428f-86e8-c260fafbe330 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:12 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:12 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.670600, lon=9.409180, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:12 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:13 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:13 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:13 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:13 [INFO] src.data.data_loader - Wetterdaten für Node TARP_E01 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:13 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/TARP_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:13 [INFO] src.data.data_loader - Historische Zeitreihen für TARP_E01 gespeichert (71214 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/TARP_E01_hist.csv
+2026-01-22 15:56:13 [INFO] src.data.data_loader - Verarbeite Node WEDING_E14 (DP=81517d2b-2fe1-4b64-b34a-2e03048cc900) ...
+2026-01-22 15:56:14 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E14: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19031)
+2026-01-22 15:56:14 [INFO] src.data.data_loader - Node WEDING_E14: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:14 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:14 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:14 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=81517d2b-2fe1-4b64-b34a-2e03048cc900 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:14 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:14 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:14 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:15 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:15 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:15 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:15 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E14 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:15 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/WEDING_E14_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:15 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E14 gespeichert (19031 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E14_hist.csv
+2026-01-22 15:56:15 [INFO] src.data.data_loader - Verarbeite Node WEDING_E12 (DP=1635dd30-e8d5-4333-bff9-3ab20a796059) ...
+2026-01-22 15:56:15 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für WEDING_E12: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19032)
+2026-01-22 15:56:15 [INFO] src.data.data_loader - Node WEDING_E12: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:15 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:15 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:15 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=1635dd30-e8d5-4333-bff9-3ab20a796059 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:15 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:15 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.751918, lon=9.405946, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:15 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:17 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:17 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:17 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:17 [INFO] src.data.data_loader - Wetterdaten für Node WEDING_E12 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:17 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/WEDING_E12_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:17 [INFO] src.data.data_loader - Historische Zeitreihen für WEDING_E12 gespeichert (19032 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/WEDING_E12_hist.csv
+2026-01-22 15:56:17 [INFO] src.data.data_loader - Verarbeite Node SIEV_E01 (DP=563be369-1474-489b-b8ea-be4ed7e3ab5b) ...
+2026-01-22 15:56:17 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIEV_E01: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 67397)
+2026-01-22 15:56:17 [INFO] src.data.data_loader - Node SIEV_E01: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:17 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:17 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 0 Samples, processedSamples=0
+2026-01-22 15:56:17 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=563be369-1474-489b-b8ea-be4ed7e3ab5b -> 0 Samples, processedSamples=0
+2026-01-22 15:56:17 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:17 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.652402, lon=9.438555, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:17 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:19 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:19 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:19 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:19 [INFO] src.data.data_loader - Wetterdaten für Node SIEV_E01 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:19 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SIEV_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:19 [INFO] src.data.data_loader - Historische Zeitreihen für SIEV_E01 gespeichert (67397 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIEV_E01_hist.csv
+2026-01-22 15:56:19 [INFO] src.data.data_loader - Verarbeite Node SIES_E02 (DP=3ca16fd7-6946-4dbe-b733-397e8291ff82) ...
+2026-01-22 15:56:19 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für SIES_E02: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69322)
+2026-01-22 15:56:19 [INFO] src.data.data_loader - Node SIES_E02: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:19 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:20 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:20 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=3ca16fd7-6946-4dbe-b733-397e8291ff82 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:20 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:20 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.637165, lon=9.443465, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:20 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:22 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:22 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:22 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Wetterdaten für Node SIES_E02 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/SIES_E02_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Historische Zeitreihen für SIES_E02 gespeichert (69322 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/SIES_E02_hist.csv
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Node BOLN_E02 ist ein derived node – EIOT- und Wetter-Abruf werden später aus Basis-Knoten abgeleitet.
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Verarbeite Node BOLN_E03 (DP=bf40c502-ea38-4eca-986a-11fa618c97f1) ...
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E03: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69418)
+2026-01-22 15:56:22 [INFO] src.data.data_loader - Node BOLN_E03: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:22 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:22 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:22 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=bf40c502-ea38-4eca-986a-11fa618c97f1 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:22 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:22 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:22 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:23 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:23 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:23 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:23 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E03 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:23 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLN_E03_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:24 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E03 gespeichert (69418 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E03_hist.csv
+2026-01-22 15:56:24 [INFO] src.data.data_loader - Verarbeite Node BOLN_E01 (DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9) ...
+2026-01-22 15:56:24 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLN_E01: von 2024-01-01 00:00:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 69432)
+2026-01-22 15:56:24 [INFO] src.data.data_loader - Node BOLN_E01: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:24 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:24 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:24 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=34482f6c-cbbc-4f7f-99ae-db73a5885eb9 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:24 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:24 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.615976, lon=9.449164, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:24 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:25 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:25 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:26 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:26 [INFO] src.data.data_loader - Wetterdaten für Node BOLN_E01 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:26 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLN_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:26 [INFO] src.data.data_loader - Historische Zeitreihen für BOLN_E01 gespeichert (69432 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E01_hist.csv
+2026-01-22 15:56:26 [INFO] src.data.data_loader - Verarbeite Node BOLS_E42 (DP=c076ad04-1a18-434d-8e86-34e081b0e4f6) ...
+2026-01-22 15:56:26 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E42: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19055)
+2026-01-22 15:56:26 [INFO] src.data.data_loader - Node BOLS_E42: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:26 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:26 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:26 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=c076ad04-1a18-434d-8e86-34e081b0e4f6 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:26 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:26 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:26 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:27 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:27 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:27 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:27 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E42 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:27 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLS_E42_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:27 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E42 gespeichert (19055 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E42_hist.csv
+2026-01-22 15:56:27 [INFO] src.data.data_loader - Verarbeite Node BOLS_E41 (DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9) ...
+2026-01-22 15:56:27 [INFO] src.data.data_loader - Gefundene bestehende Hist-Daten für BOLS_E41: von 2025-07-02 15:30:00+00:00 bis 2026-01-17 16:45:00+00:00 (Zeilen: 19053)
+2026-01-22 15:56:27 [INFO] src.data.data_loader - Node BOLS_E41: vorhandene Daten bis 2026-01-17 16:45:00+00:00 (UTC), lade neu ab 2026-01-17 17:00:00+00:00 (globaler Start UTC=2024-01-01 00:00:00+00:00).
+2026-01-22 15:56:27 [INFO] src.data.eiot_client - EIOT: Hole Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9, 2026-01-17T17:00:00.000Z bis 2026-01-22T14:56:00.000Z
+2026-01-22 15:56:27 [INFO] src.data.eiot_client - EIOT: Chunk 1 für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:27 [INFO] src.data.eiot_client - EIOT: Gesamt für DP=d6c78726-ec8e-4bb4-aceb-75fb6e3f73c9 -> 0 Samples, processedSamples=0
+2026-01-22 15:56:27 [INFO] src.data.eiot_client - datapoint_json_to_series: 'samples' leer oder fehlt für P_MW. Keys: ['processedSamples', 'samples']
+2026-01-22 15:56:27 [INFO] src.data.weather_loader - Hole Wetterdaten von Open-Meteo (lat=54.576814, lon=9.473114, start=2024-01-01 01:00:00+01:00, end=2026-01-22 15:56:00.778031+01:00, forecast_hours=30, tz=Europe/Berlin)
+2026-01-22 15:56:27 [INFO] src.data.weather_loader - Historische Wetterdaten: 2024-01-01T00:00 bis 2026-01-22T14:45 (timezone=Europe/Berlin)
+2026-01-22 15:56:29 [INFO] src.data.weather_loader - [historisch] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:29 [INFO] src.data.weather_loader - Prognose-Wetterdaten: 2026-01-22T15:00 bis 2026-01-23T21:00 (expected_steps=120, timezone=Europe/Berlin)
+2026-01-22 15:56:29 [INFO] src.data.weather_loader - [forecast] 15-Minuten-Auflösung erkannt.
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Wetterdaten für Node BOLS_E41 geladen (hist=72252, forecast=120).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLS_E41_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Historische Zeitreihen für BOLS_E41 gespeichert (19053 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLS_E41_hist.csv
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Berechne derived Node JUBO_E01 via field_sum.
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node JUBO_E01: abgeleitete P_MW-Reihe erzeugt (71316 Zeitschritte).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Berechne derived Node BOLN_E02 via field_sum.
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node BOLN_E02: abgeleitete P_MW-Reihe erzeugt (69433 Zeitschritte).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Historie von JUBO_E03 übernommen (72252 Zeilen).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Prognose von JUBO_E03 übernommen (120 Zeilen).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Historie von BOLN_E03 übernommen (72252 Zeilen).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Prognose von BOLN_E03 übernommen (120 Zeilen).
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node JUBO_E01: Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/JUBO_E01_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Node BOLN_E02: Wetter-Forecast gespeichert: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast/BOLN_E02_weather_forecast.csv (Zeilen: 120)
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Historie für JUBO_E01 gespeichert (71316 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/JUBO_E01_hist.csv
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Derived-Historie für BOLN_E02 gespeichert (69433 Zeilen, 4 Spalten) nach /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/timeseries/BOLN_E02_hist.csv
+2026-01-22 15:56:29 [INFO] src.data.data_loader - Datenladen abgeschlossen.
+2026-01-22 15:56:29 [INFO] __main__ - Loaded measurements nodes=16
+2026-01-22 15:56:29 [INFO] __main__ - Loaded weather_hist nodes=16
+2026-01-22 15:56:29 [INFO] __main__ - Loaded weather_forecast nodes=16
+2026-01-22 15:56:29 [INFO] __main__ - STEP clean_data(bundle)
+2026-01-22 15:56:30 [INFO] src.data.data_cleaning - Data-Coverage-Report geschrieben: logs/data_coverage_report.csv (rows=16)
+2026-01-22 15:56:33 [INFO] src.data.data_cleaning - Prepared CSVs geschrieben nach: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_prepared
+2026-01-22 15:56:33 [INFO] __main__ - clean_data done (coverage report in logs/)
+2026-01-22 15:56:33 [INFO] __main__ - STEP bess_cleaning (Ridge)
+2026-01-22 15:56:33 [INFO] src.network.bess_cleaning - BESS nodes aus Graph: 2 (files=2)
+2026-01-22 15:56:33 [INFO] src.network.bess_cleaning - BESS-clean Input-Verzeichnis (meas_dir): /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_prepared
+2026-01-22 15:56:33 [INFO] src.network.bess_cleaning - BESS-clean Output-Verzeichnis: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2026-01-22 15:56:33 [INFO] src.network.bess_cleaning - BESS-Matrix geladen: n=2, shape=(19110, 2), ridge_alpha=1.000000
+2026-01-22 15:56:33 [INFO] src.network.bess_cleaning - BESS-clean BOLN_E01: n_fit=19098 r2=0.000 corr(y,removed)=0.003 |beta|_sum=0.007
+2026-01-22 15:56:33 [INFO] src.network.bess_cleaning - BESS-clean BOLN_E02: n_fit=19098 r2=0.001 corr(y,removed)=0.014 |beta|_sum=0.024
+2026-01-22 15:56:34 [INFO] src.network.bess_cleaning - BESS-clean BOLN_E03: n_fit=19091 r2=0.001 corr(y,removed)=0.019 |beta|_sum=0.021
+2026-01-22 15:56:34 [INFO] src.network.bess_cleaning - BESS-clean JUBO_E01: n_fit=19105 r2=0.016 corr(y,removed)=0.061 |beta|_sum=0.116
+2026-01-22 15:56:34 [INFO] src.network.bess_cleaning - BESS-clean JUBO_E02: n_fit=19105 r2=0.004 corr(y,removed)=0.031 |beta|_sum=0.047
+2026-01-22 15:56:35 [INFO] src.network.bess_cleaning - BESS-clean JUBO_E03: n_fit=19105 r2=0.043 corr(y,removed)=0.096 |beta|_sum=0.069
+2026-01-22 15:56:35 [INFO] src.network.bess_cleaning - BESS-clean SHUW_E23: n_fit=19105 r2=0.228 corr(y,removed)=0.281 |beta|_sum=0.764
+2026-01-22 15:56:35 [INFO] src.network.bess_cleaning - BESS-clean SHUW_E24: n_fit=19105 r2=0.104 corr(y,removed)=0.169 |beta|_sum=0.691
+2026-01-22 15:56:36 [INFO] src.network.bess_cleaning - BESS-clean SIES_E02: n_fit=19098 r2=0.002 corr(y,removed)=0.023 |beta|_sum=0.009
+2026-01-22 15:56:36 [INFO] src.network.bess_cleaning - BESS-clean SIEV_E01: n_fit=19099 r2=0.056 corr(y,removed)=0.121 |beta|_sum=0.159
+2026-01-22 15:56:36 [INFO] src.network.bess_cleaning - BESS-clean TARP_E01: n_fit=19105 r2=0.181 corr(y,removed)=0.234 |beta|_sum=0.363
+2026-01-22 15:56:37 [INFO] src.network.bess_cleaning - BESS-clean TARP_E03: n_fit=19105 r2=0.096 corr(y,removed)=0.137 |beta|_sum=0.221
+2026-01-22 15:56:37 [INFO] src.network.bess_cleaning - BESS-clean WEDING_E12: n_fit=19091 r2=0.198 corr(y,removed)=0.445 |beta|_sum=0.291
+2026-01-22 15:56:37 [INFO] src.network.bess_cleaning - BESS-clean WEDING_E14: n_fit=19091 r2=0.097 corr(y,removed)=0.311 |beta|_sum=0.228
+2026-01-22 15:56:37 [INFO] src.network.bess_cleaning - BESS-Bereinigung fertig. written=14 skipped_low_overlap=0 report_rows=14
+2026-01-22 15:56:37 [INFO] src.network.bess_cleaning - BESS-clean Report geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess/bess_clean_report.csv
+2026-01-22 15:56:37 [INFO] __main__ - bess_cleaning done -> /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess
+2026-01-22 15:56:37 [INFO] __main__ - STEP forecast_all_nodes(overwrite=True max_hours_cap=None)
+2026-01-22 15:56:38 [INFO] src.forecast - Loaded winner model: approach=DirectStacked, model=Ridge, H=100
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast batch start: nodes=14, overwrite=True, max_hours_cap=None, clean_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/clean/timeseries_no_bess, weather_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/weather_forecast, out_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred, out_norm_dir=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for BOLN_E01 | flip=False shift=52.994 | raw=[-91.928..-54.179] norm=[-19.707..-1.185] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/BOLN_E01_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for BOLN_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/BOLN_E01_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for BOLN_E02 | flip=True shift=-43.112 | raw=[-90.744..-52.995] norm=[9.883..47.632] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/BOLN_E02_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for BOLN_E02 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/BOLN_E02_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for BOLN_E03 | flip=False shift=47.697 | raw=[-92.402..-54.653] norm=[-39.784..-6.956] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/BOLN_E03_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for BOLN_E03 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/BOLN_E03_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for JUBO_E01 | flip=True shift=-28.803 | raw=[-84.139..-45.745] norm=[16.941..55.336] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/JUBO_E01_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for JUBO_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/JUBO_E01_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for JUBO_E02 | flip=False shift=35.883 | raw=[-87.032..-48.637] norm=[-51.149..-12.754] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/JUBO_E02_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for JUBO_E02 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/JUBO_E02_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for JUBO_E03 | flip=False shift=43.943 | raw=[-86.268..-47.874] norm=[-28.445..-3.931] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/JUBO_E03_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for JUBO_E03 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/JUBO_E03_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for SHUW_E23 | flip=False shift=-3.130 | raw=[-82.092..-45.959] norm=[-75.482..-49.089] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SHUW_E23_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for SHUW_E23 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SHUW_E23_pred.csv (n=100)
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast+Norm OK for SHUW_E24 | flip=False shift=-5.958 | raw=[-82.160..-46.027] norm=[-88.118..-51.986] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SHUW_E24_pred.csv
+2026-01-22 15:56:38 [INFO] src.forecast - Forecast OK for SHUW_E24 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SHUW_E24_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast+Norm OK for SIES_E02 | flip=False shift=52.521 | raw=[-94.447..-54.510] norm=[-12.237..-1.989] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SIES_E02_pred.csv
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast OK for SIES_E02 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SIES_E02_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast+Norm OK for SIEV_E01 | flip=False shift=55.589 | raw=[-93.374..-55.567] norm=[-37.785..0.022] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/SIEV_E01_pred.csv
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast OK for SIEV_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/SIEV_E01_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast+Norm OK for TARP_E01 | flip=True shift=-12.358 | raw=[-86.846..-53.282] norm=[40.924..64.237] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/TARP_E01_pred.csv
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast OK for TARP_E01 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/TARP_E01_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast+Norm OK for TARP_E03 | flip=False shift=46.333 | raw=[-93.304..-59.740] norm=[-22.338..-13.407] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/TARP_E03_pred.csv
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast OK for TARP_E03 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/TARP_E03_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast+Norm OK for WEDING_E12 | flip=True shift=-22.410 | raw=[-78.429..-49.949] norm=[27.539..28.752] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/WEDING_E12_pred.csv
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast OK for WEDING_E12 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/WEDING_E12_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast+Norm OK for WEDING_E14 | flip=True shift=-38.154 | raw=[-79.834..-51.354] norm=[13.199..21.010] | out_norm=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized/WEDING_E14_pred.csv
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast OK for WEDING_E14 → /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred/WEDING_E14_pred.csv (n=100)
+2026-01-22 15:56:39 [INFO] src.forecast - Forecast batch done: ok=14, fail=0
+2026-01-22 15:56:39 [INFO] __main__ - forecast_all_nodes done (ok=14 fail=0)
+2026-01-22 15:56:39 [INFO] __main__ - STEP battery_bands.run() -> out=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:56:39 [INFO] powerband - Start powerband run
+2026-01-22 15:56:39 [WARNING] powerband - Config: UTIL_TARGET_PCT=50.0% (scale=0.500)
+2026-01-22 15:56:39 [INFO] powerband - Paths: graph=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/raw/graph/whole_graph.json pred=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/pred_normalized out=/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:56:39 [INFO] powerband - Graph: nodes=29 edges=29
+2026-01-22 15:56:39 [INFO] powerband - Node-Type Counts: {'uw_field': 14, 'busbar': 7, 'junction': 6, 'battery': 2}
+2026-01-22 15:56:39 [INFO] powerband - Kontraktion: contracted=18 kept=11
+2026-01-22 15:56:39 [INFO] powerband - Supernetz: super_nodes=11 super_edges=11
+2026-01-22 15:56:39 [INFO] powerband - Forecast ok: 14/14 (missing=0)
+2026-01-22 15:56:39 [INFO] powerband - Timestamps: 100 (2026-01-22 15:00:00+00:00 .. 2026-01-23 15:45:00+00:00)
+2026-01-22 15:56:39 [INFO] powerband - Line utilization CSV geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband/line_utilization.csv (rows=1104)
+2026-01-22 15:56:39 [INFO] powerband - Powerband CSV geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband/BOLS_E41_powerband.csv (rows=100)
+2026-01-22 15:56:39 [INFO] powerband - Powerband CSV geschrieben: /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband/BOLS_E42_powerband.csv (rows=100)
+2026-01-22 15:56:39 [INFO] __main__ - battery_bands done -> /Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/src/data/powerband
+2026-01-22 15:56:39 [INFO] __main__ - === PIPELINE DONE ===

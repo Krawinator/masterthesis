@@ -108,7 +108,6 @@ X_EPS_OHM = 0.01
 BASECASE_BESS_P_MW = 0.0
 
 # Ziel-Auslastung der Leitungen in %
-# 100 = volle Grenzwerte, <100 = konservativer Betrieb
 UTIL_TARGET_PCT = 60.0
 
 # ============================================================
