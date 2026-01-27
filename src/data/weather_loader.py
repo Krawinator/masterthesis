@@ -93,7 +93,7 @@ def fetch_weather_open_meteo(
     end_time: datetime | str,
     timezone: str = "UTC",
     model: str = "icon_seamless",
-    forecast_hours: int = 30,  # Default 30h (120 Werte)
+    forecast_hours: int = 25,  
     output_timezone: Optional[str] = None,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
@@ -112,8 +112,8 @@ def fetch_weather_open_meteo(
       15-Minuten-Zeitstempel nach dem historischen Ende.
       Beispiel: hist endet 09:00 -> Forecast startet 09:15.
 
-    Optional kannst du output_timezone setzen (z.B. "Europe/Berlin"), dann werden
-    die Indizes am Ende nach lokal konvertiert (naiv, ohne tzinfo).
+    Optional: Wenn output_timezone gesetzt ist (z.B. "Europe/Berlin"), wird der Index am Ende
+    in diese Zone konvertiert und als naive Zeitstempel (ohne tzinfo) gespeichert.
     """
 
     logger.info(
@@ -179,7 +179,7 @@ def fetch_weather_open_meteo(
         expected_steps = forecast_hours * 4
 
         # Letzter historischer Zeitpunkt (aus den Daten, nicht nur aus end_ts)
-        # Falls df_hist leer ist, fallen wir auf end_ts (angefragt) zurück.
+        # Falls df_hist leer ist, fallen wir auf end_ts zurück.
         if not df_hist.empty:
             hist_last = pd.to_datetime(df_hist["time"].max())
         else:
@@ -211,7 +211,7 @@ def fetch_weather_open_meteo(
 
         df_forecast = _fetch_minutely15(url_fc, params_fc, context="forecast")
 
-        # Hart auf genau N Werte trimmen (API kann inkl./exkl. am Ende variieren)
+        # Hart auf genau N Werte trimmen 
         if len(df_forecast) >= expected_steps:
             df_forecast = df_forecast.iloc[:expected_steps].copy()
         else:
@@ -270,11 +270,10 @@ def fetch_weather_open_meteo(
             if len(df.index) > 0:
                 idx = df.index
                 if idx.tz is None:
-                    idx = idx.tz_localize(timezone)
+                    idx = idx.tz_localize("UTC")
                 else:
-                    idx = idx.tz_convert(timezone)
+                    idx = idx.tz_convert("UTC")
                 df.index = idx.tz_convert(output_timezone).tz_localize(None)
-
 
     return df_hist, df_forecast
 

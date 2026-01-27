@@ -26,9 +26,8 @@ from src.data.weather_loader import fetch_weather_open_meteo
 logger = logging.getLogger(__name__)
 
 
-# -----------------------------------------------------------------------------
+
 # TZ hygiene
-# -----------------------------------------------------------------------------
 def _ensure_utc_index(df: pd.DataFrame) -> pd.DataFrame:
     """
     Macht den Index konsistent: tz-aware UTC, duplikatfrei, sortierbar.
@@ -324,7 +323,7 @@ def load_all_data(
 
     Intern halten wir alle Indizes tz-aware in UTC, damit join/union/sort stabil bleibt.
     """
-    # --- 0) Start-/Endzeit sauber als lokale Zeit und UTC ableiten ---
+    #  0) Start-/Endzei als lokale Zeit und UTC ableiten 
 
     if end_time is None:
         end_local = pd.Timestamp.now(tz=TIMEZONE)
@@ -363,9 +362,8 @@ def load_all_data(
 
     bucket_delta = _bucket_timedelta()
 
-    # -------------------------------------------------------------------------
+    
     # 1) Pro physikalischem Node: EIOT + Wetter laden und Hist-CSV schreiben
-    # -------------------------------------------------------------------------
     for row in nodes_df.itertuples():
         node_id = row.Index
         dp_id = row.P_Datapoint_ID
@@ -382,7 +380,7 @@ def load_all_data(
 
         existing_hist_df = _load_existing_hist(node_id)
         existing_hist_end = existing_hist_df.index.max() if not existing_hist_df.empty else None
-        # --- sanitize existing hist: remove weather-only tail (P_MW NaNs) ---
+        #  CSV kann am Ende Wetter-only-Zeilen enthalten. Für Inkrementallogik wird auf Zeilen mit P_MW begrenzt 
         if (not existing_hist_df.empty) and ("P_MW" in existing_hist_df.columns):
             existing_hist_df["P_MW"] = pd.to_numeric(existing_hist_df["P_MW"], errors="coerce")
             existing_hist_df = existing_hist_df.dropna(subset=["P_MW"]).sort_index()
@@ -448,7 +446,7 @@ def load_all_data(
         else:
             measurements[node_id] = s
 
-        # --- Wetterdaten holen (hist + forecast) ---
+        #  Wetterdaten holen (hist + forecast) 
         lat = getattr(row, "Latitude_deg")
         lon = getattr(row, "Longitude_deg")
 
@@ -487,7 +485,7 @@ def load_all_data(
             len(df_fc),
         )
 
-        # Forecast separat speichern (so wie forecast.py es erwartet)
+        # Forecast separat speichern (Input für forecast.py)
         if df_fc is not None and not df_fc.empty:
             WEATHER_FORECAST_DIR.mkdir(parents=True, exist_ok=True)
             fc_path = WEATHER_FORECAST_DIR / f"{node_id}_weather_forecast.csv"
@@ -496,10 +494,10 @@ def load_all_data(
         else:
             logger.warning("Wetter-Forecast leer für node_id=%s -> keine CSV geschrieben", node_id)
 
-        # --- Kombinierte Zeitreihen speichern (P_MW + Wetter) ---
+        #  Kombinierte Zeitreihen speichern (P_MW + Wetter) 
         hist_df = _ensure_utc_index(existing_hist_df.copy())
 
-        # 1) P_MW ist die führende Zeitachse (nur Messzeitpunkte!)
+        # 1) P_MW ist die führende Zeitachse (nur Messzeitpunkte)
         p_series = pd.Series(dtype="float64", name="P_MW")
         if node_id in measurements:
             p_series = _ensure_utc_series(measurements[node_id]).rename("P_MW")
@@ -539,7 +537,7 @@ def load_all_data(
         if node_id in weather_hist and not hist_df.empty:
             w_hist = _ensure_utc_index(weather_hist[node_id])
 
-            # --- FIX: vorhandene Wetterspalten entfernen, bevor wir neu joinen ---
+            #  Vor dem Join werden vorhandene Wetterspalten entfernt, um doppelte/alte Wetterwerte zu vermeiden. 
             overlap = hist_df.columns.intersection(w_hist.columns)
             if len(overlap) > 0:
                 hist_df = hist_df.drop(columns=overlap)
@@ -566,9 +564,8 @@ def load_all_data(
         )
 
 
-    # -------------------------------------------------------------------------
+    
     # 2) Derived-Nodes: P_MW ableiten und Wetter übernehmen
-    # -------------------------------------------------------------------------
     measurements = _apply_derived_measurements(nodes_df, measurements)
     weather_hist, weather_forecast = _apply_derived_weather(nodes_df, weather_hist, weather_forecast)
     # Derived forecast CSVs schreiben 
@@ -587,9 +584,8 @@ def load_all_data(
         _ensure_utc_index(df_fc).to_csv(fc_path, index_label="timestamp")
         logger.info("Derived-Node %s: Wetter-Forecast gespeichert: %s (Zeilen: %d)", node_id, fc_path, len(df_fc))
 
-    # -------------------------------------------------------------------------
+    
     # 3) CSVs für derived nodes schreiben
-    # -------------------------------------------------------------------------
     for node_id, row in nodes_df.iterrows():
         spec = row.get("DerivedSpec")
         if not isinstance(spec, dict):
@@ -608,7 +604,7 @@ def load_all_data(
             w_hist = _ensure_utc_index(weather_hist[node_id])
             hist_df = hist_df.join(w_hist, how="left")
 
-        # erzwingen, dass keine Wetter-only Zeilen drin sind
+        # Sicherstellen, dass keine Wetter-only Zeilen drin sind
         hist_df["P_MW"] = pd.to_numeric(hist_df["P_MW"], errors="coerce")
         hist_df = hist_df.dropna(subset=["P_MW"]).sort_index()
 

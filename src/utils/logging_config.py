@@ -15,12 +15,10 @@ def setup_logging(
     datefmt = "%Y-%m-%d %H:%M:%S"
     formatter = logging.Formatter(fmt=fmt, datefmt=datefmt)
 
-    # Wenn schon konfiguriert: Level konsequent durchdrücken (root + handler)
     if root.handlers:
         root.setLevel(level)
         for h in root.handlers:
             h.setLevel(level)
-            # falls Format noch nicht passt:
             try:
                 h.setFormatter(formatter)
             except Exception:
@@ -36,7 +34,7 @@ def setup_logging(
     file_handler.setFormatter(formatter)
     stream_handler.setFormatter(formatter)
 
-    # WICHTIG: Handler-Level setzen
+    # Handler-Level explizit setzen, damit root- und Handler-Level konsistent sind.
     file_handler.setLevel(level)
     stream_handler.setLevel(level)
 

@@ -209,6 +209,22 @@ Verwendete Umgebungsvariablen:
 - `SCOPE` – API-Scope für den Zugriff auf die e.IoT-Schnittstelle
 - `SECRET` – internes Secret für Token-Handling
 
+---
+
+## Forecasting / Modelltraining `forecasting_experiments.ipynb`
+
+Ergänzend zur produktiven Prognosepipeline existiert ein **Forecasting-Notebook** zur explorativen Modellierung.
+
+In diesem Notebook können:
+- verschiedene Prognosemodelle trainiert,
+- alternative Feature-Sets und Hyperparameter getestet,
+- und potenzielle **Siegermodelle** identifiziert werden.
+
+Das Notebook dient ausschließlich der **Modellselektion und Bewertung**.  
+Das final gewählte Modell wird anschließend in die modulare Forecasting-Pipeline integriert und dort reproduzierbar eingesetzt.
+
+---
+
 ## How to run
 
 Der vollständige End-to-End-Workflow wird über einen zentralen Einstiegspunkt ausgeführt:

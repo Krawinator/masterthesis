@@ -1,0 +1,30 @@
+{
+  "winner_approach": "DirectStacked",
+  "winner_model_name": "Ridge",
+  "winner_params": {
+    "model__alpha": 1000.0
+  },
+  "H": 100,
+  "timestamp_col": "timestamp",
+  "target_col": "P_MW",
+  "raw_features": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C"
+  ],
+  "target_lags": [
+    1,
+    4,
+    8,
+    12,
+    24,
+    96
+  ],
+  "fourier_k": 3,
+  "period_steps": 96,
+  "direct_h_features": [
+    "h",
+    "h_over_H"
+  ],
+  "note": "Winner tuned on high_node=SHUW_E24. Refit per node with fixed params."
+}

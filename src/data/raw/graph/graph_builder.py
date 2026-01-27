@@ -8,7 +8,7 @@ import base64
 app = dash.Dash(__name__)
 app.title = "Graph-Editor – Stromnetz"
 
-# Initial graph state (Cytoscape elements list)
+# Startzustand: Cytoscape-Elemente (Nodes + Edges)
 INITIAL_ELEMENTS: list[dict] = []
 
 
@@ -17,9 +17,9 @@ INITIAL_ELEMENTS: list[dict] = []
 # =============================================================================
 def make_stylesheet(show_edge_labels: bool):
     """
-    Returns a Cytoscape stylesheet.
-    Edge labels can be toggled via `show_edge_labels`.
+    Cytoscape-Stylesheet. Kantenlabels optional ein-/ausblendbar.
     """
+
     return [
         {"selector": "node",
          "style": {"content": "data(label)", "text-valign": "center",
@@ -50,12 +50,10 @@ def make_stylesheet(show_edge_labels: bool):
 # =============================================================================
 def parse_formula_to_terms(s: str):
     """
-    Parses a simple term list like:
-        'JUBO_E03:-1, JUBO_E02:-1'
-    into:
-        [{"node": "JUBO_E03", "coeff": -1.0}, {"node": "JUBO_E02", "coeff": -1.0}]
-    Invalid parts are ignored.
+    Liest "node:coeff, node:coeff, ..." und gibt Terms als Liste zurück.
+    Ungültige Teile werden übersprungen.
     """
+
     terms = []
     if not s:
         return terms
@@ -77,7 +75,7 @@ def parse_formula_to_terms(s: str):
 
 def terms_to_string(terms):
     """
-    Converts parsed terms into a human-editable string representation.
+    Baut aus Terms wieder einen editierbaren String ("node:coeff, ...").
     """
     if not terms:
         return ""
@@ -93,10 +91,7 @@ def terms_to_string(terms):
 # =============================================================================
 def split_elements(elems: list[dict]):
     """
-    Splits Cytoscape elements into nodes and edges.
-    Convention:
-      - edges: elements where data contains 'source' and 'target'
-      - nodes: all other elements
+    Trennt Elements in Nodes/Edges: Edge hat source+target, sonst Node.
     """
     elems = elems or []
     nodes, edges = [], []
@@ -110,9 +105,7 @@ def split_elements(elems: list[dict]):
 
 
 def node_ids_from(nodes):
-    """
-    Collects node IDs from node elements.
-    """
+    """Sammelt alle Node-IDs aus den Elementen."""
     out = set()
     for n in nodes:
         d = n.get("data", {}) or {}
@@ -123,9 +116,7 @@ def node_ids_from(nodes):
 
 
 def edge_ids_from(edges):
-    """
-    Collects edge IDs from edge elements (if present).
-    """
+    """Sammelt alle Edge-IDs"""
     out = set()
     for e in edges:
         d = e.get("data", {}) or {}
@@ -136,18 +127,13 @@ def edge_ids_from(edges):
 
 
 def edge_key(e):
-    """
-    Identifies an edge by its directed (source, target) pair.
-    """
+    """Key für Duplikat-Check: (source, target)."""
     d = e.get("data", {}) or {}
     return (d.get("source"), d.get("target"))
 
 
 def safe_float(x):
-    """
-    Converts a value to float.
-    Returns None for empty inputs or invalid conversions.
-    """
+    """Float-Parser: leer/ungültig -> None."""
     if x in (None, ""):
         return None
     try:
@@ -158,15 +144,10 @@ def safe_float(x):
 
 def is_valid_elements_list(obj):
     """
-    Minimal validation for the imported JSON payload.
-
-    Expected shape:
-      - top-level list
-      - each element is a dict with 'data' dict
-      - nodes require 'data.id'
-      - edges require 'data.source' and 'data.target'
-      - 'features' (if present) must be a dict
+    Plausibilitätscheck für Import: Liste aus Elementen mit data{}.
+    Node braucht id, Edge braucht source+target, features (falls da) ist dict.
     """
+
     if not isinstance(obj, list):
         return False, "JSON muss eine Liste von Cytoscape-Elementen sein."
 
@@ -196,7 +177,7 @@ def is_valid_elements_list(obj):
 # Layout
 # =============================================================================
 app.layout = html.Div([
-    # Inject minimal CSS to ensure full-height layout and correct dropdown stacking order.
+    # Mini-CSS: Vollhöhe + Dropdowns über Cytoscape (z-index).
     html.Script(
         """
         (function(){
@@ -212,14 +193,14 @@ app.layout = html.Div([
         """
     ),
 
-    # Store holds the authoritative elements list used for export
+    # Persistenter State für Export/Import (Elements-Liste).
     dcc.Store(id="gstore", data=INITIAL_ELEMENTS),
 
-    # Holds up to two tapped nodes for edge creation convenience
+    # Merkt bis zu 2 angetippte Nodes für "Edge hinzufügen"
     dcc.Store(id="edge_selection", data=[]),
 
     html.Div([
-        # Left: graph canvas
+        # Links: graph canvas
         html.Div([
             cyto.Cytoscape(
                 id="graph",
@@ -240,11 +221,11 @@ app.layout = html.Div([
             "padding": "12px"
         }),
 
-        # Right: tools panel
+        # Rechts: Werkzeug-Panel
         html.Div([
             html.H3("Werkzeuge"),
 
-            # Status messages provide immediate feedback for mutations and validation
+            # Statuszeile für Aktionen/Fehler
             html.Div(id="status_msg", style={
                 "whiteSpace": "pre-wrap",
                 "fontSize": 12,
@@ -255,7 +236,6 @@ app.layout = html.Div([
                 "marginBottom": "10px"
             }),
 
-            # Toggle edge labels in the Cytoscape stylesheet
             html.Div([
                 dcc.Checklist(
                     id="edge_label_toggle",
@@ -310,14 +290,14 @@ app.layout = html.Div([
                 html.Button("Node hinzufügen", id="btn_add_node", style={"width": "180px"}),
             ], style={"marginBottom": 10}),
 
-            # Deletes the currently selected node or edge (node deletion cascades to incident edges)
+            # Löscht Auswahl; bei Node werden verbundene Kanten mit entfernt.
             html.Button("Ausgewählten Node/Edge löschen", id="btn_del_element",
                         style={"marginBottom": 12}),
 
             html.Hr(),
             html.H4("Umbenennen"),
 
-            # Rename node: updates ID, label, and rewrites edge endpoints accordingly
+            # Node umbenennen: ID/Label + Kanten-Endpunkte anpassen
             html.Div([
                 html.Label("Node: Neue ID"),
                 dcc.Input(id="rename_node_id"),
@@ -331,7 +311,7 @@ app.layout = html.Div([
                 "marginBottom": "10px"
             }),
 
-            # Rename edge: updates edge ID and label
+            # Edge umbenennen: ID/Label.
             html.Div([
                 html.Label("Edge: Neue ID"),
                 dcc.Input(id="rename_edge_id"),
@@ -347,7 +327,7 @@ app.layout = html.Div([
             html.Hr(),
             html.H4("Edge anlegen"),
 
-            # Edge creation uses the last two tapped nodes
+            # Edge wird aus den letzten 2 getippten Nodes gebaut
             html.Div([
                 dcc.Input(id="new_edge_id", placeholder="Edge-ID"),
                 dcc.Input(id="new_edge_label", placeholder="Edge-Label", style={"marginLeft": 6}),
@@ -463,11 +443,11 @@ app.layout = html.Div([
             html.Hr(),
             html.H4("Import / Export"),
 
-            # Export downloads the exact elements list as JSON
+            # Export: Elements-Liste als JSON.
             html.Button("Export JSON", id="btn_export"),
             dcc.Download(id="dl_json"),
 
-            # Import expects a JSON file containing a list of Cytoscape elements
+            # Import: JSON mit Elements-Liste (Cytoscape-Format)
             dcc.Upload(
                 id="upload_json",
                 children=html.Div(["JSON importieren (drag & drop)"]),
@@ -503,9 +483,7 @@ app.layout = html.Div([
     Input("edge_label_toggle", "value")
 )
 def toggle_edge_labels(values):
-    """
-    Rebuilds the Cytoscape stylesheet based on the edge-label toggle.
-    """
+    """Schaltet Kantenlabels im Stylesheet um."""
     show = bool(values and "show" in values)
     return make_stylesheet(show_edge_labels=show)
 
@@ -538,9 +516,7 @@ def toggle_edge_labels(values):
     Input("graph", "selectedEdgeData"),
 )
 def show_selection(node_data, edge_data):
-    """
-    Populates the tool panel fields from the currently selected node or edge.
-    """
+    """Füllt die Eingabefelder basierend auf der aktuellen Auswahl."""
     if node_data:
         d = node_data[0]
         feats = d.get("features", {}) or {}
@@ -606,9 +582,7 @@ def show_selection(node_data, edge_data):
     State("edge_selection", "data"),
 )
 def handle_tap_node(tapped, current):
-    """
-    Maintains a rolling selection of up to two tapped nodes for edge creation.
-    """
+    """Merkt sich bis zu zwei getippte Nodes für das Edge-Anlegen."""
     current = current or []
     if not tapped:
         return current, no_update
@@ -617,7 +591,6 @@ def handle_tap_node(tapped, current):
     if not nid:
         return current, no_update
 
-    # Toggle behavior: if already selected, remove; otherwise append.
     cur = [n for n in current if n != nid]
     cur.append(nid)
     cur = cur[-2:]
@@ -695,12 +668,8 @@ def mutate_graph(
     n_busbar_formula, n_derived_enable, n_derived_feature_key, n_derived_terms
 ):
     """
-    Single mutation callback for all graph operations.
-    Returns:
-      - updated elements for the Cytoscape component
-      - updated elements for persistent storage (export)
-      - status message
-      - updated edge selection state
+    Zentrale Callback-Funktion für alle Aktionen (add/del/rename/import/save).
+    Gibt Elements + Status + Edge-Auswahl zurück.
     """
     trig = ctx.triggered_id
     elems = elems or []
@@ -714,7 +683,7 @@ def mutate_graph(
     new_edge_sel = edge_sel or []
 
     # -------------------------------------------------------------------------
-    # Create node
+    # Node anlegen
     # -------------------------------------------------------------------------
     if trig == "btn_add_node":
         nid = (new_id or "").strip()
@@ -736,7 +705,7 @@ def mutate_graph(
         return new_elems, new_elems, status, new_edge_sel
 
     # -------------------------------------------------------------------------
-    # Create edge
+    # Edge anlegen
     # -------------------------------------------------------------------------
     if trig == "btn_add_edge":
         eid = (new_edge_id or "").strip()
@@ -867,13 +836,13 @@ def mutate_graph(
                 if v is not None:
                     feats["Longitude_deg"] = v
 
-                # Optional busbar formula string is stored in features
+                # Optional: Formel-String für Sammelschienen-Beziehungen
                 if n_busbar_formula not in (None, ""):
                     feats["busbar_id"] = str(n_busbar_formula).strip()
                 else:
                     feats.pop("busbar_id", None)
 
-                # Derived configuration: filtered to existing node references
+                # Konfiguration abgeleiteter Felder
                 enable = bool(n_derived_enable and "on" in n_derived_enable)
                 if enable:
                     feature_key = (n_derived_feature_key or "P").strip() or "P"
@@ -939,7 +908,7 @@ def mutate_graph(
         if v is not None:
             feats["length_km"] = v
 
-        # Derived convenience value for later processing
+        # Gesamtreaktanz als Hilfswert
         if "X_ohm_per_km" in feats and "length_km" in feats:
             feats["X_total_ohm"] = feats["X_ohm_per_km"] * feats["length_km"]
 
@@ -964,7 +933,7 @@ def mutate_graph(
         if not new:
             return elems, elems, "Fehler: Neue Node-ID fehlt.", new_edge_sel
 
-        # If ID does not change, only update the label (if provided)
+        # If ID does not change, only update the label
         if new == old:
             for n in nodes:
                 if (n.get("data", {}) or {}).get("id") == old and new_label_val:
@@ -1075,10 +1044,7 @@ def mutate_graph(
     prevent_initial_call=True
 )
 def export_json(_, elems):
-    """
-    Exports the current elements list as JSON.
-    The exported payload is the raw Cytoscape elements list.
-    """
+    """Exportiert den aktuellen Graphen (Elements-Liste) als JSON."""
     return dict(
         content=json.dumps(elems, ensure_ascii=False, indent=2),
         filename="graph.json",
@@ -1087,5 +1053,5 @@ def export_json(_, elems):
 
 
 if __name__ == "__main__":
-    # Development server entry point
+    # Lokaler Start
     app.run(debug=True)

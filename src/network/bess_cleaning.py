@@ -14,10 +14,6 @@ from src.config import RAW_TS_DIR, CLEAN_TS_DIR, GRAPH_PATH
 
 logger = logging.getLogger(__name__)
 
-
-# ---------------------------------------------------------------------
-# Core math
-# ---------------------------------------------------------------------
 def fit_multi_ridge_regression(
     X: pd.DataFrame,
     y: pd.Series,
@@ -28,10 +24,6 @@ def fit_multi_ridge_regression(
 
     Minimiert:
       ||y - (alpha + X beta)||^2 + ridge_alpha * ||beta||^2
-
-    Hinweise:
-      - Intercept (alpha) wird nicht regularisiert.
-      - beta wird regularisiert (L2).
 
     Returns:
       alpha: float
@@ -71,10 +63,6 @@ def fit_multi_ridge_regression(
 
     return alpha, beta, r2, n_fit
 
-
-# ---------------------------------------------------------------------
-# IO helpers
-# ---------------------------------------------------------------------
 def _load_battery_node_ids_from_graph(graph_path: Path) -> List[str]:
     """
     Liest whole_graph.json (Cytoscape-Style) und gibt node_ids zurück, deren type == "battery" ist.
@@ -87,7 +75,6 @@ def _load_battery_node_ids_from_graph(graph_path: Path) -> List[str]:
 
     for it in data:
         d = it.get("data", {})
-        # edges haben source/target -> skip
         if "source" in d and "target" in d:
             continue
         nid = d.get("id")
@@ -118,10 +105,6 @@ def _battery_hist_filenames(raw_dir: Path, battery_node_ids: List[str]) -> List[
 
     return files
 
-
-# ---------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------
 def remove_bess_effects_from_csv(
     bess_file: str,
     ts_col: str = "timestamp",
@@ -131,14 +114,14 @@ def remove_bess_effects_from_csv(
     ridge_alpha: float = 1.0,
 ) -> Dict[str, pd.Series]:
     """
-    Wrapper für genau 1 BESS-Datei (Backwards compatibility).
+    Wrapper für genau 1 BESS-Datei.
     """
-    clean, _report = remove_bess_effects_from_csv_multi(
+    clean = remove_bess_effects_from_csv_multi(
         bess_files=[bess_file],
         ts_col=ts_col,
         val_col=val_col,
         min_overlap_points=min_overlap_points,
-        out_dir=out_dir,  # None => CLEAN_TS_DIR
+        out_dir=out_dir,  
         ridge_alpha=ridge_alpha,
     )
     return clean
@@ -161,10 +144,6 @@ def remove_bess_effects_from_csv_multi(
     Beim Schreiben wird die komplette ursprüngliche CSV (inkl. Wetterspalten) übernommen.
     Es wird nur val_col (P_MW) ersetzt.
 
-    SPEICHERN:
-      - Wenn out_dir=None -> speichert nach CLEAN_TS_DIR (config).
-      - Wenn out_dir gesetzt -> speichert dorthin.
-
     Returns:
       (clean_series_dict, report_df)
     """
@@ -176,8 +155,6 @@ def remove_bess_effects_from_csv_multi(
         raise FileNotFoundError(f"meas_dir existiert nicht: {meas_dir.resolve()}")
     logger.info("BESS-clean Input-Verzeichnis (meas_dir): %s", meas_dir.resolve())
 
-
-
     if not bess_files:
         raise ValueError("bess_files ist leer. Bitte Liste mit BESS *_hist.csv Dateinamen übergeben.")
 
@@ -185,7 +162,7 @@ def remove_bess_effects_from_csv_multi(
     out_path.mkdir(parents=True, exist_ok=True)
     logger.info("BESS-clean Output-Verzeichnis: %s", out_path.resolve())
 
-    # --- BESS Matrix X laden (nur val_col)
+    #  BESS Matrix X laden (nur val_col)
     bess_series: Dict[str, pd.Series] = {}
     for bf in bess_files:
         p = meas_dir / bf

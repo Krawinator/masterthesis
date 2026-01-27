@@ -231,7 +231,7 @@ def fetch_datapoint_raw(
                     body,
                     params,
                 )
-            # Abbrechen und das bisher Gesammelte zurückgeben
+            # Bei Fehler: Chunking beenden und das bisherige Ergebnis zurückgeben
             break
 
         samples = j.get("samples") or []
@@ -277,7 +277,7 @@ def datapoint_json_to_series(resp_json: dict, col_name: str) -> pd.Series:
     - Zeitspalte wird automatisch aus ['timestamp', 'startTime', 'time'] gewählt.
     - Wertspalte wird automatisch aus ['value', 'avg', 'P', 'v'] gewählt.
 
-    Index:   datetime (naive, localisiert in UTC→naive)
+    Index:   Index: datetime (UTC, tz-naiv)
     Werte:   float
     Name:    col_name
     """

@@ -1,12 +1,10 @@
 # src/main.py
 """
-
-
 End-to-end Pipeline (A -> Z):
 1) load_all_data()            -> raw measurements + weather (hist + forecast) + writes raw CSVs
 2) clean_data(bundle)         -> in-memory cleaning + coverage report
 3) BESS cleaning (ridge)      -> timeseries_no_bess CSVs
-4) forecast_all_nodes()       -> preds + pred_normalized (forecast.py)
+4) forecast_all_nodes()       -> preds (forecast.py)
 5) battery_bands.run()        -> powerband CSVs je battery node
 
 Run from repo root:
@@ -43,7 +41,6 @@ def _ensure_dirs() -> None:
         "CLEAN_TS_DIR",
         "WEATHER_FORECAST_DIR",
         "PRED_TS_DIR",
-        "PRED_NORMALIZED_DIR",
         "POWERBAND_DIR",
         "LOG_DIR",
     ]:
@@ -127,9 +124,7 @@ def _run_clean_data(bundle: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _run_bess_cleaning() -> None:
-    """
-    Remove BESS influence using multivariate Ridge regression.
-    """
+    """Remove BESS influence using multivariate Ridge regression."""
     
 
     logger.info("STEP bess_cleaning (Ridge)")
@@ -140,7 +135,7 @@ def _run_bess_cleaning() -> None:
         ts_col="timestamp",
         val_col="P_MW",
         min_overlap_points=200,
-        out_dir=None,  
+        out_dir=Path(cfg.CLEAN_TS_DIR),
         include_intercept_in_removal=False,
         ridge_alpha=1.0,
         write_report_csv=True,
@@ -152,7 +147,7 @@ def _run_bess_cleaning() -> None:
 
 
 def _run_forecast(overwrite: bool = True, max_hours_cap: Optional[float] = None) -> None:
-    """Forecast all nodes using winner model; writes pred + pred_normalized."""
+    """Forecast all nodes using winner model; writes pred."""
     from src.forecast import forecast_all_nodes
 
     logger.info("STEP forecast_all_nodes(overwrite=%s max_hours_cap=%s)", overwrite, max_hours_cap)
@@ -206,7 +201,6 @@ def main() -> int:
         logger.info("RAW_TS_DIR=%s", Path(cfg.RAW_TS_DIR).resolve())
         logger.info("CLEAN_TS_DIR=%s", Path(cfg.CLEAN_TS_DIR).resolve())
         logger.info("PRED_TS_DIR=%s", Path(cfg.PRED_TS_DIR).resolve())
-        logger.info("PRED_NORMALIZED_DIR=%s", Path(cfg.PRED_NORMALIZED_DIR).resolve())
         logger.info("POWERBAND_DIR=%s", Path(cfg.POWERBAND_DIR).resolve())
         logger.info("UTIL_TARGET_PCT=%.2f", float(cfg.UTIL_TARGET_PCT))
 

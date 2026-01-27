@@ -21,7 +21,7 @@ def _reindex_and_interp_series(s: pd.Series) -> pd.Series:
     # Reindex auf Raster
     s = s.reindex(full_index)
 
-    # Micro-gap fill: nur kurze Lücken
+    # Kleine Lücken interpolieren (bis MAX_GAP_STEPS)
     s = s.interpolate(
         method="time",
         limit=int(MAX_GAP_STEPS),
@@ -141,7 +141,7 @@ def _write_prepared_csvs(
 
         w = cleaned_weather_hist.get(node_id)
         if w is not None and not w.empty:
-            # join auf gleichem Raster; lässt NaNs stehen, wenn Wetter fehlt
+            # Left-Join auf Zeitraster; NaNs bleiben, wenn Wetterwerte fehlen
             df_out = df_out.join(w, how="left")
 
         df_out = df_out.sort_index()
@@ -154,7 +154,7 @@ def _write_prepared_csvs(
 
 def clean_data(data: Dict[str, Any], *, write_prepared: bool = True) -> Dict[str, Any]:
     """
-    Reindex + Micro-gap interpolation (MAX_GAP_STEPS) für:
+    Reindex + Interpolation kurzer Lücken (MAX_GAP_STEPS):
       - measurements (P_MW)
       - weather_hist
 

@@ -1,7 +1,7 @@
 # src/battery_bands.py
 """
 - Lädt whole_graph.json
-- Lädt pred_normalized/<node>_pred.csv (P_MW_pred_norm)
+- Lädt pred/<node>_pred.csv (P_MW_pred)
 - Kontraktion (X<=X_EPS_OHM) -> Supernetz
 - PTDFs je Komponente (zeitinvariant)
 - Für alle Timestamps:
@@ -34,7 +34,7 @@ from src import config as cfg
 logger = logging.getLogger(__name__)
 
 TS_COL = "timestamp"
-PRED_COL = "P_MW_pred_norm"
+PRED_COL = "P_MW_pred"
 PRED_SUFFIX = "_pred.csv"
 
 FORECAST_NODE_TYPES = {"uw_field"}
@@ -156,7 +156,7 @@ def run() -> None:
 
     # --- config params ---
     graph_path = Path(cfg.GRAPH_PATH)
-    pred_dir = Path(cfg.PRED_NORMALIZED_DIR)
+    pred_dir = Path(cfg.PRED_TS_DIR)
     out_dir = Path(cfg.POWERBAND_DIR)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -215,7 +215,7 @@ def run() -> None:
     # 2) Kontraktion
     # ==========================================================
     uf = UF(nodes)
-    electrical_edges = []  # (u,v,eid,feat,Xohm)
+    electrical_edges = []  
     to_contract = 0
 
     for e in edges:
@@ -247,7 +247,7 @@ def run() -> None:
     logger.info("Kontraktion: contracted=%d kept=%d", to_contract, len(electrical_edges))
     logger.info("Supernetz: super_nodes=%d super_edges=%d", len(super_nodes), len(super_edges))
 
-    # Battery super mapping + pmax sum on supernode
+    # Zuordnung der Batterien auf Supernodes; p_max wird über alle enthaltenen Batterien aufsummiert.
     battery_super = {b: rep_map[b] for b in battery_nodes}
     super_pmax = defaultdict(float)
     for b in battery_nodes:
@@ -268,7 +268,8 @@ def run() -> None:
         if s is None:
             missing.append(nid)
         else:
-            # SIGN FLIP => injection convention
+            # Vorzeichenkonvention: Lastprognosen werden als negative Injektion modelliert,
+            # damit positive Werte im Loadflow durchgehend Einspeisung bedeuten.
             series_by_node[nid] = (-s)
 
     if not series_by_node:
@@ -276,16 +277,16 @@ def run() -> None:
 
     P_df = pd.concat(list(series_by_node.values()), axis=1).sort_index()
 
-    # all nodes as cols
+    # Fehlende Knoten explizit auf 0 MW setzen, um die Aggregation auf Supernodes eindeutig zu halten.
     for nid in nodes:
         if nid not in P_df.columns:
             P_df[nid] = 0.0
 
-    # batteries basecase
+    # Batterien fahren im Basecase mit 0 MW (Neutralbetrieb)
     for b in battery_nodes:
         P_df[b] = float(BASECASE_BESS_P_MW)
 
-    # supernode injections = sum of members
+    # Injektion je Supernode ergibt sich als Summe der zugehörigen Knoten
     for rep, members in members_by_rep.items():
         cols = [c for c in members if c in P_df.columns]
         P_df[rep] = P_df[cols].sum(axis=1) if cols else 0.0
@@ -542,39 +543,6 @@ def run() -> None:
         if basecase_infeasible:
             basecase_violations.sort(key=lambda x: x[1], reverse=True)
             basecase_bottleneck = basecase_violations[0][0]
-        # --- DEBUG: bottleneck-edge margin für einen kurzen Zeitraum ---
-        DEBUG_EDGE = "110-SHUW-WEDI-ROT,BOLN,SIES,SIEV WEDI-SIEV A3"
-        DEBUG_TS = pd.to_datetime([
-            "2026-01-23 10:30:00",
-            "2026-01-23 10:45:00",
-            "2026-01-23 11:00:00",
-            "2026-01-23 11:15:00",
-        ], utc=False).tz_localize(cfg.TIMEZONE).tz_convert("UTC")
-
-        if t in DEBUG_TS:
-            # limit für diese edge finden (liegt in genau einer Komponente)
-            L = None
-            for comp in components:
-                ck = frozenset(comp)
-                if DEBUG_EDGE in comp_cache[ck]["P_limit_eff"]:
-                    L = float(comp_cache[ck]["P_limit_eff"][DEBUG_EDGE])
-                    break
-
-            F0 = float(flows_now.get(DEBUG_EDGE, 0.0))
-            margin = (L - abs(F0)) if L is not None else np.nan
-            viol = max(0.0, abs(F0) - L) if L is not None else np.nan
-
-            rows_util.append({
-                "timestamp": t,
-                "edge_id": DEBUG_EDGE,
-                "P_MW": F0,
-                "util_%": np.nan,
-                "limit_MW_eff": L,
-                "margin_MW": margin,
-                "viol_MW": viol,
-                "basecase_infeasible": bool(basecase_infeasible),
-            })
-
 
         # util rows
         for eid, fMW in flows_now.items():

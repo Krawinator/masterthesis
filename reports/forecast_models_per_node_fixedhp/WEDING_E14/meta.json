@@ -1,0 +1,66 @@
+{
+  "node_id": "WEDING_E14",
+  "winner_config": "/Users/martinkrawtzow/Documents/Masterthesis/thesis/Code/Github/masterthesis/reports/forecast_experiments/_global_winner/winner_config.json",
+  "winner_approach": "DirectStacked",
+  "winner_model_name": "Ridge",
+  "winner_params": {
+    "model__alpha": 1000.0
+  },
+  "H": 100,
+  "timestamp_col": "timestamp",
+  "target_col": "P_MW",
+  "raw_features": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C"
+  ],
+  "target_lags": [
+    1,
+    4,
+    8,
+    12,
+    24,
+    96
+  ],
+  "fourier_k": 3,
+  "period_steps": 96,
+  "exog_cols": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "day_sin1",
+    "day_sin2",
+    "day_sin3",
+    "day_cos1",
+    "day_cos2",
+    "day_cos3"
+  ],
+  "lag_cols": [
+    "P_MW_lag1",
+    "P_MW_lag4",
+    "P_MW_lag8",
+    "P_MW_lag12",
+    "P_MW_lag24",
+    "P_MW_lag96"
+  ],
+  "present_exog": [
+    "wind_speed_mps",
+    "solar_radiation_Wm2",
+    "temperature_C"
+  ],
+  "train_rows": 15338,
+  "holdout_rows": 3835,
+  "p_pos_hist": 0.5324153757888698,
+  "median_hist": 0.8036352119318666,
+  "holdout_overall": {
+    "MAE": 9.18498088612557,
+    "RMSE": 11.692412820349272,
+    "R2": 0.2689643465710606
+  }
+}
