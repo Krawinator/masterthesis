@@ -1,25 +1,18 @@
 # pip install dash dash-cytoscape
-import dash
-from dash import html, dcc, Input, Output, State, callback, ctx, no_update
-import dash_cytoscape as cyto
-import json
 import base64
+import json
+
+import dash
+import dash_cytoscape as cyto
+from dash import Input, Output, State, callback, ctx, dcc, html, no_update
 
 app = dash.Dash(__name__)
 app.title = "Graph-Editor – Stromnetz"
 
-# Startzustand: Cytoscape-Elemente (Nodes + Edges)
 INITIAL_ELEMENTS: list[dict] = []
 
 
-# =============================================================================
-# Styling
-# =============================================================================
 def make_stylesheet(show_edge_labels: bool):
-    """
-    Cytoscape-Stylesheet. Kantenlabels optional ein-/ausblendbar.
-    """
-
     return [
         {"selector": "node",
          "style": {"content": "data(label)", "text-valign": "center",
@@ -45,19 +38,10 @@ def make_stylesheet(show_edge_labels: bool):
     ]
 
 
-# =============================================================================
-# Feature helpers (derived terms parsing)
-# =============================================================================
 def parse_formula_to_terms(s: str):
-    """
-    Liest "node:coeff, node:coeff, ..." und gibt Terms als Liste zurück.
-    Ungültige Teile werden übersprungen.
-    """
-
     terms = []
     if not s:
         return terms
-
     for part in s.split(","):
         part = part.strip()
         if not part or ":" not in part:
@@ -74,9 +58,6 @@ def parse_formula_to_terms(s: str):
 
 
 def terms_to_string(terms):
-    """
-    Baut aus Terms wieder einen editierbaren String ("node:coeff, ...").
-    """
     if not terms:
         return ""
     return ", ".join(
@@ -86,13 +67,7 @@ def terms_to_string(terms):
     )
 
 
-# =============================================================================
-# Elements helpers
-# =============================================================================
 def split_elements(elems: list[dict]):
-    """
-    Trennt Elements in Nodes/Edges: Edge hat source+target, sonst Node.
-    """
     elems = elems or []
     nodes, edges = [], []
     for x in elems:
@@ -105,7 +80,6 @@ def split_elements(elems: list[dict]):
 
 
 def node_ids_from(nodes):
-    """Sammelt alle Node-IDs aus den Elementen."""
     out = set()
     for n in nodes:
         d = n.get("data", {}) or {}
@@ -116,7 +90,6 @@ def node_ids_from(nodes):
 
 
 def edge_ids_from(edges):
-    """Sammelt alle Edge-IDs"""
     out = set()
     for e in edges:
         d = e.get("data", {}) or {}
@@ -127,13 +100,11 @@ def edge_ids_from(edges):
 
 
 def edge_key(e):
-    """Key für Duplikat-Check: (source, target)."""
     d = e.get("data", {}) or {}
     return (d.get("source"), d.get("target"))
 
 
 def safe_float(x):
-    """Float-Parser: leer/ungültig -> None."""
     if x in (None, ""):
         return None
     try:
@@ -143,11 +114,6 @@ def safe_float(x):
 
 
 def is_valid_elements_list(obj):
-    """
-    Plausibilitätscheck für Import: Liste aus Elementen mit data{}.
-    Node braucht id, Edge braucht source+target, features (falls da) ist dict.
-    """
-
     if not isinstance(obj, list):
         return False, "JSON muss eine Liste von Cytoscape-Elementen sein."
 
@@ -173,11 +139,7 @@ def is_valid_elements_list(obj):
     return True, ""
 
 
-# =============================================================================
-# Layout
-# =============================================================================
 app.layout = html.Div([
-    # Mini-CSS: Vollhöhe + Dropdowns über Cytoscape (z-index).
     html.Script(
         """
         (function(){
@@ -193,14 +155,10 @@ app.layout = html.Div([
         """
     ),
 
-    # Persistenter State für Export/Import (Elements-Liste).
     dcc.Store(id="gstore", data=INITIAL_ELEMENTS),
-
-    # Merkt bis zu 2 angetippte Nodes für "Edge hinzufügen"
     dcc.Store(id="edge_selection", data=[]),
 
     html.Div([
-        # Links: graph canvas
         html.Div([
             cyto.Cytoscape(
                 id="graph",
@@ -221,11 +179,9 @@ app.layout = html.Div([
             "padding": "12px"
         }),
 
-        # Rechts: Werkzeug-Panel
         html.Div([
             html.H3("Werkzeuge"),
 
-            # Statuszeile für Aktionen/Fehler
             html.Div(id="status_msg", style={
                 "whiteSpace": "pre-wrap",
                 "fontSize": 12,
@@ -245,7 +201,6 @@ app.layout = html.Div([
                 )
             ], style={"marginBottom": "10px"}),
 
-            # --- Create Node ---
             html.Div([
                 html.Div([
                     html.Div([
@@ -290,14 +245,12 @@ app.layout = html.Div([
                 html.Button("Node hinzufügen", id="btn_add_node", style={"width": "180px"}),
             ], style={"marginBottom": 10}),
 
-            # Löscht Auswahl; bei Node werden verbundene Kanten mit entfernt.
             html.Button("Ausgewählten Node/Edge löschen", id="btn_del_element",
                         style={"marginBottom": 12}),
 
             html.Hr(),
             html.H4("Umbenennen"),
 
-            # Node umbenennen: ID/Label + Kanten-Endpunkte anpassen
             html.Div([
                 html.Label("Node: Neue ID"),
                 dcc.Input(id="rename_node_id"),
@@ -311,7 +264,6 @@ app.layout = html.Div([
                 "marginBottom": "10px"
             }),
 
-            # Edge umbenennen: ID/Label.
             html.Div([
                 html.Label("Edge: Neue ID"),
                 dcc.Input(id="rename_edge_id"),
@@ -327,7 +279,6 @@ app.layout = html.Div([
             html.Hr(),
             html.H4("Edge anlegen"),
 
-            # Edge wird aus den letzten 2 getippten Nodes gebaut
             html.Div([
                 dcc.Input(id="new_edge_id", placeholder="Edge-ID"),
                 dcc.Input(id="new_edge_label", placeholder="Edge-Label", style={"marginLeft": 6}),
@@ -339,7 +290,6 @@ app.layout = html.Div([
             html.H4("Auswahl"),
             html.Div(id="sel_summary", style={"whiteSpace": "pre-wrap", "fontFamily": "monospace"}),
 
-            # ===== Node Fields =====
             html.H5("Node-Felder"),
             html.Div([
                 html.Label("P_Datapoint_ID"),
@@ -383,7 +333,6 @@ app.layout = html.Div([
                 html.Label("Längengrad (°)"),
                 dcc.Input(id="n_lon", type="number", step="any"),
 
-                # Optional formula string used for busbar relationships
                 html.Label("Busbar-Formel (optional)"),
                 dcc.Input(
                     id="n_busbar_formula",
@@ -391,7 +340,6 @@ app.layout = html.Div([
                     style={"width": "100%"}
                 ),
 
-                # Derived feature configuration
                 html.Label("Derived aktiv?"),
                 dcc.Checklist(
                     id="n_derived_enable",
@@ -421,17 +369,13 @@ app.layout = html.Div([
 
             html.Button("Node-Felder speichern", id="btn_save_node_schema", style={"marginTop": 6}),
 
-            # ===== Edge Fields =====
             html.H5("Edge-Felder"),
             html.Div([
                 html.Label("Strom_Limit_in_A"),
                 dcc.Input(id="e_Strom_Limit_in_A", type="number"),
 
-                html.Label("Reaktanz X (Ω/km)"),
-                dcc.Input(id="e_X_ohm_per_km", type="number", step="any"),
-
-                html.Label("Länge (km)"),
-                dcc.Input(id="e_length_km", type="number", step="any"),
+                html.Label("Gesamtreaktanz X_total (Ω)"),
+                dcc.Input(id="e_X_total_ohm", type="number", step="any"),
             ], style={
                 "display": "grid",
                 "gridTemplateColumns": "220px 1fr",
@@ -443,11 +387,9 @@ app.layout = html.Div([
             html.Hr(),
             html.H4("Import / Export"),
 
-            # Export: Elements-Liste als JSON.
             html.Button("Export JSON", id="btn_export"),
             dcc.Download(id="dl_json"),
 
-            # Import: JSON mit Elements-Liste (Cytoscape-Format)
             dcc.Upload(
                 id="upload_json",
                 children=html.Div(["JSON importieren (drag & drop)"]),
@@ -474,16 +416,11 @@ app.layout = html.Div([
 ])
 
 
-# =============================================================================
-# Callbacks
-# =============================================================================
-
 @callback(
     Output("graph", "stylesheet"),
     Input("edge_label_toggle", "value")
 )
 def toggle_edge_labels(values):
-    """Schaltet Kantenlabels im Stylesheet um."""
     show = bool(values and "show" in values)
     return make_stylesheet(show_edge_labels=show)
 
@@ -500,14 +437,13 @@ def toggle_edge_labels(values):
     Output("n_type_dropdown", "value"),
     Output("n_p_max_mw", "value"),
     Output("e_Strom_Limit_in_A", "value"),
+    Output("e_X_total_ohm", "value"),
     Output("rename_node_id", "value"),
     Output("rename_node_label", "value"),
     Output("rename_edge_id", "value"),
     Output("rename_edge_label", "value"),
     Output("n_lat", "value"),
     Output("n_lon", "value"),
-    Output("e_X_ohm_per_km", "value"),
-    Output("e_length_km", "value"),
     Output("n_busbar_formula", "value"),
     Output("n_derived_enable", "value"),
     Output("n_derived_feature_key", "value"),
@@ -516,7 +452,6 @@ def toggle_edge_labels(values):
     Input("graph", "selectedEdgeData"),
 )
 def show_selection(node_data, edge_data):
-    """Füllt die Eingabefelder basierend auf der aktuellen Auswahl."""
     if node_data:
         d = node_data[0]
         feats = d.get("features", {}) or {}
@@ -544,10 +479,10 @@ def show_selection(node_data, edge_data):
             d.get("type"),
             feats.get("p_max_MW", None),
             None,
+            None,
             d["id"], d.get("label"),
             "", "",
             feats.get("Latitude_deg"), feats.get("Longitude_deg"),
-            None, None,
             feats.get("busbar_id", ""),
             d_enabled,
             d_feature,
@@ -562,17 +497,16 @@ def show_selection(node_data, edge_data):
             summary,
             "", "", None, "", "", "", "", None, None,
             feats.get("Strom_Limit_in_A", None),
+            feats.get("X_total_ohm", None),
             "", "",
             d.get("id"), d.get("label"),
             None, None,
-            feats.get("X_ohm_per_km", None),
-            feats.get("length_km", None),
             "", [], "P", ""
         )
 
     return ("Nichts ausgewählt.", "", "", None, "", "", "", "",
-            None, None, None, "", "", "", "",
-            None, None, None, None, "", [], "P", "")
+            None, None, None, None, "", "", "", "",
+            None, None, "", [], "P", "")
 
 
 @callback(
@@ -582,7 +516,6 @@ def show_selection(node_data, edge_data):
     State("edge_selection", "data"),
 )
 def handle_tap_node(tapped, current):
-    """Merkt sich bis zu zwei getippte Nodes für das Edge-Anlegen."""
     current = current or []
     if not tapped:
         return current, no_update
@@ -637,8 +570,7 @@ def handle_tap_node(tapped, current):
     State("n_lon", "value"),
 
     State("e_Strom_Limit_in_A", "value"),
-    State("e_X_ohm_per_km", "value"),
-    State("e_length_km", "value"),
+    State("e_X_total_ohm", "value"),
 
     State("rename_node_id", "value"),
     State("rename_node_label", "value"),
@@ -662,15 +594,12 @@ def mutate_graph(
     n_P, n_Q, n_Ilim, n_Wind, n_Glob, n_Tamb, n_DAB, n_type_sel,
     n_pmax_mw, n_lat, n_lon,
 
-    e_Ilim, e_X_per_km, e_len_km,
+    e_Ilim, e_X_total_ohm,
+
     r_node_id, r_node_label, r_edge_id, r_edge_label,
 
     n_busbar_formula, n_derived_enable, n_derived_feature_key, n_derived_terms
 ):
-    """
-    Zentrale Callback-Funktion für alle Aktionen (add/del/rename/import/save).
-    Gibt Elements + Status + Edge-Auswahl zurück.
-    """
     trig = ctx.triggered_id
     elems = elems or []
 
@@ -682,9 +611,6 @@ def mutate_graph(
     status = "OK."
     new_edge_sel = edge_sel or []
 
-    # -------------------------------------------------------------------------
-    # Node anlegen
-    # -------------------------------------------------------------------------
     if trig == "btn_add_node":
         nid = (new_id or "").strip()
         if not nid:
@@ -704,9 +630,6 @@ def mutate_graph(
         new_elems = nodes + edges
         return new_elems, new_elems, status, new_edge_sel
 
-    # -------------------------------------------------------------------------
-    # Edge anlegen
-    # -------------------------------------------------------------------------
     if trig == "btn_add_edge":
         eid = (new_edge_id or "").strip()
         if not eid:
@@ -737,13 +660,9 @@ def mutate_graph(
 
         status = f"Edge '{eid}' ({s}→{t}) hinzugefügt."
         new_elems = nodes + edges
-        return new_elems, new_elems, status, []  # resets edge_selection after creation
+        return new_elems, new_elems, status, []
 
-    # -------------------------------------------------------------------------
-    # Delete selected node/edge
-    # -------------------------------------------------------------------------
     if trig == "btn_del_element":
-        # Node deletion removes all incident edges
         if selected_nodes:
             nid = selected_nodes[0].get("id")
             if not nid:
@@ -760,7 +679,6 @@ def mutate_graph(
             new_elems = nodes + edges
             return new_elems, new_elems, status, [x for x in new_edge_sel if x != nid]
 
-        # Edge deletion removes only the selected edge
         if selected_edges:
             sel = selected_edges[0]
             sid = sel.get("id")
@@ -783,9 +701,6 @@ def mutate_graph(
 
         return elems, elems, "Hinweis: Nichts selektiert.", new_edge_sel
 
-    # -------------------------------------------------------------------------
-    # Save node fields (features + type updates)
-    # -------------------------------------------------------------------------
     if trig == "btn_save_node_schema":
         if not selected_nodes:
             return elems, elems, "Fehler: Bitte erst einen Node auswählen.", new_edge_sel
@@ -798,7 +713,6 @@ def mutate_graph(
             if (n.get("data", {}) or {}).get("id") == nid:
                 feats = (n["data"].get("features", {}) or {}).copy()
 
-                # Standard fields
                 if n_P not in (None, ""):
                     feats["P_Datapoint_ID"] = str(n_P).strip()
                 if n_Q not in (None, ""):
@@ -817,18 +731,15 @@ def mutate_graph(
                 if n_DAB not in (None, ""):
                     feats["DAB_ID"] = str(n_DAB).strip()
 
-                # Node type is stored at element root level: data.type
                 if n_type_sel:
                     n["data"]["type"] = str(n_type_sel).strip()
 
-                # Battery-only field: remove when empty to keep features clean
                 v = safe_float(n_pmax_mw)
                 if v is not None:
                     feats["p_max_MW"] = v
                 else:
                     feats.pop("p_max_MW", None)
 
-                # Coordinates
                 v = safe_float(n_lat)
                 if v is not None:
                     feats["Latitude_deg"] = v
@@ -836,13 +747,11 @@ def mutate_graph(
                 if v is not None:
                     feats["Longitude_deg"] = v
 
-                # Optional: Formel-String für Sammelschienen-Beziehungen
                 if n_busbar_formula not in (None, ""):
                     feats["busbar_id"] = str(n_busbar_formula).strip()
                 else:
                     feats.pop("busbar_id", None)
 
-                # Konfiguration abgeleiteter Felder
                 enable = bool(n_derived_enable and "on" in n_derived_enable)
                 if enable:
                     feature_key = (n_derived_feature_key or "P").strip() or "P"
@@ -869,9 +778,6 @@ def mutate_graph(
         new_elems = nodes + edges
         return new_elems, new_elems, status, new_edge_sel
 
-    # -------------------------------------------------------------------------
-    # Save edge fields (features)
-    # -------------------------------------------------------------------------
     if trig == "btn_save_edge_schema":
         if not selected_edges:
             return elems, elems, "Fehler: Bitte erst eine Edge auswählen.", new_edge_sel
@@ -880,7 +786,6 @@ def mutate_graph(
         eid = sel.get("id")
         s, t = sel.get("source"), sel.get("target")
 
-        # Edge matching prefers 'id'; falls back to (source, target) for edges without id.
         target_edge = None
         for ed in edges:
             d = ed.get("data", {}) or {}
@@ -899,27 +804,23 @@ def mutate_graph(
         v = safe_float(e_Ilim)
         if v is not None:
             feats["Strom_Limit_in_A"] = v
+        elif e_Ilim in (None, ""):
+            feats.pop("Strom_Limit_in_A", None)
 
-        v = safe_float(e_X_per_km)
+        v = safe_float(e_X_total_ohm)
         if v is not None:
-            feats["X_ohm_per_km"] = v
+            feats["X_total_ohm"] = v
+        elif e_X_total_ohm in (None, ""):
+            feats.pop("X_total_ohm", None)
 
-        v = safe_float(e_len_km)
-        if v is not None:
-            feats["length_km"] = v
-
-        # Gesamtreaktanz als Hilfswert
-        if "X_ohm_per_km" in feats and "length_km" in feats:
-            feats["X_total_ohm"] = feats["X_ohm_per_km"] * feats["length_km"]
+        feats.pop("X_ohm_per_km", None)
+        feats.pop("length_km", None)
 
         target_edge["data"]["features"] = feats
         status = "Edge-Felder gespeichert."
         new_elems = nodes + edges
         return new_elems, new_elems, status, new_edge_sel
 
-    # -------------------------------------------------------------------------
-    # Rename node (updates node ID + edges)
-    # -------------------------------------------------------------------------
     if trig == "btn_rename_node":
         if not selected_nodes:
             return elems, elems, "Fehler: Bitte erst einen Node auswählen.", new_edge_sel
@@ -933,7 +834,6 @@ def mutate_graph(
         if not new:
             return elems, elems, "Fehler: Neue Node-ID fehlt.", new_edge_sel
 
-        # If ID does not change, only update the label
         if new == old:
             for n in nodes:
                 if (n.get("data", {}) or {}).get("id") == old and new_label_val:
@@ -944,12 +844,9 @@ def mutate_graph(
         if new in node_ids:
             return elems, elems, f"Fehler: Node-ID '{new}' existiert bereits.", new_edge_sel
 
-        # Update node element
         for n in nodes:
             if (n.get("data", {}) or {}).get("id") == old:
                 n["data"]["id"] = new
-
-                # Label behavior: explicit label wins; otherwise keep stable label unless it mirrored the old ID.
                 if new_label_val:
                     n["data"]["label"] = new_label_val
                 else:
@@ -957,7 +854,6 @@ def mutate_graph(
                         n["data"]["label"] = new
                 break
 
-        # Rewrite edge endpoints referencing the old node ID
         for e in edges:
             d = e.get("data", {}) or {}
             if d.get("source") == old:
@@ -965,16 +861,12 @@ def mutate_graph(
             if d.get("target") == old:
                 d["target"] = new
 
-        # Keep edge selection consistent with renamed IDs
         new_edge_sel = [new if x == old else x for x in new_edge_sel]
 
         status = f"Node umbenannt: '{old}' → '{new}'."
         new_elems = nodes + edges
         return new_elems, new_elems, status, new_edge_sel
 
-    # -------------------------------------------------------------------------
-    # Rename edge (updates edge ID + label)
-    # -------------------------------------------------------------------------
     if trig == "btn_rename_edge":
         if not selected_edges:
             return elems, elems, "Fehler: Bitte erst eine Edge auswählen.", new_edge_sel
@@ -987,7 +879,6 @@ def mutate_graph(
         new_id = (r_edge_id or "").strip()
         new_label_val = (r_edge_label or "").strip()
 
-        # Locate edge by ID
         target = None
         for ed in edges:
             if (ed.get("data", {}) or {}).get("id") == old_id:
@@ -1008,9 +899,6 @@ def mutate_graph(
         new_elems = nodes + edges
         return new_elems, new_elems, status, new_edge_sel
 
-    # -------------------------------------------------------------------------
-    # Import JSON (expects list of Cytoscape elements)
-    # -------------------------------------------------------------------------
     if trig == "upload_json":
         if not (upload_contents and upload_name and upload_name.endswith(".json")):
             return elems, elems, "Fehler: Bitte eine .json Datei hochladen.", new_edge_sel
@@ -1024,16 +912,19 @@ def mutate_graph(
         if not ok:
             return elems, elems, f"Fehler: Import abgelehnt.\n{msg}", new_edge_sel
 
-        _, imp_edges = split_elements(obj)
-        missing = [i for i, e in enumerate(imp_edges) if not ((e.get("data", {}) or {}).get("id"))]
-        warn = ""
-        if missing:
-            warn = f"\nHinweis: {len(missing)} Edge(s) ohne 'id' im Import."
+        # Alte Felder entfernen, falls sie im Import noch vorkommen
+        for el in obj:
+            d = el.get("data", {}) or {}
+            if "source" in d and "target" in d:
+                feats = d.get("features", {}) or {}
+                if isinstance(feats, dict):
+                    feats.pop("X_ohm_per_km", None)
+                    feats.pop("length_km", None)
+                    d["features"] = feats
 
-        status = f"Import OK: {len(obj)} Elemente geladen.{warn}"
+        status = f"Import OK: {len(obj)} Elemente geladen."
         return obj, obj, status, []
 
-    # Default: state remains unchanged
     return nodes + edges, nodes + edges, status, new_edge_sel
 
 
@@ -1044,7 +935,6 @@ def mutate_graph(
     prevent_initial_call=True
 )
 def export_json(_, elems):
-    """Exportiert den aktuellen Graphen (Elements-Liste) als JSON."""
     return dict(
         content=json.dumps(elems, ensure_ascii=False, indent=2),
         filename="graph.json",
@@ -1053,5 +943,4 @@ def export_json(_, elems):
 
 
 if __name__ == "__main__":
-    # Lokaler Start
     app.run(debug=True)
