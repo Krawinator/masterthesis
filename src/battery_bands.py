@@ -9,18 +9,18 @@
     - Bands je Battery (Injection min/max) unter Leitungs-UTIL_TARGET_PCT
 - Speichert CSVs nach src/data/powerband/
 
-Wichtige Konventionen / Design-Entscheidungen:
-- Injection-Konvention: Forecast wird als negative Einspeisung interpretiert (SIGN FLIP), damit
-  "positive" Injektion typischerweise Einspeisung bedeutet und Lasten negative Werte liefern.
-- Leistungsband ist so definiert, dass 0 MW immer zulässig ist (Neutralbetrieb).
-  Wenn die Schnittmenge der zulässigen Batterieaktionen leer ist, wird [0,0] ausgegeben.
-- Basecase-Infeasibility: Wenn bereits ohne Batterieaktion Leitungsgrenzen verletzt werden,
-  ist der Zeitschritt unabhängig von der Batterie infeasible (P_min/P_max bleiben NaN).
+Konventionen:
+- Vorzeichen: Prognosen werden als Injektionen modelliert. Lasten werden dafür negiert, sodass
+  positive Werte Einspeisung bedeuten.
+- Das Leistungsband enthält immer 0 MW (Neutralbetrieb). Ist die zulässige Schnittmenge leer,
+  wird [0, 0] ausgegeben.
+- Wenn der Basecase (ohne Batterieaktion) bereits Leitungsgrenzen verletzt, ist der Zeitschritt
+  unabhängig von der Batterie nicht zulässig.
 
-NOTE (Validation / Notebook):
-- Diese Datei ist weiterhin "produktiv" nutzbar über run() ohne Parameter.
-- Zusätzlich kann run() jetzt optional Debug-Interna zurückgeben und IO deaktivieren,
-  damit ein Jupyter-Notebook möglichst NUR Calls in dieses Modul macht.
+Hinweis:
+- run() kann weiterhin ohne Parameter in der Pipeline ausgeführt werden.
+- Für das Validierungs-Notebook kann run() Debug-Daten zurückgeben und IO deaktivieren.
+
 """
 
 from __future__ import annotations
@@ -153,7 +153,7 @@ def read_pred_series_for_node(pred_dir: Path, node_id: str, logger: logging.Logg
 
 
 # ==========================================================
-# Reusable building blocks (aus run() herausgezogen)
+# Bausteine (aus run() extrahiert, auch fürs Notebook nutzbar)
 # ==========================================================
 def load_graph(graph_path: Path) -> Tuple[List[str], List[dict], Dict[str, str], Dict[str, dict]]:
     with graph_path.open("r", encoding="utf-8") as f:
@@ -182,13 +182,12 @@ def contract_graph(
     edges: List[dict],
     X_EPS_OHM: float,
 ) -> Tuple[Dict[str, str], List[str], Dict[str, List[str]], List[Tuple[str, str, str, dict, float]], int, int]:
+
     """
-    Kontraktion gemäß produktiver Logik:
-    - Kanten ohne X oder X<=eps => union
-    - sonst elektrische_edges behalten
-    Returns:
-      rep_map, super_nodes, members_by_rep, super_edges, n_contracted, n_kept_electrical
+    Kontrahiert Knoten über Kanten ohne/mit sehr kleiner Reaktanz (X<=eps).
+    Alle übrigen Kanten bleiben als elektrische Leitungen erhalten.
     """
+
     uf = UF(nodes)
     electrical_edges: List[Tuple[str, str, str, dict, float]] = []
     to_contract = 0
@@ -279,10 +278,7 @@ def build_B_and_lines_pu(
     V_kV_default: float,
     S_base_MVA: float,
 ) -> Tuple[np.ndarray, Dict[str, int], List[Tuple[str, str, float, str, dict]], Dict[str, dict]]:
-    """
-    Baut lines in p.u. und B-Matrix (wie produktiv).
-    Returns: B, node_index, lines, edge_meta
-    """
+    """ Erzeugt Leitungen in p.u. und die B-Matrix für den DC-Loadflow."""
     node_index = {nid: i for i, nid in enumerate(super_nodes)}
     n = len(super_nodes)
     B = np.zeros((n, n), dtype=float)
@@ -535,12 +531,9 @@ def solve_dc_flows_per_timestamp(
     S_base_MVA: float,
     theta_global: np.ndarray,
 ) -> Tuple[Dict[str, float], List[Tuple[str, float]]]:
-    """
-    DC-Loadflow pro Timestamp (identisch zur bisherigen inneren Loop-Logik).
-    Returns:
-      flows_now (eid->MW)
-      basecase_violations (list of (eid, exceed_MW))
-    """
+
+    """Berechnet DC-Loadflow-Flüsse für einen Timestamp und prüft Basecase-Grenzverletzungen."""
+
     flows_now: Dict[str, float] = {}
 
     # per component solve
@@ -602,16 +595,15 @@ def run(
     disable_io: bool = False,
 ) -> Optional[Dict[str, Any]]:
     """
-    Default (Produktion):
-      run() nutzt cfg.* Pfade, lädt Forecasts, schreibt CSVs, gibt None zurück.
+    Pipeline-Lauf:
+    - Ohne Parameter: nutzt cfg.* Pfade, lädt Forecasts und schreibt die Outputs.
 
-    Notebook/Validation:
-      - return_debug=True liefert Debug-Dict (PTDF, Komponenten, Flows für erste Timestamps, ...)
-      - graph_path_override erlaubt einen anderen Graph (z.B. validate_graph.json)
-      - disable_io=True verhindert jegliches CSV-Schreiben
-      - pred_dir_override kann gesetzt werden; wenn disable_io=True ist pred nicht zwingend nötig
-        (dann wird ein Dummy-P_df gebaut, falls keine Forecasts geladen werden können)
+    Notebook/Validierung:
+    - return_debug=True gibt interne Strukturen zurück (PTDF, Flows, etc.).
+    - disable_io=True verhindert das Schreiben von CSVs.
+    - *_override erlaubt das Überschreiben der Pfade (Graph/Pred/Output).
     """
+
     logger = logging.getLogger("powerband")
     logger.info("Start powerband run")
 
@@ -952,7 +944,7 @@ def run(
     # Debug return for notebook
     # ==========================================================
     if return_debug:
-        # harte Referenzen ins Debug (für Notebook)
+        # Debug-Ausgabe für das Notebook
         debug["graph_path"] = str(graph_path)
         debug["pred_dir"] = str(pred_dir)
         debug["out_dir"] = str(out_dir)
@@ -964,7 +956,7 @@ def run(
         debug["components"] = [list(c) for c in components]
         debug["slack_by_comp"] = {tuple(sorted(list(k))): v for k, v in slack_by_comp.items()}
 
-        # PTDF arrays in debug (numpy arrays are fine for notebook)
+        # PTDF im Debug mitgeben
         debug["PTDF_by_comp"] = {
             tuple(sorted(list(k))): {"line_ids": v["line_ids"], "pos": v["pos"], "PTDF": v["PTDF"]}
             for k, v in PTDF_by_comp.items()
@@ -992,7 +984,7 @@ def run(
             "util_scale": float(util_scale),
         }
 
-        # also include small dataframes for convenience
+        # DataFrames zusätzlich mitgeben
         debug["util_df"] = util_df
         debug["bands_df"] = bands_df
 

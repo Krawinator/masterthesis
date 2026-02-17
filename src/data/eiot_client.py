@@ -13,10 +13,6 @@ from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# 0) Token-Handling
-# ---------------------------------------------------------------------------
-
 EIOT_API_TOKEN: Optional[str] = None
 
 
@@ -42,14 +38,12 @@ def _load_eiot_token() -> str:
 
     load_dotenv(override=True)
 
-    # 1) Direkter Token aus ENV (falls vorhanden)
     direct_token = os.getenv("EIOT_API_TOKEN")
     if direct_token:
         EIOT_API_TOKEN = direct_token
         logger.info("EIOT: Zugriffstoken aus EIOT_API_TOKEN verwendet.")
         return EIOT_API_TOKEN
 
-    # 2) Azure AD Client Credentials Flow
     tenant_id = os.getenv("ARM_TENANT_ID")
     client_id = os.getenv("ARM_CLIENT_ID")
     client_secret = os.getenv("ARM_CLIENT_SECRET")
@@ -96,10 +90,8 @@ def _load_eiot_token() -> str:
     return EIOT_API_TOKEN
 
 
-# ---------------------------------------------------------------------------
-# 1) Zeit-Helfer
-# ---------------------------------------------------------------------------
 
+# 1) Zeit-Helfer
 def _to_iso_z(t: Union[str, datetime]) -> str:
     """
     Nimmt str oder datetime und gibt ISO-String 'YYYY-MM-DDTHH:MM:SS.000Z' zurück.
@@ -125,10 +117,7 @@ def _ensure_dt_utc(t: Union[str, datetime]) -> datetime:
     return dt
 
 
-# ---------------------------------------------------------------------------
 # 2) EIOT-Datapoint mit Chunking abrufen
-# ---------------------------------------------------------------------------
-
 def fetch_datapoint_raw(
     datapoint_id: str,
     start_time: Union[str, datetime],
@@ -214,7 +203,6 @@ def fetch_datapoint_raw(
             resp.raise_for_status()
             j = resp.json()
         except requests.RequestException as e:
-            # Fehler detailliert loggen (inkl. evtl. Response)
             status = getattr(getattr(e, "response", None), "status_code", None)
             body = getattr(getattr(e, "response", None), "text", None)
             logger.error(
@@ -264,11 +252,7 @@ def fetch_datapoint_raw(
 
     return result
 
-
-# ---------------------------------------------------------------------------
 # 3) Response → pandas.Series
-# ---------------------------------------------------------------------------
-
 def datapoint_json_to_series(resp_json: dict, col_name: str) -> pd.Series:
     """
     Wandelt die EIOT-Antwort für einen Datapoint in eine pd.Series um.

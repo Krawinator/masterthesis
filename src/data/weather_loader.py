@@ -126,13 +126,11 @@ def fetch_weather_open_meteo(
         timezone,
     )
 
-    # -------------------------------------------------------------------------
     # 1) Historische Daten: Historical-Forecast-API mit explizitem Zeitfenster
-    # -------------------------------------------------------------------------
     start_ts = _ensure_ts(start_time)
     end_ts = _ensure_ts(end_time)
 
-    # Auf UTC normalisieren (wenn naive Inputs kommen, interpretieren wir sie als UTC)
+    # Auf UTC normalisieren
     if start_ts.tzinfo is None:
         start_ts = start_ts.tz_localize("UTC")
     else:
@@ -157,7 +155,7 @@ def fetch_weather_open_meteo(
         "minutely_15": "temperature_2m,wind_speed_10m,shortwave_radiation",
         "start_minutely_15": start_ts.strftime("%Y-%m-%dT%H:%M"),
         "end_minutely_15": end_ts.strftime("%Y-%m-%dT%H:%M"),
-        "timezone": timezone,  # i.d.R. "UTC"
+        "timezone": timezone,  
         "models": model,
     }
 
@@ -170,10 +168,8 @@ def fetch_weather_open_meteo(
 
     df_hist = _fetch_minutely15(url_hist, params_hist, context="historisch")
 
-    # -------------------------------------------------------------------------
     # 2) Forecast-Daten: Forecast-Endpoint, aber Zeitfenster EXPLIZIT
     #    Start = nächster 15min Slot nach hist-Ende
-    # -------------------------------------------------------------------------
     df_forecast = pd.DataFrame()
     if forecast_hours > 0:
         expected_steps = forecast_hours * 4
@@ -239,9 +235,7 @@ def fetch_weather_open_meteo(
             if step != pd.Timedelta("15min"):
                 logger.warning("Forecast step ist %s statt 15min.", step)
 
-    # -------------------------------------------------------------------------
     # 3) Umbenennung der Spalten + Index setzen
-    # -------------------------------------------------------------------------
     rename_map = {
         "temperature_2m": "temperature_C",
         "wind_speed_10m": "wind_speed_mps",
@@ -262,9 +256,6 @@ def fetch_weather_open_meteo(
             pd.DatetimeIndex([], name="time")
         )
 
-    # -------------------------------------------------------------------------
-    # 4) Optional: Index von UTC -> gewünschte lokale Zone konvertieren
-    # -------------------------------------------------------------------------
     if output_timezone:
         for df in (df_hist, df_forecast):
             if len(df.index) > 0:

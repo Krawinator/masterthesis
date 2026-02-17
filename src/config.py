@@ -8,10 +8,10 @@ from pathlib import Path
 # Pfade
 # ------------------------------------------------------------------
 
-SRC_DIR = Path(__file__).resolve().parent          # .../repo/src
-REPO_ROOT = SRC_DIR.parent                        # .../repo
-DATA_DIR = SRC_DIR / "data"                       # .../repo/src/data
-REPORTS_DIR = REPO_ROOT / "reports"               # .../repo/reports
+SRC_DIR = Path(__file__).resolve().parent          
+REPO_ROOT = SRC_DIR.parent                        
+DATA_DIR = SRC_DIR / "data"                       
+REPORTS_DIR = REPO_ROOT / "reports"               
 
 # ------------------------------------------------------------------
 # Netzmodell

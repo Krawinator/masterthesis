@@ -25,7 +25,7 @@ def _reindex_and_interp_series(s: pd.Series) -> pd.Series:
     s = s.interpolate(
         method="time",
         limit=int(MAX_GAP_STEPS),
-        limit_direction="both",
+        limit_direction="forward",
     )
     return s
 
@@ -141,7 +141,6 @@ def _write_prepared_csvs(
 
         w = cleaned_weather_hist.get(node_id)
         if w is not None and not w.empty:
-            # Left-Join auf Zeitraster; NaNs bleiben, wenn Wetterwerte fehlen
             df_out = df_out.join(w, how="left")
 
         df_out = df_out.sort_index()
